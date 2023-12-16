@@ -1,0 +1,68 @@
+name: annafi_app
+description: A new Flutter project.
+version: 1.0.0+1
+environment:
+  sdk: '>=2.17.0 <3.3.0'
+
+dependencies: 
+  flutter: 
+    sdk: flutter
+ 
+  cached_network_image: ^3.3.0
+  flutter_svg: ^2.0.9
+  
+  flutter_switch: ^0.3.2
+  pin_code_fields: ^8.0.1
+  flutter_svg_provider: ^1.0.6
+  flutter_rating_bar: ^4.0.1
+  dotted_border: 2.1.0
+  intl: ^0.18.1
+  page_transition: ^2.1.0
+  carousel_slider: ^4.2.1
+  font_awesome_flutter: ^10.6.0
+  provider: ^6.1.1
+  http: ^1.1.2
+  shared_preferences: ^2.2.2
+  flutter_localizations:
+    sdk: flutter
+  fluttertoast: ^8.2.4
+  another_flushbar: ^1.12.30
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+
+    
+
+flutter: 
+  uses-material-design: true
+  assets: 
+    - assets/
+    - assets/images/
+    - assets/products/
+    - assets/icons/
+  fonts: 
+    - family: Poppins
+      fonts: 
+        - asset: assets/fonts/PoppinsMedium.ttf
+          weight: 500
+        - asset: assets/fonts/PoppinsLight.ttf
+          weight: 300
+        - asset: assets/fonts/PoppinsRegular.ttf
+          weight: 400
+        - asset: assets/fonts/PoppinsSemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PoppinsBold.ttf
+          weight: 700
+    - family: Quicksand
+      fonts: 
+        - asset: assets/fonts/QuicksandRegular.ttf
+          weight: 400
+    - family: Inter
+      fonts: 
+        - asset: assets/fonts/InterRegular.ttf
+          weight: 400
+    - family: Nunito
+      fonts: 
+        - asset: assets/fonts/NunitoRegular.ttf
+          weight: 400
