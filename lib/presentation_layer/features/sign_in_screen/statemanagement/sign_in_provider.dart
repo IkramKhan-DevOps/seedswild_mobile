@@ -29,7 +29,7 @@ class SignInProvider with ChangeNotifier {
     _mySignInRepo.signInApi(data).then((value) {
       setLoading(false);
       final userTokenSave = Provider.of<UserProvider>(context, listen: false);
-      userTokenSave.saveUser(UserModel(token: value['token'].toString()));
+      userTokenSave.saveUser(UserModel(key: value['key'].toString()));
       CustomFlushBarMessage.flushbarErrorMessage(
           iconData: Icons.check,
           "Sign In",

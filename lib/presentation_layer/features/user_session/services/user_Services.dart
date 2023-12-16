@@ -7,8 +7,8 @@ class UserServices {
   Future<UserModel> getloadUsertoken() => UserProvider().loadUser();
   void checkUserAuthentication(BuildContext context) async {
     getloadUsertoken().then((value) async {
-      print("token Status : " + value.token.toString());
-      if (value.token.toString() == 'null' || value.token.toString() == '') {
+      print("token Status : " + value.key.toString());
+      if (value.key.toString() == 'null' || value.key.toString() == '') {
         // await Future.delayed(Duration(seconds: 3));
         Navigator.pushNamed(context, AppRoutes.signInScreen);
       } else {

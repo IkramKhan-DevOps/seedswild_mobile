@@ -1,15 +1,15 @@
 class UserModel {
-  String? token;
+  String? key;
 
-  UserModel({this.token});
+  UserModel({this.key});
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    token = json['token'];
+    key = json['key'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['token'] = this.token;
+    data['key'] = this.key;
     return data;
   }
 }

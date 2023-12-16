@@ -1,7 +1,11 @@
 class AppUrls {
-  static var BaseUrl = "https://reqres.in";
-  static var signInUrl = BaseUrl + "/api/login";
-  static var signUpUrl = BaseUrl + "/api/register";
+  // ACCOUNTS API'S.............................................................
+  static var base = "http://192.168.1.22:8000/api/";
+  static var accountsAppBase = "${base}accounts/";
+  static var v1AppBas = "${base}v1/";
+
+  static var signIn = accountsAppBase + "auth/login/";
+  static var signUp = accountsAppBase + "auth/registration/";
 
   // Product categories
   static var productsCategUrl =

@@ -7,8 +7,7 @@ class SignInRepo {
 
   Future<dynamic> signInApi(dynamic data) async {
     try {
-      var response =
-          await apiServices.getPostApiServices(AppUrls.signInUrl, data);
+      var response = await apiServices.getPostApiServices(AppUrls.signIn, data);
       return response;
     } catch (e) {
       throw e;

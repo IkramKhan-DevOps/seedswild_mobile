@@ -10,9 +10,10 @@ import 'package:provider/provider.dart';
 // ignore_for_file: must_be_immutable
 
 class SignUpScreen extends StatelessWidget {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+  TextEditingController cpassController = TextEditingController();
 
   FocusNode emailFocusNode = FocusNode();
   FocusNode nameFocusNode = FocusNode();
@@ -62,8 +63,8 @@ class SignUpScreen extends StatelessWidget {
                               CustomTextFormField(
                                   globalKey: mynamekey,
                                   focusNode: nameFocusNode,
-                                  controller: nameController,
-                                  hintText: "Name",
+                                  controller: usernameController,
+                                  hintText: "Username",
                                   margin: getMargin(top: 49)),
                               CustomTextFormField(
                                   globalKey: myemailkey,
