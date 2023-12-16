@@ -5,6 +5,7 @@ import 'package:annafi_app/presentation%20layer/features/profile_page/profile_pa
 import 'package:annafi_app/presentation%20layer/features/search_page/search_page.dart';
 import 'package:flutter/material.dart';
 
+
 import '../shop/shop_screen.dart';
 
 class HomePage extends StatefulWidget {
