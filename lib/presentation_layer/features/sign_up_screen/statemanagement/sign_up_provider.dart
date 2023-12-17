@@ -6,18 +6,31 @@ import '../../../../utils/custom show messages/flush_bar_message_component.dart'
 import '../../../../utils/routes/app_routes.dart';
 
 class SignUpProvider with ChangeNotifier {
+
   var _signUpRep = SignUpRepo();
   bool _signUploading = false;
+
   bool get signUploading => _signUploading;
   setLoading(bool value) {
     _signUploading = value;
     notifyListeners();
   }
 
-  bool _obsecure = true;
-  bool get obsecure => _obsecure;
-  setObsecure() {
-    _obsecure = !_obsecure;
+  bool _obSecurePassword1 = true;
+  bool _obSecurePassword2 = true;
+  bool get obSecurePassword1 => _obSecurePassword1;
+  bool get obSecurePassword2 => _obSecurePassword2;
+
+  setObSecurePassword(password) {
+    switch(password){
+      case "p1":
+        _obSecurePassword1 = !_obSecurePassword1;
+        break;
+
+      case "p2":
+        _obSecurePassword2 = !_obSecurePassword2;
+        break;
+    }
     notifyListeners();
   }
 
