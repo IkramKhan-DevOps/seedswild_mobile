@@ -1,4 +1,5 @@
 import 'package:annafi_app/core/app_export.dart';
+import 'package:annafi_app/presentation_layer/features/home_page/pre_loved/pre_loved_screen.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/home_page_content.dart';
 import 'package:annafi_app/presentation_layer/features/my_cart_page/my_cart_page.dart';
 import 'package:annafi_app/presentation_layer/features/profile_page/profile_page.dart';
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     HomePageContent(),
     ShopScreen(),
     SearchPage(),
-    // PreLovedScreen(),
+    PreLovedScreen(),
     MyCartPage(),
     ProfilePage(),
   ];

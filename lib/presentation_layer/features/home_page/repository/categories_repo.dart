@@ -11,12 +11,10 @@ class CategoriesRepo {
     try {
       dynamic response =
           await _apiService.getGetApiServices(AppUrls.productsCategUrl);
-      print("Response from API: $response");
 
       if (response != null) {
         return ProductCategory.fromJson(response);
       }
-
       return null;
     } catch (e) {
       print("Error fetching product categories: $e");

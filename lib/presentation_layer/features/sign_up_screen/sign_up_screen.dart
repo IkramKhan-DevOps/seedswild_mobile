@@ -27,22 +27,11 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var sigInUpProvider = Provider.of<SignUpProvider>(context);
     return SafeArea(
+
         child: Scaffold(
             backgroundColor: ColorConstant.whiteA700,
             resizeToAvoidBottomInset: false,
-            appBar: CustomAppBar(
-                height: getVerticalSize(45),
-                leadingWidth: 56,
-                leading: AppbarImage(
-                    height: getSize(40),
-                    width: getSize(40),
-                    svgPath: ImageConstant.imgArrowleft,
-                    margin: getMargin(left: 16),
-                    onTap: () {
-                      onTapArrowleft3(context);
-                    }),
-                centerTitle: true,
-                title: AppbarSubtitle(text: "Let’s Sign Up")),
+
             body: SizedBox(
                 width: size.width,
                 child: SingleChildScrollView(

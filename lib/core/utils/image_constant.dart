@@ -1,4 +1,7 @@
 class ImageConstant {
+
+  static String logo = "assets/images/logo.png";
+
   static String imagePath = 'assets/images';
   static String productsPath = 'assets/products';
 // Banner Images
