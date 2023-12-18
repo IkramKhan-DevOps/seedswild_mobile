@@ -7,7 +7,7 @@ class UserProvider with ChangeNotifier {
 //....................................... SAVE USER TOKEN.......................
   Future<bool> saveUser(UserModel user) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("token", user.key.toString());
+    prefs.setString("key", user.key.toString());
     notifyListeners();
     return true;
   }

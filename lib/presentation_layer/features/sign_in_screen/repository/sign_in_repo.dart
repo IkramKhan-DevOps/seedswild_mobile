@@ -8,8 +8,10 @@ class SignInRepo {
   Future<dynamic> signInApi(dynamic data) async {
     try {
       var response = await apiServices.getPostApiServices(AppUrls.signIn, data);
+
       return response;
     } catch (e) {
+      print("ERROR..............." + e.toString());
       throw e;
     }
   }
