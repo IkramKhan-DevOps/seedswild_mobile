@@ -1,5 +1,4 @@
 class ImageConstant {
-
   static String logo = "assets/images/logo.png";
 
   static String imagePath = 'assets/images';
@@ -25,7 +24,7 @@ class ImageConstant {
   static String reciptIcon = 'assets/icons/receipt.png';
 
 // Products Images
-
+  static String backArrow = 'assets/images/imgArrowleft.png';
   static String product1 = '$productsPath/1.jpg';
   static String product2 = '$productsPath/2.jpg';
   static String product3 = '$productsPath/3.jpg';

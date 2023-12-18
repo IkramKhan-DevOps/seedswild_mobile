@@ -1,6 +1,5 @@
 import 'package:annafi_app/core/utils/image_constant.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class MySlider extends StatefulWidget {
@@ -25,11 +24,7 @@ class _MySliderState extends State<MySlider> {
     return Stack(
       children: [
         InkWell(
-          onTap: () {
-            if (kDebugMode) {
-              print(currentIndex);
-            }
-          },
+          onTap: () {},
           child: CarouselSlider(
             items: imageList
                 .map(

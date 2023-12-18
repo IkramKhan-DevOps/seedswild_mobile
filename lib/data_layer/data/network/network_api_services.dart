@@ -27,7 +27,6 @@ class NetworkApiService extends BaseApiService {
 
   @override
   Future getPostApiServices(String url, dynamic data) async {
-    print("Enter");
     dynamic responseJson;
     try {
       final response =
@@ -38,7 +37,7 @@ class NetworkApiService extends BaseApiService {
     } on SocketException {
       throw FetchDataException("No Internet Exception");
     }
-    print("out.....");
+
     return responseJson;
   }
 

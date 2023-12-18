@@ -39,7 +39,6 @@ class SignInProvider with ChangeNotifier {
           context);
       onTapHome(context);
     }).onError((error, stackTrace) {
-      print("erorr.......................");
       setLoading(false);
       CustomFlushBarMessage.flushbarErrorMessage(
           iconData: Icons.error,

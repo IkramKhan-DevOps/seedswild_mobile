@@ -8,6 +8,7 @@ class AppUrls {
 
   // VERSION1 API'S.............................................................
   static var v1AppBase = "${base}v1/";
+  static var homeProducts = "${base}v1/home/";
 
   static var productCategory = "${v1AppBase}product/category/";
   static var productHome = "${v1AppBase}";

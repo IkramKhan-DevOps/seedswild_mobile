@@ -122,6 +122,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     isObscureText: loginProvider.obsecure,
                   ),
+                  // ADD FORGOTT URL
                   Align(
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
@@ -145,7 +146,6 @@ class _SignInScreenState extends State<SignInScreen> {
                   CustomButton(
                       height: getVerticalSize(52),
                       onTap: () {
-                        print("data.............");
                         Map data = {
                           "email": nameController.text.toString(),
                           "password": passController.text.toString(),
