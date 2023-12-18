@@ -143,31 +143,9 @@ class _SignInScreenState extends State<SignInScreen> {
                           "password": passController.text.toString(),
                         };
                         loginProvider.SignInApi(data, context);
-                        // loginProvider.loginApi(
-                        //     context,
-                        //     nameController.text.toString(),
-                        //     passController.text.toString());
-                        // if (nameController.text.isEmpty) {
-                        //   CustomFlushBarMessage
-                        //       .flushbarErrorMessage(
-                        //           "Please enter a name",
-                        //           Colors.red,
-                        //           "Empty",
-                        //           context);
-                        // }else if (passController.text.isEmpty) {
-                        //   CustomFlushBarMessage
-                        //       .flushbarErrorMessage(
-                        //           "Please enter a password",
-                        //           Colors.red,
-                        //           "Empty",
-                        //           context);
-                        //}
+              
                       },
-                      text: loginProvider.loading
-                          ? CircularProgressIndicator(
-                        color: Colors.white,
-                      )
-                          : "Sign In ",
+                      text: "Sign In ",
                       margin: getMargin(top: 20),
                     ),
                     Align(

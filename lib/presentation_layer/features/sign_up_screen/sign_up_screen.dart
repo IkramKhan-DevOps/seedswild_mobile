@@ -130,11 +130,12 @@ class SignUpScreen extends StatelessWidget {
                   CustomButton(
                     onTap: () {
                       Map data = {
+                        "username": usernameController.text.toString(),
                         "email": emailController.text.toString(),
-                        "password": password1Controller.text.toString(),
+                        "password1": password1Controller.text.toString(),
+                        "password2": password2Controller.text.toString(),
                       };
                       sigInUpProvider.signUpApi(data, context);
-                      print("api hit");
                       // onTapTxtAlreadyhavean(context);
                     },
                     height: getVerticalSize(52),

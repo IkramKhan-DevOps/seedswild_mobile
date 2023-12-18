@@ -22,14 +22,12 @@ class HomePageContent extends StatefulWidget {
 class _HomePageContentState extends State<HomePageContent> {
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
+
   void initState() {
     super.initState();
     CategoriesProvider categoriesProvider =
         Provider.of<CategoriesProvider>(context, listen: false);
     categoriesProvider.fetchProductCategories();
-    print("Fetching product categories...");
-    print(
-        "Product Category Length: ${categoriesProvider.productCategory?.products?.length}");
   }
 
   @override
@@ -39,17 +37,17 @@ class _HomePageContentState extends State<HomePageContent> {
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
+
+      // APP BAR
       appBar: CustomAppBar(
         height: getVerticalSize(35),
         leadingWidth: 300,
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 5),
           child: Text(
-            "Z A R O Z A R",
+            "S E E D S W I L D",
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: ColorConstant.mainGreenColor),
+                fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
           ),
         ),
         actions: [
@@ -73,6 +71,8 @@ class _HomePageContentState extends State<HomePageContent> {
           ),
         ],
       ),
+
+      //BODY (CATEGORY AND PRODUCTS)
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(14.0),
@@ -81,48 +81,54 @@ class _HomePageContentState extends State<HomePageContent> {
               // SliverList for the initial content
               SliverList(
                 delegate: SliverChildListDelegate([
-                  // SizedBox(height: 20),
+                  // SLIDER
                   MySlider(),
                   SizedBox(height: 20),
+
+                  // CATEGORIES
                   Sales(
-                      saleName: "Category",
-                      buttonTextName: 'See All',
-                      onTap: () {}),
+                    saleName: "Categories",
+                    buttonTextName: 'See All',
+                    onTap: () {},
+                  ),
                   SizedBox(height: 20),
+
                   Container(
                     height: 120,
-                    child: Row(children: [
-                      Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(
                           child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: categoriesProvider
-                                .productCategory?.products?.length ??
-                            0,
-                        itemBuilder: (context, index) {
-                          Product? product = categoriesProvider
-                              .productCategory?.products?[index];
-                          if (product != null) {
-                            print(
-                                "Creating ListgroupItemWidget for index $index");
-                            return ListgroupItemWidget(
-                              imagePath: product.thumbnail ??
-                                  "assets/icons/default_thumbnail.png",
-                              categoryName:
-                                  (product.title ?? "Unknown Category")
-                                      .substring(0, 5),
-                              onTap: () {
-                                // Handle category item click
-                              },
-                            );
-                          } else {
-                            return Container();
-                          }
-                        },
-                      )),
-                    ]),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount:
+                                categoriesProvider.productCategories?.length ??
+                                    0,
+                            itemBuilder: (context, index) {
+                              ProductCategory? productCategory =
+                                  categoriesProvider.productCategories?[index];
+                              if (productCategory != null) {
+                                print(productCategory.toString());
+                                return ListgroupItemWidget(
+                                  imagePath: productCategory.thumbnailImage ??
+                                      "https://picsum.photos/200",
+                                  categoryName: productCategory.name,
+                                  onTap: () {
+                                    // Handle category item click
+                                  },
+                                );
+                              } else {
+                                return Container();
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 10),
+
+                  // FLASH SALES
                   Sales(
                     saleName: 'Flash Sale',
                     onTap: () {
@@ -132,6 +138,8 @@ class _HomePageContentState extends State<HomePageContent> {
                   ),
                   _buildFSNikeAirMax(context),
                   SizedBox(height: 10),
+
+                  // TOP SALES
                   Sales(
                       saleName: 'Top Sale',
                       buttonTextName: 'See All',
@@ -140,6 +148,8 @@ class _HomePageContentState extends State<HomePageContent> {
                       }),
                   _buildFSNikeAirMax(context),
                   SizedBox(height: 10),
+
+                  // TRENDING
                   Sales(
                       saleName: "All Tranding",
                       buttonTextName: 'See All',

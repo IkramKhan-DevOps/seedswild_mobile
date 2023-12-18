@@ -35,8 +35,9 @@ class SignInProvider with ChangeNotifier {
           "Sign In",
           ColorConstant.mainGreenColor,
           'Api Test',
-          context);
-      onTapHome(context);
+          context
+      );
+      Navigator.pushNamed(context, AppRoutes.homePage);
     }).onError((error, stackTrace) {
       setLoading(false);
       CustomFlushBarMessage.flushbarErrorMessage(

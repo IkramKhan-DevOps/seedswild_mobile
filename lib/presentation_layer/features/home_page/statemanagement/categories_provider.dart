@@ -7,13 +7,13 @@ import '../repository/categories_repo.dart';
 // CategoriesProvider.dart
 class CategoriesProvider with ChangeNotifier {
   CategoriesRepo _categoriesRepo = CategoriesRepo();
-  ProductCategory? _productCategory;
+  List<ProductCategory>? _productCategories;
 
-  ProductCategory? get productCategory => _productCategory;
+  List<ProductCategory>? get productCategories => _productCategories;
 
   Future<void> fetchProductCategories() async {
     try {
-      _productCategory = await _categoriesRepo.getProductCategories();
+      _productCategories = await _categoriesRepo.getProductCategories();
       notifyListeners();
     } catch (e) {
       print(e.toString());

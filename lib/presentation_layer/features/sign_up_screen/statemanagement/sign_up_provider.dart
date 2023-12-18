@@ -6,11 +6,11 @@ import '../../../../utils/custom show messages/flush_bar_message_component.dart'
 import '../../../../utils/routes/app_routes.dart';
 
 class SignUpProvider with ChangeNotifier {
-
   var _signUpRep = SignUpRepo();
   bool _signUploading = false;
 
   bool get signUploading => _signUploading;
+
   setLoading(bool value) {
     _signUploading = value;
     notifyListeners();
@@ -18,11 +18,13 @@ class SignUpProvider with ChangeNotifier {
 
   bool _obSecurePassword1 = true;
   bool _obSecurePassword2 = true;
+
   bool get obSecurePassword1 => _obSecurePassword1;
+
   bool get obSecurePassword2 => _obSecurePassword2;
 
   setObSecurePassword(password) {
-    switch(password){
+    switch (password) {
       case "p1":
         _obSecurePassword1 = !_obSecurePassword1;
         break;
@@ -36,17 +38,23 @@ class SignUpProvider with ChangeNotifier {
 
   Future<void> signUpApi(dynamic data, BuildContext context) async {
     setLoading(true);
+
     _signUpRep.signUpApi(data).then((value) {
+
       setLoading(false);
       CustomFlushBarMessage.flushbarErrorMessage(
-          "Sign Up", ColorConstant.mainGreenColor, 'Sign Up Success', context);
-      print("Test provide value extraction : " + value.toString());
-      onTapHome(context);
+          "Sign Up", ColorConstant.mainGreenColor,
+          'Sign Up Success', context
+      );
+      print("return values : " + value.toString());
+
     }).onError((error, stackTrace) {
       setLoading(false);
-      print(error.toString());
+      print("ERROR " + error.toString());
       CustomFlushBarMessage.flushbarErrorMessage(
-          error.toString(), ColorConstant.mainGreenColor, 'Api Test', context);
+          error.toString(), ColorConstant.mainGreenColor,
+          'Api Test', context
+      );
     });
   }
 }

@@ -3,17 +3,19 @@ import '../../../../data_layer/data/network/network_api_services.dart';
 import '../../../../data_layer/models/product_categories_model.dart';
 import '../../../../data_layer/urls/app_urls.dart';
 
-// CategoriesRepo.dart
-// CategoriesRepo.dart
 class CategoriesRepo {
+  // ... existing code ...
   BaseApiService _apiService = NetworkApiService();
-  Future<ProductCategory?> getProductCategories() async {
+  Future<List<ProductCategory>?> getProductCategories() async {
     try {
-      dynamic response =
-          await _apiService.getGetApiServices(AppUrls.productsCategUrl);
+      dynamic response = await _apiService.getGetApiServices(AppUrls.productCategory);
 
       if (response != null) {
-        return ProductCategory.fromJson(response);
+        if (response is List) {
+          return List<ProductCategory>.from(response.map((json) => ProductCategory.fromJson(json)));
+        } else {
+          return [ProductCategory.fromJson(response)];
+        }
       }
       return null;
     } catch (e) {

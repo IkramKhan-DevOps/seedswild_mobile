@@ -1,104 +1,35 @@
-// To parse this JSON data, do
-//
-//     final productCategory = productCategoryFromJson(jsonString);
-
 import 'dart:convert';
 
-ProductCategory productCategoryFromJson(String str) =>
-    ProductCategory.fromJson(json.decode(str));
+List<ProductCategory> productCategoryFromJson(String str) =>
+    List<ProductCategory>.from(json.decode(str).map((x) => ProductCategory.fromJson(x)));
 
-String productCategoryToJson(ProductCategory data) =>
-    json.encode(data.toJson());
+String productCategoryToJson(List<ProductCategory> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ProductCategory {
-  List<Product>? products;
-  int? total;
-  int? skip;
-  int? limit;
+  int id;
+  String name;
+  dynamic thumbnailImage;
+  dynamic bannerImage;
 
   ProductCategory({
-    this.products,
-    this.total,
-    this.skip,
-    this.limit,
+    required this.id,
+    required this.name,
+    required this.thumbnailImage,
+    required this.bannerImage,
   });
 
-  factory ProductCategory.fromJson(Map<String, dynamic> json) =>
-      ProductCategory(
-        products: json["products"] == null
-            ? []
-            : List<Product>.from(
-                json["products"]!.map((x) => Product.fromJson(x))),
-        total: json["total"],
-        skip: json["skip"],
-        limit: json["limit"],
-      );
+  factory ProductCategory.fromJson(Map<String, dynamic> json) => ProductCategory(
+    id: json["id"],
+    name: json["name"],
+    thumbnailImage: json["thumbnail_image"],
+    bannerImage: json["banner_image"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "products": products == null
-            ? []
-            : List<dynamic>.from(products!.map((x) => x.toJson())),
-        "total": total,
-        "skip": skip,
-        "limit": limit,
-      };
-}
-
-class Product {
-  int? id;
-  String? title;
-  String? description;
-  int? price;
-  double? discountPercentage;
-  double? rating;
-  int? stock;
-  String? brand;
-  String? category;
-  String? thumbnail;
-  List<String>? images;
-
-  Product({
-    this.id,
-    this.title,
-    this.description,
-    this.price,
-    this.discountPercentage,
-    this.rating,
-    this.stock,
-    this.brand,
-    this.category,
-    this.thumbnail,
-    this.images,
-  });
-
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
-        id: json["id"],
-        title: json["title"],
-        description: json["description"],
-        price: json["price"],
-        discountPercentage: json["discountPercentage"]?.toDouble(),
-        rating: json["rating"]?.toDouble(),
-        stock: json["stock"],
-        brand: json["brand"],
-        category: json["category"],
-        thumbnail: json["thumbnail"],
-        images: json["images"] == null
-            ? []
-            : List<String>.from(json["images"]!.map((x) => x)),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "title": title,
-        "description": description,
-        "price": price,
-        "discountPercentage": discountPercentage,
-        "rating": rating,
-        "stock": stock,
-        "brand": brand,
-        "category": category,
-        "thumbnail": thumbnail,
-        "images":
-            images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
-      };
+    "id": id,
+    "name": name,
+    "thumbnail_image": thumbnailImage,
+    "banner_image": bannerImage,
+  };
 }
