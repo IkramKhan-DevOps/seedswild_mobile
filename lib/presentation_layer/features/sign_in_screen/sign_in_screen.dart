@@ -1,9 +1,11 @@
 import 'package:annafi_app/core/app_export.dart';
+import 'package:annafi_app/data_layer/urls/app_urls.dart';
 import 'package:annafi_app/presentation_layer/features/sign_in_screen/statemanagement/sign_in_provider.dart';
 import 'package:annafi_app/utils/components/custom_button.dart';
 import 'package:annafi_app/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SignInScreen extends StatefulWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -31,6 +33,15 @@ class _SignInScreenState extends State<SignInScreen> {
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
     super.dispose();
+  }
+
+// URL METHOD
+  Future<void> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   // BUILD
@@ -115,7 +126,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: () {
-                        onTapTxtForgotPassword(context);
+                        _launchURL(AppUrls.forgottPassword);
+                        //  onTapTxtForgotPassword(context);
                       },
                       child: Padding(
                         padding: getPadding(top: 13),
