@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:annafi_app/core/app_export.dart';
+import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_products_provider.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/product%20widget/banner.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/product%20widget/carousel_slider.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/product%20widget/listgroup_item_widget.dart';
@@ -28,6 +29,52 @@ class _HomePageContentState extends State<HomePageContent> {
     CategoriesProvider categoriesProvider =
         Provider.of<CategoriesProvider>(context, listen: false);
     categoriesProvider.fetchProductCategories();
+
+    AllProductsProvider allProductsProvider =
+        Provider.of<AllProductsProvider>(context, listen: false);
+    allProductsProvider.fetchAllProduct();
+  }
+
+  onTapNotificationView(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.notificationScreen);
+  }
+
+  onTapProductView(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.productViewScreen);
+  }
+
+  onTapshopView(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.shopScreen);
+  }
+
+  onTapsearchView(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.searchPage);
+  }
+
+  Widget _buildFSNikeAirMax(BuildContext context) {
+    var random = Random();
+
+    return SizedBox(
+      height: 230.v,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        separatorBuilder: (context, index) {
+          return SizedBox(width: 8.h);
+        },
+        itemCount: listOfImage.length,
+        itemBuilder: (context, index) {
+          // Generate a random index
+          int randomIndex = random.nextInt(listOfImage.length);
+
+          return productsItems(
+            imagePath: listOfImage[randomIndex],
+            onTapProductItem: () {
+              onTapProductView(context);
+            },
+          );
+        },
+      ),
+    );
   }
 
   @override
@@ -136,7 +183,34 @@ class _HomePageContentState extends State<HomePageContent> {
                     },
                     buttonTextName: 'See All',
                   ),
-                  _buildFSNikeAirMax(context),
+
+                  Consumer<AllProductsProvider>(
+                      builder: (context, allProductsProvider, child) {
+                    print(
+                        "Debug: allproductModels: ${allProductsProvider.allproductModels}");
+
+                    return SizedBox(
+                      height: 230.v,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        separatorBuilder: (context, index) {
+                          return SizedBox(width: 8.h);
+                        },
+                        itemCount: listOfImage.length,
+                        itemBuilder: (context, index) {
+                          // Generate a random index
+
+                          return productsItems(
+                            imagePath: "https://picsum.photos/200",
+                            onTapProductItem: () {
+                              onTapProductView(context);
+                            },
+                          );
+                        },
+                      ),
+                    );
+                  }),
+
                   SizedBox(height: 10),
 
                   // TOP SALES
@@ -165,73 +239,4 @@ class _HomePageContentState extends State<HomePageContent> {
       ),
     );
   }
-
-  Widget _buildFSNikeAirMax(BuildContext context) {
-    var random = Random();
-
-    return SizedBox(
-      height: 230.v,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (context, index) {
-          return SizedBox(width: 8.h);
-        },
-        itemCount: listOfImage.length,
-        itemBuilder: (context, index) {
-          // Generate a random index
-          int randomIndex = random.nextInt(listOfImage.length);
-
-          return productsItems(
-            imagePath: listOfImage[randomIndex],
-            onTapProductItem: () {
-              onTapProductView(context);
-            },
-          );
-        },
-      ),
-    );
-  }
-
-  onTapNotificationView(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.notificationScreen);
-  }
-
-  onTapProductView(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.productViewScreen);
-  }
-
-  onTapshopView(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.shopScreen);
-  }
-
-  onTapsearchView(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.searchPage);
-  }
 }
-/*ListView.builder(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: categoriesProvider
-                                        .productCategory?.products?.length ??
-                                    0,
-                                itemBuilder: (context, index) {
-                                  Product? product = categoriesProvider
-                                      .productCategory?.products?[index];
-                                  if (product != null) {
-                                    print(
-                                        "Creating ListgroupItemWidget for index $index");
-                                    return ListgroupItemWidget(
-                                      imagePath: product.thumbnail ??
-                                          "assets/icons/default_thumbnail.png",
-                                      categoryName:
-                                          (product.title ?? "Unknown Category")
-                                              .substring(0, 5),
-                                      onTap: () {
-                                        // Handle category item click
-                                      },
-                                    );
-                                  } else {
-                                    return Container();
-                                  }
-                                },
-                              )), */

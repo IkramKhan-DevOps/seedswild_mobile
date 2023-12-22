@@ -8,18 +8,19 @@ class CategoriesRepo {
   BaseApiService _apiService = NetworkApiService();
   Future<List<ProductCategory>?> getProductCategories() async {
     try {
-      dynamic response = await _apiService.getGetApiServices(AppUrls.productCategory);
+      dynamic response =
+          await _apiService.getGetApiServices(AppUrls.productCategory);
 
       if (response != null) {
         if (response is List) {
-          return List<ProductCategory>.from(response.map((json) => ProductCategory.fromJson(json)));
+          return List<ProductCategory>.from(
+              response.map((json) => ProductCategory.fromJson(json)));
         } else {
           return [ProductCategory.fromJson(response)];
         }
       }
       return null;
     } catch (e) {
-      print("Error fetching product categories: $e");
       return null;
     }
   }

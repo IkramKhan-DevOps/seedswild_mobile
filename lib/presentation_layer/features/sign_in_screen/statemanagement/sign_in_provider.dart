@@ -1,10 +1,10 @@
 import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/data_layer/models/user_model.dart';
-import 'package:annafi_app/presentation_layer/features/user_session/statemanagement/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../data_layer/models/user_model.dart';
 import '../../../../utils/custom show messages/flush_bar_message_component.dart';
+import '../../user_session/statemanagement/user_provider.dart';
 import '../repository/sign_in_repo.dart';
 
 class SignInProvider with ChangeNotifier {
@@ -31,21 +31,21 @@ class SignInProvider with ChangeNotifier {
       setLoading(false);
       final userTokenSave = Provider.of<UserProvider>(context, listen: false);
       userTokenSave.saveUser(UserModel(key: value['key'].toString()));
+
       CustomFlushBarMessage.flushbarErrorMessage(
           iconData: Icons.check,
           "Sign In",
           ColorConstant.mainGreenColor,
           'Api Test',
-          context
-      );
-      Navigator.pushNamed(context, AppRoutes.homePage);
+          context);
+      onTapHome(context);
     }).onError((error, stackTrace) {
       setLoading(false);
       CustomFlushBarMessage.flushbarErrorMessage(
           iconData: Icons.error,
           error.toString(),
           ColorConstant.mainGreenColor,
-          "",
+          "Error",
           context);
     });
   }

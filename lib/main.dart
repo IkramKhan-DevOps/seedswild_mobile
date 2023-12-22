@@ -1,5 +1,6 @@
 import 'package:annafi_app/core/localization/app_localization.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/categories_provider.dart';
+import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_products_provider.dart';
 import 'package:annafi_app/presentation_layer/features/settings_screen/statemanagement/theme_changer.dart';
 import 'package:annafi_app/presentation_layer/features/sign_in_screen/statemanagement/sign_in_provider.dart';
 import 'package:annafi_app/presentation_layer/features/sign_up_screen/statemanagement/sign_up_provider.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => SignUpProvider()),
           ChangeNotifierProvider(create: (_) => UserProvider()),
           ChangeNotifierProvider(create: (_) => CategoriesProvider()),
+          ChangeNotifierProvider(create: (_) => AllProductsProvider()),
         ],
         child: Builder(builder: (BuildContext contex) {
           return MaterialApp(

@@ -1,9 +1,10 @@
 import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/presentation_layer/features/home_page/widgets/product%20widget/roundedImage.dart';
 import 'package:annafi_app/utils/components/app_bar/appbar_image.dart';
 import 'package:annafi_app/utils/components/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import '../home_page/widgets/product widget/roundedImage.dart';
 
 class AllShops extends StatelessWidget {
   @override
@@ -16,7 +17,7 @@ class AllShops extends StatelessWidget {
           leading: AppbarImage(
               height: getSize(40),
               width: getSize(40),
-              svgPath: ImageConstant.imgArrowleft,
+              imagePath: ImageConstant.backArrow,
               margin: getMargin(left: 16),
               onTap: () {
                 Navigator.pushNamed(context, AppRoutes.shopScreen);
@@ -75,7 +76,7 @@ class shopWidget extends StatelessWidget {
                   ),
                   Icon(
                     Icons.map,
-                    color: ColorConstant.mainGreenColor,
+                    // color: ColorConstant.golden,
                   ),
                   SizedBox(
                     width: 6,
@@ -95,20 +96,8 @@ class shopWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.phone,
-                    color: ColorConstant.mainGreenColor,
-                  ),
                   SizedBox(
                     width: 6,
-                  ),
-                  Text(
-                    'Contact Us: +12345678912',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
@@ -152,8 +141,8 @@ class shopWidget extends StatelessWidget {
                 children: [
                   TextButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          ColorConstant.mainGreenColor),
+                      // backgroundColor:
+                      //     MaterialStateProperty.all(ColorConstant.golden),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             6), // Set radius to 0 for no border radius
@@ -172,8 +161,8 @@ class shopWidget extends StatelessWidget {
                   ),
                   TextButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          ColorConstant.mainGreenColor),
+                      // backgroundColor:
+                      //     MaterialStateProperty.all(ColorConstant.golden),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             6), // Set radius to 0 for no border radius

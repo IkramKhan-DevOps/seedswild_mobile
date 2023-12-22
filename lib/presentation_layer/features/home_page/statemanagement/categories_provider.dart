@@ -15,8 +15,6 @@ class CategoriesProvider with ChangeNotifier {
     try {
       _productCategories = await _categoriesRepo.getProductCategories();
       notifyListeners();
-    } catch (e) {
-      print(e.toString());
-    }
+    } catch (e) {}
   }
 }
