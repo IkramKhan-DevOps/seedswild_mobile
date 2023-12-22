@@ -4,7 +4,7 @@ class ProfileModel {
   final int pk;
   final String email;
   final String firstName;
-  final String lastName;statu
+  final String lastName;
 
   ProfileModel({
     required this.pk,

@@ -111,7 +111,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                       child: Container(
                         margin:
-                            getMargin(left: 30, top: 18, right: 16, bottom: 18),
+                        getMargin(left: 30, top: 18, right: 16, bottom: 18),
                         child: loginProvider.obsecure
                             ? Icon(Icons.visibility_off)
                             : Icon(Icons.visibility),
@@ -154,8 +154,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                       text: loginProvider.loading
                           ? CircularProgressIndicator(
-                              color: Colors.white,
-                            )
+                        color: Colors.white,
+                      )
                           : "Sign In ",
                       margin: getMargin(top: 121)),
 
