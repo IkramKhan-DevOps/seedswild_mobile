@@ -12,6 +12,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   UserServices userServices = UserServices();
+
   @override
   void initState() {
     super.initState();
@@ -27,39 +28,17 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Scaffold(
         backgroundColor: ColorConstant.gray100,
         body: Container(
-          width: double.maxFinite,
-          padding: getPadding(
-            top: 171,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CustomImageView(
-                svgPath: ImageConstant.imgBag11,
-                height: getSize(
-                  191,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(40),
+                  child: Image.asset(ImageConstant.logo),
                 ),
-                width: getSize(
-                  191,
-                ),
-              ),
-              Padding(
-                padding: getPadding(
-                  top: 25,
-                  bottom: 5,
-                ),
-                child: Text(
-                  "ZAROZAR",
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  style: AppStyle.txtQuicksandRegular32.copyWith(
-                    letterSpacing: getHorizontalSize(
-                      1.0,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

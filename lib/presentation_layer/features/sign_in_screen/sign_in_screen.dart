@@ -1,8 +1,5 @@
 import 'package:annafi_app/core/app_export.dart';
 import 'package:annafi_app/presentation_layer/features/sign_in_screen/statemanagement/sign_in_provider.dart';
-import 'package:annafi_app/utils/components/app_bar/appbar_image.dart';
-import 'package:annafi_app/utils/components/app_bar/appbar_subtitle.dart';
-import 'package:annafi_app/utils/components/app_bar/custom_app_bar.dart';
 import 'package:annafi_app/utils/components/custom_button.dart';
 import 'package:annafi_app/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +13,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+
   // CONTROLLERS
   TextEditingController passController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -23,8 +21,8 @@ class _SignInScreenState extends State<SignInScreen> {
   // ON TAB BUTTON USE
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
-  GlobalKey<FormState> mynamekey = GlobalKey<FormState>();
-  GlobalKey<FormState> mypasswordkey = GlobalKey<FormState>();
+  GlobalKey<FormState> nameKey = GlobalKey<FormState>();
+  GlobalKey<FormState> passwordKey = GlobalKey<FormState>();
 
   // DESTRUCTION IF WE MOVE TO NEXT SCREEN
   @override
@@ -56,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   padding: const EdgeInsets.only(top: 20),
                   child: Column(
                     children: [
-                      Image.asset("assets/images/logo.png", width: 200),
+                      Image.asset(ImageConstant.logo, width: 200),
                       SizedBox(height: 10),
                       Text(
                         "First European Organic Seeds \nAI Powered Marketplace",
@@ -75,7 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                     //FIELDS AND FORGET PASS LINK
                     CustomTextFormField(
-                      globalKey: mynamekey,
+                      globalKey: nameKey,
                       focusNode: emailFocusNode,
                       textInputType: TextInputType.emailAddress,
                       controller: nameController,
@@ -90,7 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       margin: getMargin(top: 20),
                     ),
                     CustomTextFormField(
-                      globalKey: mypasswordkey,
+                      globalKey: passwordKey,
                       focusNode: passwordFocusNode,
                       controller: passController,
                       hintText: "********",

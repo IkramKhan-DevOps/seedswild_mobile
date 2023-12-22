@@ -8,6 +8,7 @@ import '../../../../utils/custom show messages/flush_bar_message_component.dart'
 import '../repository/sign_in_repo.dart';
 
 class SignInProvider with ChangeNotifier {
+
   final _mySignInRepo = SignInRepo();
   bool _loading = false;
   bool get loading => _loading;

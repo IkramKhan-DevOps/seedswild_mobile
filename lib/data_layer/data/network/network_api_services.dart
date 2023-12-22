@@ -50,11 +50,17 @@ class NetworkApiService extends BaseApiService {
 
       case 404:
         throw UnautherizedException(response.body.toString());
+
       default:
         throw FetchDataException(
-            "Error occurred while communicating with the server" +
-                "Status code is " +
-                response.statusCode.toString());
+            "Error occurred while communicating with the server " +
+                response.statusCode.toString()
+        );
     }
   }
+
+  String apiErrors(var response){
+    return response.toString();
+  }
+
 }
