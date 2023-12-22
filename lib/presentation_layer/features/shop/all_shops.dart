@@ -10,31 +10,39 @@ class AllShops extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.whiteA700,
-        appBar: CustomAppBar(
-          height: getVerticalSize(45),
-          leadingWidth: 56,
-          leading: AppbarImage(
-              height: getSize(40),
-              width: getSize(40),
-              imagePath: ImageConstant.backArrow,
-              margin: getMargin(left: 16),
-              onTap: () {
-                Navigator.pushNamed(context, AppRoutes.shopScreen);
-              }),
-          centerTitle: true,
-          title: Text("ALL SHOPS",
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.left,
-              style: AppStyle.txtPoppinsMedium18Black900),
-        ),
-        body: ListView.separated(
-          itemCount: 10,
-          separatorBuilder: (BuildContext context, int index) => Divider(),
-          itemBuilder: (BuildContext context, int index) {
-            return shopWidget();
+      backgroundColor: ColorConstant.whiteA700,
+
+      // APP BAR
+      appBar: CustomAppBar(
+        height: getVerticalSize(45),
+        leadingWidth: 56,
+        leading: AppbarImage(
+          height: getSize(40),
+          width: getSize(40),
+          imagePath: ImageConstant.backArrow,
+          margin: getMargin(left: 16),
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.shopScreen);
           },
-        ));
+        ),
+        centerTitle: true,
+        title: Text(
+          "ALL SHOPS",
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.left,
+          style: AppStyle.txtPoppinsMedium18Black900,
+        ),
+      ),
+
+      // BODY
+      body: ListView.separated(
+        itemCount: 10,
+        separatorBuilder: (BuildContext context, int index) => Divider(),
+        itemBuilder: (BuildContext context, int index) {
+          return shopWidget();
+        },
+      ),
+    );
   }
 }
 
@@ -114,18 +122,19 @@ class shopWidget extends StatelessWidget {
                     ),
                   ),
                   subtitle: RatingBar.builder(
-                      initialRating: 4,
-                      minRating: 0,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemSize: getVerticalSize(16),
-                      unratedColor: ColorConstant.amber500,
-                      itemCount: 5,
-                      updateOnDrag: true,
-                      onRatingUpdate: (rating) {},
-                      itemBuilder: (context, _) {
-                        return Icon(Icons.star, color: ColorConstant.amber500);
-                      }),
+                    initialRating: 4,
+                    minRating: 0,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemSize: getVerticalSize(16),
+                    unratedColor: ColorConstant.amber500,
+                    itemCount: 5,
+                    updateOnDrag: true,
+                    onRatingUpdate: (rating) {},
+                    itemBuilder: (context, _) {
+                      return Icon(Icons.star, color: ColorConstant.amber500);
+                    },
+                  ),
                   trailing: RoundedImage(
                     height: 320,
                     width: 100,
@@ -143,10 +152,12 @@ class shopWidget extends StatelessWidget {
                     style: ButtonStyle(
                       // backgroundColor:
                       //     MaterialStateProperty.all(ColorConstant.golden),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            6), // Set radius to 0 for no border radius
-                      )),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              6), // Set radius to 0 for no border radius
+                        ),
+                      ),
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.subShop);
@@ -154,19 +165,22 @@ class shopWidget extends StatelessWidget {
                     child: Text(
                       "231 Products",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   TextButton(
                     style: ButtonStyle(
                       // backgroundColor:
                       //     MaterialStateProperty.all(ColorConstant.golden),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            6), // Set radius to 0 for no border radius
-                      )),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              6), // Set radius to 0 for no border radius
+                        ),
+                      ),
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.subShop);
@@ -174,9 +188,10 @@ class shopWidget extends StatelessWidget {
                     child: Text(
                       "Visit Now",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],

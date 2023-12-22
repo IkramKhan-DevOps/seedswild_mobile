@@ -34,7 +34,6 @@ class AppbarImage extends StatelessWidget {
       child: Padding(
         padding: margin ?? EdgeInsets.zero,
         child: CustomImageView(
-          color: Colors.white,
           svgPath: svgPath,
           imagePath: imagePath,
           height: height,

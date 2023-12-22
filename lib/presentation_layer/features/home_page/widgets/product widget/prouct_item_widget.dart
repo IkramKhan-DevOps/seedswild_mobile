@@ -32,8 +32,8 @@ class productsItems extends StatelessWidget {
             children: [
               CustomImageViewss(
                 imagePath: imagePath, // Use the provided imagePath here
-                height: 109.adaptSize,
-                width: 109.adaptSize,
+                height: 100.adaptSize,
+                width: 100.adaptSize,
                 radius: BorderRadius.circular(
                   5.h,
                 ),

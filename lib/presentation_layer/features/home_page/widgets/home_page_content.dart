@@ -15,15 +15,18 @@ import 'package:provider/provider.dart';
 import '../../../../data_layer/models/product_categories_model.dart';
 import '../statemanagement/categories_provider.dart';
 
+
 class HomePageContent extends StatefulWidget {
   @override
   State<HomePageContent> createState() => _HomePageContentState();
 }
 
+
 class _HomePageContentState extends State<HomePageContent> {
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
 
+  // STATE
   void initState() {
     super.initState();
     CategoriesProvider categoriesProvider =
@@ -49,32 +52,6 @@ class _HomePageContentState extends State<HomePageContent> {
 
   onTapsearchView(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.searchPage);
-  }
-
-  Widget _buildFSNikeAirMax(BuildContext context) {
-    var random = Random();
-
-    return SizedBox(
-      height: 230.v,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (context, index) {
-          return SizedBox(width: 8.h);
-        },
-        itemCount: listOfImage.length,
-        itemBuilder: (context, index) {
-          // Generate a random index
-          int randomIndex = random.nextInt(listOfImage.length);
-
-          return productsItems(
-            imagePath: listOfImage[randomIndex],
-            onTapProductItem: () {
-              onTapProductView(context);
-            },
-          );
-        },
-      ),
-    );
   }
 
   @override
@@ -139,7 +116,6 @@ class _HomePageContentState extends State<HomePageContent> {
                     onTap: () {},
                   ),
                   SizedBox(height: 20),
-
                   Container(
                     height: 120,
                     child: Row(
@@ -173,9 +149,9 @@ class _HomePageContentState extends State<HomePageContent> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 10),
 
                   // FLASH SALES
+                  SizedBox(height: 10),
                   Sales(
                     saleName: 'Flash Sale',
                     onTap: () {
@@ -183,33 +159,33 @@ class _HomePageContentState extends State<HomePageContent> {
                     },
                     buttonTextName: 'See All',
                   ),
-
-                  Consumer<AllProductsProvider>(
-                      builder: (context, allProductsProvider, child) {
-                    print(
-                        "Debug: allproductModels: ${allProductsProvider.allproductModels}");
-
-                    return SizedBox(
-                      height: 230.v,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        separatorBuilder: (context, index) {
-                          return SizedBox(width: 8.h);
-                        },
-                        itemCount: listOfImage.length,
-                        itemBuilder: (context, index) {
-                          // Generate a random index
-
-                          return productsItems(
-                            imagePath: "https://picsum.photos/200",
-                            onTapProductItem: () {
-                              onTapProductView(context);
-                            },
-                          );
-                        },
-                      ),
-                    );
-                  }),
+                  _buildFSNikeAirMax(context),
+                  // Consumer<AllProductsProvider>(
+                  //     builder: (context, allProductsProvider, child) {
+                  //   print(
+                  //       "Debug: allproductModels: ${allProductsProvider.allproductModels}");
+                  //
+                  //   return SizedBox(
+                  //     height: 230.v,
+                  //     child: ListView.separated(
+                  //       scrollDirection: Axis.horizontal,
+                  //       separatorBuilder: (context, index) {
+                  //         return SizedBox(width: 8.h);
+                  //       },
+                  //       itemCount: listOfImage.length,
+                  //       itemBuilder: (context, index) {
+                  //         // Generate a random index
+                  //
+                  //         return productsItems(
+                  //           imagePath: "https://picsum.photos/200",
+                  //           onTapProductItem: () {
+                  //             onTapProductView(context);
+                  //           },
+                  //         );
+                  //       },
+                  //     ),
+                  //   );
+                  // }),
 
                   SizedBox(height: 10),
 
@@ -239,4 +215,31 @@ class _HomePageContentState extends State<HomePageContent> {
       ),
     );
   }
+
+  Widget _buildFSNikeAirMax(BuildContext context) {
+    var random = Random();
+
+    return SizedBox(
+      height: 235.v,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        separatorBuilder: (context, index) {
+          return SizedBox(width: 8.h);
+        },
+        itemCount: listOfImage.length,
+        itemBuilder: (context, index) {
+          // Generate a random index
+          int randomIndex = random.nextInt(listOfImage.length);
+
+          return productsItems(
+            imagePath: listOfImage[randomIndex],
+            onTapProductItem: () {
+              onTapProductView(context);
+            },
+          );
+        },
+      ),
+    );
+  }
+
 }
