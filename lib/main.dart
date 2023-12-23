@@ -1,8 +1,8 @@
 import 'package:annafi_app/core/localization/app_localization.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/categories_provider.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_products_provider.dart';
-import 'package:annafi_app/presentation_layer/features/profile_page/profile_provider.dart';
-import 'package:annafi_app/presentation_layer/features/settings_screen/statemanagement/theme_changer.dart';
+import 'package:annafi_app/presentation_layer/features/settings/statemanagement/password_change_provider.dart';
+import 'package:annafi_app/presentation_layer/features/settings/statemanagement/profile_provider.dart';
 import 'package:annafi_app/presentation_layer/features/sign_in/sign_in_provider.dart';
 import 'package:annafi_app/presentation_layer/features/sign_up_screen/statemanagement/sign_up_provider.dart';
 import 'package:annafi_app/presentation_layer/features/user_session/statemanagement/user_provider.dart';
@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => ThemeChanger()),
           ChangeNotifierProvider(create: (_) => SignInProvider()),
           ChangeNotifierProvider(create: (_) => SignUpProvider()),
           ChangeNotifierProvider(create: (_) => UserProvider()),
           ChangeNotifierProvider(create: (_) => CategoriesProvider()),
           ChangeNotifierProvider(create: (_) => AllProductsProvider()),
           ChangeNotifierProvider(create: (_) => ProfileProvider()),
+          ChangeNotifierProvider(create: (_) => PasswordChangeProvider()),
         ],
         child: Builder(builder: (BuildContext context) {
           return MaterialApp(

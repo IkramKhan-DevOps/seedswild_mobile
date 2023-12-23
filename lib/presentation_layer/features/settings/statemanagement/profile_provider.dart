@@ -2,10 +2,10 @@
 
 import 'package:annafi_app/data_layer/error_handling/app_errors.dart';
 import 'package:flutter/material.dart';
-import '../../../data_layer/data/network/base_api_services.dart';
-import '../../../data_layer/data/network/network_api_services.dart';
-import '../../../data_layer/models/profile_model.dart';
-import '../../../data_layer/urls/app_urls.dart';
+import '../../../../data_layer/data/network/base_api_services.dart';
+import '../../../../data_layer/data/network/network_api_services.dart';
+import '../../../../data_layer/models/profile_model.dart';
+import '../../../../data_layer/urls/app_urls.dart';
 
 class ProfileProvider with ChangeNotifier {
   BaseApiService apiServices = NetworkApiService();
@@ -27,7 +27,7 @@ class ProfileProvider with ChangeNotifier {
       notifyListeners();
 
     } catch (e) {
-      throw e;
+      ErrorMessage.flushBar(context, e.toString(), "danger");
     }
   }
 

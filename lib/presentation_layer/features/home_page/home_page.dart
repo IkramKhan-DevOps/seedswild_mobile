@@ -1,8 +1,7 @@
 import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/presentation_layer/features/home_page/pre_loved/pre_loved_screen.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/home_page_content.dart';
 import 'package:annafi_app/presentation_layer/features/my_cart_page/my_cart_page.dart';
-import 'package:annafi_app/presentation_layer/features/profile_page/profile_page.dart';
+import 'package:annafi_app/presentation_layer/features/settings/settings_screen.dart';
 import 'package:annafi_app/presentation_layer/features/search_page/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,9 +21,9 @@ class _HomePageState extends State<HomePage> {
     HomePageContent(),
     ShopScreen(),
     SearchPage(),
-    PreLovedScreen(),
     MyCartPage(),
-    ProfilePage(),
+    SettingsScreen(),
+
   ];
   onTapSearch(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.searchPage);
@@ -65,16 +64,12 @@ class _HomePageState extends State<HomePage> {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Pre Love',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_2_outlined),
-            label: 'Profile',
+            label: 'Setting',
           ),
         ],
         showSelectedLabels: true,
