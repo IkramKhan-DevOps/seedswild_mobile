@@ -1,6 +1,6 @@
 class AppUrls {
   // ACCOUNTS API'S.............................................................
-  static var base = "http://192.168.18.13:8000/api/";
+  static var base = "http://192.168.1.11:8000/api/";
   static var accountsAppBase = "${base}accounts/";
   static var signIn = accountsAppBase + "auth/login/";
   static var signUp = accountsAppBase + "auth/registration/";

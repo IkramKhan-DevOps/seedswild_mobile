@@ -1,7 +1,6 @@
 import 'package:annafi_app/core/utils/color_constant.dart';
 import 'package:annafi_app/core/utils/image_constant.dart';
 import 'package:annafi_app/core/utils/size_utils.dart';
-import 'package:annafi_app/data_layer/models/user_model.dart';
 import 'package:annafi_app/data_layer/urls/app_urls.dart';
 import 'package:annafi_app/presentation_layer/features/profile_page/profile_provider.dart';
 import 'package:annafi_app/presentation_layer/features/profile_page/profile_repo.dart';
@@ -12,11 +11,10 @@ import 'package:annafi_app/utils/components/custom_text_form_field.dart';
 import 'package:annafi_app/utils/routes/app_routes.dart';
 import 'package:annafi_app/utils/theme/app_stylea.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../user_session/statemanagement/user_provider.dart';
 
 
-// ignore_for_file: must_be_immutable
 
 class InformationScreen extends StatefulWidget {
 
@@ -29,12 +27,20 @@ class _InformationScreenState extends State<InformationScreen> {
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
+  initState(){
+    print("object");
+    super.initState();
+    Provider.of<ProfileProvider>(context, listen: false).fetchUserInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final userRepository = UserRepository(AppUrls.profile);
-    final profileProvider = ProfileProvider(userRepository);
-    profileProvider.fetchUserInfo();
-    print("ADD -- " + profileProvider.userModel.toString());
+
+    final provider = Provider.of<ProfileProvider>(context);
+    
+    emailController.text = provider.userModel!.email;
+    firstNameController.text = provider.userModel!.firstName;
+    lastNameController.text = provider.userModel!.lastName;
 
     return SafeArea(
       child: Scaffold(
@@ -48,7 +54,7 @@ class _InformationScreenState extends State<InformationScreen> {
         ),
 
         //body
-        body: Container(
+        body:  provider.isLoading ? CircularProgressIndicator() : Container(
           padding: EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +97,7 @@ class _InformationScreenState extends State<InformationScreen> {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Name",
+                  "${provider.userModel?.firstName} - ${provider.userModel?.lastName}",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtPoppinsMedium20,
@@ -100,7 +106,7 @@ class _InformationScreenState extends State<InformationScreen> {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "email@gmail.com",
+                  provider.userModel!.email,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtPoppinsRegular127,

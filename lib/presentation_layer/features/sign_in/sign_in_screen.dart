@@ -1,11 +1,9 @@
 import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/data_layer/urls/app_urls.dart';
 import 'package:annafi_app/presentation_layer/features/sign_in/sign_in_provider.dart';
 import 'package:annafi_app/utils/components/custom_button.dart';
 import 'package:annafi_app/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SignInScreen extends StatefulWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -22,8 +20,8 @@ class _SignInScreenState extends State<SignInScreen> {
   // ON TAB BUTTON USE
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
-  GlobalKey<FormState> mynamekey = GlobalKey<FormState>();
-  GlobalKey<FormState> mypasswordkey = GlobalKey<FormState>();
+  GlobalKey<FormState> nameKey = GlobalKey<FormState>();
+  GlobalKey<FormState> passwordKey = GlobalKey<FormState>();
 
   // DESTRUCTION IF WE MOVE TO NEXT SCREEN
   @override
@@ -33,15 +31,6 @@ class _SignInScreenState extends State<SignInScreen> {
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
     super.dispose();
-  }
-
-// URL METHOD
-  Future<void> _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   // BUILD
@@ -81,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   //FIELDS AND FORGET PASS LINK
                   CustomTextFormField(
-                    globalKey: mynamekey,
+                    globalKey: nameKey,
                     focusNode: emailFocusNode,
                     textInputType: TextInputType.emailAddress,
                     controller: nameController,
@@ -96,7 +85,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     margin: getMargin(top: 20),
                   ),
                   CustomTextFormField(
-                    globalKey: mypasswordkey,
+                    globalKey: passwordKey,
                     focusNode: passwordFocusNode,
                     controller: passController,
                     hintText: "********",
@@ -106,8 +95,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     textInputType: TextInputType.visiblePassword,
                     suffix: GestureDetector(
                       onTap: () {
-                        loginProvider
-                            .setObSecure(); // Call a method to toggle obsecure
+                        loginProvider.setObSecure(); // Call a method to toggle ob secure
                       },
                       child: Container(
                         margin:
@@ -127,8 +115,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: () {
-                        _launchURL(AppUrls.forgottPassword);
-                        //  onTapTxtForgotPassword(context);
+                        Navigator.pushNamed(context, AppRoutes.forgotPasswordScreen);
                       },
                       child: Padding(
                         padding: getPadding(top: 13),
@@ -150,7 +137,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           "email": nameController.text.toString(),
                           "password": passController.text.toString(),
                         };
-                        loginProvider.SignInApi(data, context);
+                        loginProvider.apiCall(data, context);
                       },
                       text: loginProvider.loading
                           ? CircularProgressIndicator(
@@ -163,7 +150,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     alignment: Alignment.center,
                     child: GestureDetector(
                       onTap: () {
-                        onTapTxtDonthaveanaccount(context);
+                        Navigator.pushNamed(context, AppRoutes.signUpScreen);
                       },
                       child: Padding(
                         padding: getPadding(top: 14),
@@ -286,21 +273,5 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       ),
     );
-  }
-
-  onTapTxtForgotPassword(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.forgotPasswordScreen);
-  }
-
-  onTapTxtDonthaveanaccount(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.signUpScreen);
-  }
-
-  onTapArrowleft2(BuildContext context) {
-    Navigator.pop(context);
-  }
-
-  onTapHome(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homePage);
   }
 }

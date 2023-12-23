@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 
 class ErrorMessage {
 
-  static Flushbar flushBar(BuildContext context, String message,
-      [String tag = "success"]) {
+  static Flushbar flushBar(BuildContext context, String message, [String tag = "success"]) {
+
     Color color = Colors.black87;
     Icon icon = Icon(Icons.question_mark_rounded, color: Colors.white);
     String? label = null;
-
-    print(tag);
 
     switch (tag) {
       case "danger":
