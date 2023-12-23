@@ -5,6 +5,7 @@ import 'package:annafi_app/presentation_layer/features/my_cart_page/my_cart_page
 import 'package:annafi_app/presentation_layer/features/profile_page/profile_page.dart';
 import 'package:annafi_app/presentation_layer/features/search_page/search_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 import '../shop/shop_screen.dart';
@@ -31,6 +32,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //   statusBarColor: Colors.green, // Set your desired color here
+    //   statusBarIconBrightness: Brightness.light, // Use Brightness.dark for dark icons
+    // ));
+
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

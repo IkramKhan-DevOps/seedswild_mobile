@@ -1,9 +1,7 @@
 import 'package:annafi_app/core/utils/color_constant.dart';
 import 'package:annafi_app/core/utils/image_constant.dart';
 import 'package:annafi_app/core/utils/size_utils.dart';
-import 'package:annafi_app/data_layer/urls/app_urls.dart';
 import 'package:annafi_app/presentation_layer/features/profile_page/profile_provider.dart';
-import 'package:annafi_app/presentation_layer/features/profile_page/profile_repo.dart';
 import 'package:annafi_app/utils/components/custom_button.dart';
 import 'package:annafi_app/utils/components/custom_icon_button.dart';
 import 'package:annafi_app/utils/components/custom_image_view.dart';
@@ -11,6 +9,7 @@ import 'package:annafi_app/utils/components/custom_text_form_field.dart';
 import 'package:annafi_app/utils/routes/app_routes.dart';
 import 'package:annafi_app/utils/theme/app_stylea.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 
@@ -28,9 +27,8 @@ class _InformationScreenState extends State<InformationScreen> {
   TextEditingController emailController = TextEditingController();
 
   initState(){
-    print("object");
     super.initState();
-    Provider.of<ProfileProvider>(context, listen: false).fetchUserInfo();
+    Provider.of<ProfileProvider>(context, listen: false).getProfileAPICAll(context);
   }
 
   @override
@@ -51,6 +49,7 @@ class _InformationScreenState extends State<InformationScreen> {
         appBar: AppBar(
           title: Text("Profile", style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.green,
+          elevation: 0,
         ),
 
         //body
@@ -97,7 +96,7 @@ class _InformationScreenState extends State<InformationScreen> {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "${provider.userModel?.firstName} - ${provider.userModel?.lastName}",
+                  "${provider.userModel?.firstName} ${provider.userModel?.lastName}",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtPoppinsMedium20,
@@ -159,9 +158,15 @@ class _InformationScreenState extends State<InformationScreen> {
 
               CustomButton(
                 height: getVerticalSize(52),
-                text: "Complete",
+                text: provider.isLoading ? CircularProgressIndicator(color: Colors.white): "Submit",
                 onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.profilePage);
+
+                  Map data = {
+                    "first_name": firstNameController.text.toString(),
+                    "last_name": lastNameController.text.toString(),
+                  };
+                  provider.putProfileAPICall(data, context);
+
                 },
               ),
             ],

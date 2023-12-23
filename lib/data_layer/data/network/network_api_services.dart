@@ -4,29 +4,74 @@ import 'dart:io';
 import 'package:annafi_app/data_layer/error_handling/app_exception.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'base_api_services.dart';
 
 class NetworkApiService extends BaseApiService {
-
   @override
-  Future getAPI(String url) async {
+  Future getAPI(String url, [bool isToken = false]) async {
     try {
-
-      Response response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 10));
-      return this.validateAPIResponse(response);
-
+      Response res;
+      if (isToken) {
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        final String? key = prefs.getString('key');
+        res = await http.get(
+          Uri.parse(url),
+          headers: {'Authorization': 'Token $key'},
+        ).timeout(
+          Duration(seconds: 10),
+        );
+      } else {
+        res = await http.get(Uri.parse(url)).timeout(Duration(seconds: 10));
+      }
+      return this.validateAPIResponse(res);
     } on SocketException {
       throw FetchDataException("No internet connection available.");
     }
   }
 
   @override
-  Future postAPI(String url, dynamic data) async {
+  Future postAPI(String url, dynamic data, [bool isToken = false]) async {
+    try {
+      Response res;
+
+      if (isToken) {
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        final String? key = prefs.getString('key');
+
+        res = await http.post(
+          Uri.parse(url),
+          body: data,
+          headers: {'Authorization': 'Token $key'},
+        ).timeout(
+          Duration(seconds: 15),
+        );
+      } else {
+        res = await post(Uri.parse(url), body: data)
+            .timeout(Duration(seconds: 15));
+      }
+      return this.validateAPIResponse(res);
+    } on SocketException {
+      throw FetchDataException("No internet connection available.");
+    }
+  }
+
+  @override
+  Future putAPI(String url, dynamic data) async {
     try {
 
-      final response = await post(Uri.parse(url), body: data).timeout(Duration(seconds: 15));
-      return this.validateAPIResponse(response);
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String? key = prefs.getString('key');
+
+      Response res = await http.put(
+        Uri.parse(url),
+        body: data,
+        headers: {'Authorization': 'Token $key'},
+      ).timeout(
+        Duration(seconds: 15),
+      );
+      return this.validateAPIResponse(res);
 
     } on SocketException {
       throw FetchDataException("No internet connection available.");
@@ -38,7 +83,6 @@ class NetworkApiService extends BaseApiService {
     /// 404: not found - 400: bad request
 
     switch (response.statusCode) {
-
       case 201:
       case 200:
         dynamic responseJson = jsonDecode(response.body);
