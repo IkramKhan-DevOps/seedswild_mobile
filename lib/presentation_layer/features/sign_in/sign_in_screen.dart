@@ -1,6 +1,6 @@
 import 'package:annafi_app/core/app_export.dart';
 import 'package:annafi_app/data_layer/urls/app_urls.dart';
-import 'package:annafi_app/presentation_layer/features/sign_in_screen/statemanagement/sign_in_provider.dart';
+import 'package:annafi_app/presentation_layer/features/sign_in/sign_in_provider.dart';
 import 'package:annafi_app/utils/components/custom_button.dart';
 import 'package:annafi_app/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -107,12 +107,12 @@ class _SignInScreenState extends State<SignInScreen> {
                     suffix: GestureDetector(
                       onTap: () {
                         loginProvider
-                            .setObsecure(); // Call a method to toggle obsecure
+                            .setObSecure(); // Call a method to toggle obsecure
                       },
                       child: Container(
                         margin:
                         getMargin(left: 30, top: 18, right: 16, bottom: 18),
-                        child: loginProvider.obsecure
+                        child: loginProvider.obSecure
                             ? Icon(Icons.visibility_off)
                             : Icon(Icons.visibility),
                       ),
@@ -120,7 +120,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     suffixConstraints: BoxConstraints(
                       maxHeight: getVerticalSize(52),
                     ),
-                    isObscureText: loginProvider.obsecure,
+                    isObscureText: loginProvider.obSecure,
                   ),
                   // ADD FORGOTT URL
                   Align(

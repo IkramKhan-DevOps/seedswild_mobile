@@ -9,7 +9,7 @@ class CategoriesRepo {
   Future<List<ProductCategory>?> getProductCategories() async {
     try {
       dynamic response =
-          await _apiService.getGetApiServices(AppUrls.productCategory);
+          await _apiService.getAPI(AppUrls.productCategory);
 
       if (response != null) {
         if (response is List) {

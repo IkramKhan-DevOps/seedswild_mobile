@@ -24,7 +24,7 @@ import '../../presentation_layer/features/settings_screen/settings_screen.dart';
 import '../../presentation_layer/features/shop/all_shops.dart';
 import '../../presentation_layer/features/shop/shop_screen.dart';
 import '../../presentation_layer/features/shop/sub_shops.dart';
-import '../../presentation_layer/features/sign_in_screen/sign_in_screen.dart';
+import '../../presentation_layer/features/sign_in/sign_in_screen.dart';
 import '../../presentation_layer/features/sign_up_screen/sign_up_screen.dart';
 import '../../presentation_layer/features/sign_up_sign_in_screen/sign_up_sign_in_screen.dart';
 import '../../presentation_layer/features/splash_screen/splash_screen.dart';

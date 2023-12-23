@@ -7,7 +7,7 @@ class SignInRepo {
   BaseApiService apiServices = NetworkApiService();
   Future<dynamic> signInApi(dynamic data) async {
     try {
-      var response = await apiServices.getPostApiServices(AppUrls.signIn, data);
+      var response = await apiServices.postAPI(AppUrls.signIn, data);
 
       return response;
     } catch (e) {

@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 class UserServices {
   Future<UserModel> getUser() => UserProvider().loadUser();
 
-  void checkUserAuthentication(BuildContext context) async {
+  void
+  checkUserAuthentication(BuildContext context) async {
     getUser().then((value) async {
       if (value.key.toString() == 'null' || value.key.toString() == '') {
         Navigator.pushNamed(context, AppRoutes.signInScreen);

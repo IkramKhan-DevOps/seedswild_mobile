@@ -8,43 +8,38 @@ import 'package:http/http.dart';
 import 'base_api_services.dart';
 
 class NetworkApiService extends BaseApiService {
-  // ......................GET API ................................
-  @override
-  Future getGetApiServices(String url) async {
-    dynamic responseJson;
-    try {
-      Response response =
-          await http.get(Uri.parse(url)).timeout(Duration(seconds: 10));
-
-      responseJson = returnResponse(response);
-    } on SocketException {
-      throw FetchDataException("No Internet Exception");
-    }
-    return responseJson;
-  }
-
-  // ......................POST API ................................
 
   @override
-  Future getPostApiServices(String url, dynamic data) async {
-    dynamic responseJson;
+  Future getAPI(String url) async {
     try {
-      final response =
-          await post(Uri.parse(url), body: data).timeout(Duration(seconds: 15));
 
-      ;
-      responseJson = returnResponse(response);
+      Response response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 10));
+      return this.validateAPIResponse(response);
+
     } on SocketException {
-      throw FetchDataException("No Internet Exception");
+      throw FetchDataException("No internet connection available.");
     }
-
-    return responseJson;
   }
 
-  // ......................STATUS CODEs................................
+  @override
+  Future postAPI(String url, dynamic data) async {
+    try {
 
-  dynamic returnResponse(http.Response response) {
+      final response = await post(Uri.parse(url), body: data).timeout(Duration(seconds: 15));
+      return this.validateAPIResponse(response);
+
+    } on SocketException {
+      throw FetchDataException("No internet connection available.");
+    }
+  }
+
+  dynamic validateAPIResponse(http.Response response) {
+    /// 201: created - 200: okay
+    /// 404: not found - 400: bad request
+
     switch (response.statusCode) {
+
+      case 201:
       case 200:
         dynamic responseJson = jsonDecode(response.body);
         return responseJson;
@@ -53,18 +48,16 @@ class NetworkApiService extends BaseApiService {
         throw BadRequestException(response.body.toString());
 
       case 404:
-        throw UnautherizedException(response.body.toString());
+        throw UnauthorizedException(response.body.toString());
 
       default:
         throw FetchDataException(
-            "Error occurred while communicating with the server " +
-                response.statusCode.toString()
+          "Communication Error: " + response.statusCode.toString(),
         );
     }
   }
 
-  String apiErrors(var response){
+  String captureResponseErrors(var response) {
     return response.toString();
   }
-
 }

@@ -10,7 +10,7 @@ class AllProductsRepo {
   Future<List<HomeProductModel>?> getAllProduct() async {
     try {
       dynamic response =
-          await _allProductsRepo.getGetApiServices(AppUrls.homeProducts);
+          await _allProductsRepo.getAPI(AppUrls.homeProducts);
       // print("Response from API: $response");
 
       if (response != null) {

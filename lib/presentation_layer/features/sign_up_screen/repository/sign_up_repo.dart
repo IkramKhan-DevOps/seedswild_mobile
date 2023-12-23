@@ -8,7 +8,7 @@ class SignUpRepo {
 
   Future<dynamic> signUpApi(dynamic data) async {
     try {
-      var response = await apiServices.getPostApiServices(AppUrls.signUp, data);
+      var response = await apiServices.postAPI(AppUrls.signUp, data);
       return response;
     } catch (e) {
       throw e;
