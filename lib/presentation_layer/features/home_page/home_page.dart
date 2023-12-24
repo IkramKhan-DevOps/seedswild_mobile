@@ -32,11 +32,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    //   statusBarColor: Colors.green, // Set your desired color here
-    //   statusBarIconBrightness: Brightness.light, // Use Brightness.dark for dark icons
-    // ));
-
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

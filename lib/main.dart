@@ -1,6 +1,6 @@
 import 'package:annafi_app/core/localization/app_localization.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/categories_provider.dart';
-import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_products_provider.dart';
+import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_provider.dart';
 import 'package:annafi_app/presentation_layer/features/settings/statemanagement/password_change_provider.dart';
 import 'package:annafi_app/presentation_layer/features/settings/statemanagement/profile_provider.dart';
 import 'package:annafi_app/presentation_layer/features/sign_in/sign_in_provider.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => SignUpProvider()),
           ChangeNotifierProvider(create: (_) => UserProvider()),
           ChangeNotifierProvider(create: (_) => CategoriesProvider()),
-          ChangeNotifierProvider(create: (_) => AllProductsProvider()),
+          ChangeNotifierProvider(create: (_) => HomeProvider()),
           ChangeNotifierProvider(create: (_) => ProfileProvider()),
           ChangeNotifierProvider(create: (_) => PasswordChangeProvider()),
         ],

@@ -5,15 +5,9 @@ import 'package:annafi_app/presentation_layer/features/home_page/widgets/product
 import 'package:annafi_app/utils/theme/app_decoration.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
-class SingleProductItemWidget extends StatelessWidget {
-  SingleProductItemWidget({
-    Key? key,
-    this.onTapProductItem,
-  }) : super(
-          key: key,
-        );
 
+class SingleProductItemWidget extends StatelessWidget {
+  SingleProductItemWidget({Key? key, this.onTapProductItem,}) : super(key: key,);
   VoidCallback? onTapProductItem;
 
   @override
@@ -85,22 +79,4 @@ class SingleProductItemWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-class BorderRadiusStyles {
-  // Circle borders
-  static BorderRadius get circleBorder24 => BorderRadius.circular(
-        24.h,
-      );
-  static BorderRadius get circleBorder36 => BorderRadius.circular(
-        36.h,
-      );
-
-  // Rounded borders
-  static BorderRadius get roundedBorder5 => BorderRadius.circular(
-        5.h,
-      );
-  static BorderRadius get roundedBorder8 => BorderRadius.circular(
-        8.h,
-      );
 }

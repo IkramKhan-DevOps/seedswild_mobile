@@ -16,7 +16,6 @@ class _MySliderState extends State<MySlider> {
   ];
 
   final CarouselController carouselController = CarouselController();
-
   int currentIndex = 0;
 
   @override
