@@ -12,23 +12,27 @@ class HomeModel {
   List<AllProduct> allProducts;
   List<AllProduct> newProducts;
   List<AllProduct> mostSales;
+  List<Category> categories;
 
   HomeModel({
     required this.allProducts,
     required this.newProducts,
     required this.mostSales,
+    required this.categories,
   });
 
   factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
     allProducts: List<AllProduct>.from(json["all_products"].map((x) => AllProduct.fromJson(x))),
     newProducts: List<AllProduct>.from(json["new_products"].map((x) => AllProduct.fromJson(x))),
     mostSales: List<AllProduct>.from(json["most_sales"].map((x) => AllProduct.fromJson(x))),
+    categories: List<Category>.from(json["categories"].map((x) => Category.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "all_products": List<dynamic>.from(allProducts.map((x) => x.toJson())),
     "new_products": List<dynamic>.from(newProducts.map((x) => x.toJson())),
     "most_sales": List<dynamic>.from(mostSales.map((x) => x.toJson())),
+    "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
   };
 }
 

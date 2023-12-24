@@ -1,10 +1,8 @@
 import 'package:annafi_app/core/app_export.dart';
 import 'package:annafi_app/presentation_layer/features/filter_draweritem/filter_draweritem.dart';
-import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/categories_provider.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/product%20widget/banner.dart';
 import 'package:annafi_app/utils/components/custom_search_view.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({Key? key}) : super(key: key);
@@ -22,9 +20,6 @@ class _ShopScreenState extends State<ShopScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<CategoriesProvider>(context, listen: false)
-        .fetchProductCategories();
-    // Provider.of<AllProductsProvider>(context, listen: false).fetchAllProduct();
   }
 
   @override

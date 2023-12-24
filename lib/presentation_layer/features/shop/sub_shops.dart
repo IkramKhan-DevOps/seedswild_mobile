@@ -1,8 +1,6 @@
 import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/categories_provider.dart';
 import 'package:annafi_app/utils/components/custom_search_view.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../filter_draweritem/filter_draweritem.dart';
 import '../home_page/widgets/product widget/banner.dart';
@@ -20,9 +18,6 @@ class _SubShopsScreenState extends State<SubShopsScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<CategoriesProvider>(context, listen: false)
-        .fetchProductCategories();
-    // Provider.of<AllProductsProvider>(context, listen: false).fetchAllProduct();
   }
 
   @override

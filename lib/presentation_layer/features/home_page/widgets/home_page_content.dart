@@ -4,14 +4,13 @@ import 'package:annafi_app/core/app_export.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_provider.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/product%20widget/banner.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/carousel_slider.dart';
-import 'package:annafi_app/presentation_layer/features/home_page/widgets/product%20widget/listgroup_item_widget.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/product_widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../data_layer/models/product_categories_model.dart';
-import '../statemanagement/categories_provider.dart';
+import 'category_widgets.dart';
+
 
 class HomePageContent extends StatefulWidget {
   @override
@@ -27,15 +26,14 @@ class _HomePageContentState extends State<HomePageContent> {
     super.initState();
 
     Future.delayed(Duration.zero, () {
-      Provider.of<CategoriesProvider>(context, listen: false).fetchProductCategories();
       Provider.of<HomeProvider>(context, listen: false).homeAPICall(context);
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
 
-    final categoryProvider = Provider.of<CategoriesProvider>(context);
     final homeProvider = Provider.of<HomeProvider>(context);
 
     return Scaffold(
@@ -87,36 +85,8 @@ class _HomePageContentState extends State<HomePageContent> {
                     onTap: () {},
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    height: 120,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount:
-                            categoryProvider.productCategories?.length ??
-                                0,
-                            itemBuilder: (context, index) {
-                              ProductCategory? productCategory =
-                              categoryProvider.productCategories?[index];
-                              if (productCategory != null) {
-                                print(productCategory.toString());
-                                return ListgroupItemWidget(
-                                  imagePath: productCategory.thumbnailImage ??
-                                      "https://picsum.photos/200",
-                                  categoryName: productCategory.name,
-                                  onTap: () {},
-                                );
-                              } else {
-                                return Container();
-                              }
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+                  CategoryCardList(
+                    categoryList: homeProvider.homeModel!.categories,
                   ),
 
 
