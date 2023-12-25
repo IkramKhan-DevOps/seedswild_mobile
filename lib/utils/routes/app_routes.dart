@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../presentation_layer/features/auth/login_screen.dart';
 import '../../presentation_layer/features/checkout_screen/checkout_screen.dart';
 import '../../presentation_layer/features/complete_screen/complete_screen.dart';
 import '../../presentation_layer/features/filter_draweritem/filter_draweritem.dart';
-import '../../presentation_layer/features/forgot_password_screen/forgot_password_screen.dart';
+import '../../presentation_layer/features/auth/password_reset_screen.dart';
 import '../../presentation_layer/features/home_page/home_page.dart';
 import '../../presentation_layer/features/my_cart_page/my_cart_page.dart';
 import '../../presentation_layer/features/notifications/notification_screen.dart';
@@ -17,18 +18,19 @@ import '../../presentation_layer/features/search_page/search_page.dart';
 import '../../presentation_layer/features/shop/all_shops.dart';
 import '../../presentation_layer/features/shop/shop_screen.dart';
 import '../../presentation_layer/features/shop/sub_shops.dart';
-import '../../presentation_layer/features/sign_in/sign_in_screen.dart';
-import '../../presentation_layer/features/sign_up_screen/sign_up_screen.dart';
+import '../../presentation_layer/features/auth/sign_up_screen.dart';
 import '../../presentation_layer/features/splash_screen/splash_screen.dart';
-import '../../presentation_layer/features/verification_code_screen/verification_code_screen.dart';
-import '../../presentation_layer/features/write_a_review_screen/write_a_review_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splash_screen';
-  static const String signInScreen = '/sign_in_screen';
+  static const String loginScreen = '/login_screen';
+
   static const String signUpScreen = '/sign_up_screen';
   static const String profileScreen = '/profile_screen';
   static const String passwordChangeScreen = '/password_change_screen';
+
+  // TODO: remove these
+  static const String signInScreen = '/sign_in_screen';
 
   static const String forgotPasswordScreen = '/forgot_password_screen';
   static const String verificationCodeScreen = '/verification_code_screen';
@@ -82,14 +84,14 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     splashScreen: (context) => SplashScreen(),
-    signInScreen: (context) => SignInScreen(),
+    loginScreen: (context) => LoginScreen(),
     signUpScreen: (context) => SignUpScreen(),
+
     reviewsPage: (context) => ReviewsPage(),
     profileScreen: (context) => ProfileScreen(),
     passwordChangeScreen: (context) => PasswordChangeScreen(),
 
     forgotPasswordScreen: (context) => ForgotPasswordScreen(),
-    verificationCodeScreen: (context) => Otp(),
     filterdrawer: (context) => FilterDraweritem(),
     shopScreen: (context) => ShopScreen(),
 
@@ -106,10 +108,7 @@ class AppRoutes {
     completeScreen: (context) => CompleteScreen(),
 
     reviewsTabContainerScreen: (context) => ReviewsTabContainerScreen(),
-    writeAReviewScreen: (context) => WriteAReviewScreen(),
-
     settingsScreen: (context) => SettingsScreen(),
-
     myCartPage: (context) => MyCartPage(),
   };
 }

@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:annafi_app/core/app_export.dart';
+import 'package:annafi_app/data_layer/urls/app_urls.dart';
+import 'package:annafi_app/globals/utils/auth.dart';
 import 'package:flutter/material.dart';
 
-import '../user_session/services/user_Services.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,14 +12,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  UserServices userServices = UserServices();
 
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () async {
-      userServices.checkUserAuthentication(context);
-      Navigator.pushNamed(context, AppRoutes.signInScreen);
+      AuthToken.checkLoginStatus(context);
     });
   }
 

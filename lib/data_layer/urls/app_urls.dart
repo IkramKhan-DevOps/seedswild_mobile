@@ -1,18 +1,18 @@
 class AppUrls {
-  // ACCOUNTS API'S.............................................................
-  static var base = "http://192.168.18.13:8000/api/";
-  static var accountsAppBase = "${base}accounts/";
-  static var signIn = accountsAppBase + "auth/login/";
-  static var signUp = accountsAppBase + "auth/registration/";
-  static var passwordChange = accountsAppBase + "auth/password/change/";
 
-  // VERSION1 API'S.............................................................
-  static var v1AppBase = "${base}v1/";
-  static var home = "${base}v1/home/";
+  static String base = "https://seedswild.exarth.com/api/";
+  static String accountsAppBase = "${base}accounts/";
+  static String signIn = accountsAppBase + "auth/login/";
+  static String signUp = accountsAppBase + "auth/registration/";
+  static String passwordChange = accountsAppBase + "auth/password/change/";
+  static String passwordReset = accountsAppBase + "auth/password/reset/";
+  static String profile = "${accountsAppBase}auth/user/";
 
-  static var profile = "${accountsAppBase}auth/user/";
+  static String v1AppBase = "${base}v1/";
+  static String home = "${base}v1/home/";
 
-  static var productCategory = "${v1AppBase}product/category/";
-  static var productHome = "${v1AppBase}";
-  static var product = "${v1AppBase}";
+  static String productCategory = "${v1AppBase}product/category/";
+  static String productHome = "${v1AppBase}";
+  static String product = "${v1AppBase}";
+
 }

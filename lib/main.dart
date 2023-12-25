@@ -1,10 +1,10 @@
 import 'package:annafi_app/core/localization/app_localization.dart';
+import 'package:annafi_app/presentation_layer/features/auth/provider/login_provider.dart';
+import 'package:annafi_app/presentation_layer/features/auth/provider/password_reset_provider.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_provider.dart';
 import 'package:annafi_app/presentation_layer/features/settings/statemanagement/password_change_provider.dart';
 import 'package:annafi_app/presentation_layer/features/settings/statemanagement/profile_provider.dart';
-import 'package:annafi_app/presentation_layer/features/sign_in/sign_in_provider.dart';
-import 'package:annafi_app/presentation_layer/features/sign_up_screen/statemanagement/sign_up_provider.dart';
-import 'package:annafi_app/presentation_layer/features/user_session/statemanagement/user_provider.dart';
+import 'package:annafi_app/presentation_layer/features/auth/provider/sign_up_provider.dart';
 import 'package:annafi_app/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,12 +26,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => SignInProvider()),
+          ChangeNotifierProvider(create: (_) => LoginProvider()),
           ChangeNotifierProvider(create: (_) => SignUpProvider()),
-          ChangeNotifierProvider(create: (_) => UserProvider()),
           ChangeNotifierProvider(create: (_) => HomeProvider()),
           ChangeNotifierProvider(create: (_) => ProfileProvider()),
           ChangeNotifierProvider(create: (_) => PasswordChangeProvider()),
+          ChangeNotifierProvider(create: (_) => PasswordResetProvider()),
         ],
         child: Builder(builder: (BuildContext context) {
           return MaterialApp(
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
               visualDensity: VisualDensity.standard,
             ),
-            title: 'annafi_app',
+            title: 'seedswild',
             debugShowCheckedModeBanner: false,
             initialRoute: AppRoutes.splashScreen,
             routes: AppRoutes.routes,

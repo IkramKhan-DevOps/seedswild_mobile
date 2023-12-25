@@ -11,18 +11,28 @@ class HomeProvider with ChangeNotifier {
   HomeModel? homeModel;
   bool isLoading = false;
 
+  void setLoading(bool value){
+    isLoading = value;
+    notifyListeners();
+  }
+
   Future<void> homeAPICall(BuildContext context) async {
-    this.isLoading = true;
+    isLoading = true;
+    notifyListeners();
+
     try{
+
       var response = await baseApiService.getAPI(AppUrls.home);
       homeModel = HomeModel.fromJson(response);
 
-      this.isLoading = false;
+      isLoading = false;
+      notifyListeners();
+
     }catch(e){
+      isLoading = false;
+      notifyListeners();
       ErrorMessage.flushBar(context, e.toString());
-      this.isLoading = false;
     }
-    notifyListeners();
   }
 
 }

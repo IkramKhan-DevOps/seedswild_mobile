@@ -1,16 +1,14 @@
 import 'package:annafi_app/core/app_export.dart';
+import 'package:annafi_app/globals/utils/auth.dart';
 import 'package:annafi_app/presentation_layer/features/logout_bottomsheet/logout_bottomsheet.dart';
 import 'package:annafi_app/presentation_layer/features/settings/components/menu_tile.dart';
-import 'package:annafi_app/presentation_layer/features/user_session/statemanagement/user_provider.dart';
 import 'package:annafi_app/utils/components/custom_icon_button.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
       backgroundColor: ColorConstant.whiteA700,
@@ -108,9 +106,7 @@ class SettingsScreen extends StatelessWidget {
                   Spacer(),
                   InkWell(
                     onTap: () {
-                      userProvider.removeToken().then((value) {
-                        onTapLogout(context);
-                      });
+                      AuthToken.logoutUser(context);
                     },
                     child: Container(
                       margin: getMargin(left: 16, right: 16, bottom: 37),
