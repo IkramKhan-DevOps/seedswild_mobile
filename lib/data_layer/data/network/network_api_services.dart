@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:annafi_app/data_layer/error_handling/app_exception.dart';
+import 'package:annafi_app/globals/utils/auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,11 +15,9 @@ class NetworkApiService extends BaseApiService {
     try {
       Response res;
       if (isToken) {
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        final String? key = prefs.getString('key');
         res = await http.get(
           Uri.parse(url),
-          headers: {'Authorization': 'Token $key'},
+          headers: {'Authorization': 'Token ${await AuthToken.getToken()}'},
         ).timeout(
           Duration(seconds: 10),
         );
@@ -37,13 +36,11 @@ class NetworkApiService extends BaseApiService {
       Response res;
 
       if (isToken) {
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        final String? key = prefs.getString('key');
 
         res = await http.post(
           Uri.parse(url),
           body: data,
-          headers: {'Authorization': 'Token $key'},
+          headers: {'Authorization': 'Token ${await AuthToken.getToken()}'},
         ).timeout(
           Duration(seconds: 15),
         );

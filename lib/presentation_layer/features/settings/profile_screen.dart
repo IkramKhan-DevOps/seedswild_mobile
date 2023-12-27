@@ -7,7 +7,6 @@ import 'package:annafi_app/utils/components/custom_icon_button.dart';
 import 'package:annafi_app/utils/components/custom_image_view.dart';
 import 'package:annafi_app/utils/components/custom_text_form_field.dart';
 import 'package:annafi_app/utils/theme/app_stylea.dart';
-import 'package:annafi_app/widgets/empty.dart';
 import 'package:annafi_app/widgets/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +17,6 @@ class ProfileScreen extends StatelessWidget {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
 
       //body
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(10),
         child: FutureBuilder(
           future: Provider.of<ProfileProvider>(context, listen: false)
               .getProfileAPICAll(context),
@@ -52,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
               emailController.text = data.email;
 
               return Container(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,

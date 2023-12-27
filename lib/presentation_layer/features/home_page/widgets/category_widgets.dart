@@ -24,6 +24,7 @@ class CategoryCardList extends StatelessWidget {
                   return CategoryCardItem(
                     id: category.id.toString(),
                     name: category.name,
+                    image: category.thumbnailImage,
                     onTap: () {},
                   );
                 } else {
@@ -48,7 +49,7 @@ class CategoryCardItem extends StatelessWidget {
       {super.key,
       required this.id,
       required this.name,
-      this.image,
+      required this.image,
       required this.onTap})
       : super();
 
@@ -71,7 +72,7 @@ class CategoryCardItem extends StatelessWidget {
               ),
               child: ClipOval(
                 child: Image.network(
-                  "https://picsum.photos/50",
+                  image ?? "https://picsum.photos/50",
                   width: 58,
                   height: 58,
                   fit: BoxFit.cover,

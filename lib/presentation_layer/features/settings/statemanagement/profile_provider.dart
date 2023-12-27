@@ -19,8 +19,6 @@ class ProfileProvider with ChangeNotifier {
   // API Calls
   Future<void> getProfileAPICAll(BuildContext context) async {
 
-    print("GET: HIT");
-
     try {
 
       var response = await apiServices.getAPI(AppUrls.profile, true);
@@ -36,8 +34,6 @@ class ProfileProvider with ChangeNotifier {
 
   Future<void> putProfileAPICall(dynamic data, BuildContext context) async {
     this.isLoading = true;
-
-    print("PUT: HIT");
 
     try{
 

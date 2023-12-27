@@ -84,23 +84,27 @@ class Category {
   int id;
   String name;
   int? parent;
+  String? thumbnailImage;
 
   Category({
     required this.id,
     required this.name,
     required this.parent,
+    required this.thumbnailImage
   });
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
     id: json["id"],
     name: json["name"],
     parent: json["parent"],
+    thumbnailImage: json["thumbnail_image"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,
     "parent": parent,
+    'thumbnail_image': thumbnailImage
   };
 }
 

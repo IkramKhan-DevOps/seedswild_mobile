@@ -19,19 +19,8 @@ class _HomePageContentState extends State<HomePageContent> {
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
 
-  // STATE
-  void initState() {
-    super.initState();
-
-    Future.delayed(Duration.zero, () {
-      Provider.of<HomeProvider>(context, listen: false).homeAPICall(context);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final homeProvider = context.watch<HomeProvider>();
-
     return Scaffold(
       //APP BAR
       appBar: AppBar(
@@ -46,16 +35,6 @@ class _HomePageContentState extends State<HomePageContent> {
         backgroundColor: Colors.green,
         actions: [
           GestureDetector(
-            // onTap: () => Navigator.pushNamed(context, AppRoutes.searchPage),
-            onTap: (){
-              context.read<HomeProvider>().setLoading(!homeProvider.isLoading);
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Icon(Icons.search_off, color: Colors.white),
-            ),
-          ),
-          GestureDetector(
             onTap: () =>
                 Navigator.pushNamed(context, AppRoutes.notificationScreen),
             child: Padding(
@@ -65,12 +44,20 @@ class _HomePageContentState extends State<HomePageContent> {
           ),
         ],
       ),
+      body: Container(
+        child: FutureBuilder(
+          future: Provider.of<HomeProvider>(context, listen: false).homeAPICall(context),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return ProgressCircular();
+            } else if (snapshot.hasError) {
+              return Center(child: Text("Error loading user data"));
+            } else {
+              var data = Provider
+                  .of<HomeProvider>(context)
+                  .homeModel;
 
-      //BODY
-      body: homeProvider.isLoading
-          ? ProgressCircular()
-          : Scaffold(
-              body: Padding(
+              return Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: CustomScrollView(
                   slivers: [
@@ -88,7 +75,7 @@ class _HomePageContentState extends State<HomePageContent> {
                         ),
                         SizedBox(height: 20),
                         CategoryCardList(
-                          categoryList: homeProvider.homeModel!.categories,
+                          categoryList: data!.categories,
                         ),
 
                         // FLASH SALES
@@ -101,7 +88,7 @@ class _HomePageContentState extends State<HomePageContent> {
                           buttonTextName: 'See All',
                         ),
                         ProductCardList(
-                          productList: homeProvider.homeModel!.allProducts,
+                          productList: data.allProducts,
                         ),
 
                         SizedBox(height: 10),
@@ -115,7 +102,7 @@ class _HomePageContentState extends State<HomePageContent> {
                                   context, AppRoutes.shopScreen);
                             }),
                         ProductCardList(
-                          productList: homeProvider.homeModel!.newProducts,
+                          productList: data.newProducts,
                         ),
                         SizedBox(height: 10),
 
@@ -128,15 +115,18 @@ class _HomePageContentState extends State<HomePageContent> {
                                   context, AppRoutes.shopScreen);
                             }),
                         ProductCardList(
-                          productList: homeProvider.homeModel!.mostSales,
+                          productList: data.mostSales,
                         ),
                         SizedBox(height: 10),
                       ]),
                     ),
                   ],
                 ),
-              ),
-            ),
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }

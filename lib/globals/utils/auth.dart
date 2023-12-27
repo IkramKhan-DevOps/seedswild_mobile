@@ -37,10 +37,8 @@ class AuthToken{
     AuthToken.getToken().then((value) async {
 
       if(value == null || value == ""){
-        print("login");
         Navigator.pushNamed(context, AppRoutes.loginScreen);
       }else{
-        print("home");
         Navigator.pushNamed(context, AppRoutes.homePage);
       }
 

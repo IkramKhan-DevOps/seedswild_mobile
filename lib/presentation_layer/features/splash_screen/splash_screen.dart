@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/data_layer/urls/app_urls.dart';
 import 'package:annafi_app/globals/utils/auth.dart';
 import 'package:flutter/material.dart';
 

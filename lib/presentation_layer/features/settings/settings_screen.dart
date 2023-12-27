@@ -75,7 +75,7 @@ class SettingsScreen extends StatelessWidget {
                                   style: AppStyle.txtPoppinsMedium20,
                                 ),
                                 Text(
-                                  "anamaria@exarth.com",
+                                  "noname@email.com",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
                                   style: AppStyle.txtPoppinsRegular127,
@@ -83,7 +83,7 @@ class SettingsScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                        )
+                        ),
                         // PROFILE - END
                       ],
                     ),
