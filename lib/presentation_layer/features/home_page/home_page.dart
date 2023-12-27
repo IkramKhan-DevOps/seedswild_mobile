@@ -4,7 +4,6 @@ import 'package:annafi_app/presentation_layer/features/my_cart_page/my_cart_page
 import 'package:annafi_app/presentation_layer/features/settings/settings_screen.dart';
 import 'package:annafi_app/presentation_layer/features/search_page/search_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 
 import '../shop/shop_screen.dart';
