@@ -1,15 +1,13 @@
-import 'package:annafi_app/presentation_layer/features/home_page/models/home_model.dart';
+import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_provider.dart';
+import 'package:annafi_app/presentation_layer/features/products/provider/products_provider.dart';
+import 'package:annafi_app/presentation_layer/features/products/widgets/products_category_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../home_page/widgets/category_widgets.dart';
 
 class ProductSearchDrawer extends StatelessWidget {
   final TextEditingController group848Controller = TextEditingController();
   final TextEditingController group847Controller = TextEditingController();
-
-  final List<Category> categories = List.filled(
-      10, Category(id: 1, name: "name", parent: null, thumbnailImage: null)
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +37,8 @@ class ProductSearchDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Categories"),
-                  CategoryCardList(
-                    categoryList: categories,
+                  ProductCategoryCardList(
+                    categoryList: context.watch<HomeProvider>().homeModel!.categories,
                   ),
                 ],
               ),
@@ -91,14 +89,16 @@ class ProductSearchDrawer extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          // Handle submit button press
+                          context.read<ProductsProvider>().submitQuery(context);
+                          Navigator.pop(context);
                         },
                         child: Text("Submit"),
                       ),
                       SizedBox(width: 16), // Add some space between the buttons
                       ElevatedButton(
                         onPressed: () {
-                          // Handle reset button press
+                          context.read<ProductsProvider>().resetQuery(context);
+                          Navigator.pop(context);
                         },
                         child: Text("Reset"),
                       ),

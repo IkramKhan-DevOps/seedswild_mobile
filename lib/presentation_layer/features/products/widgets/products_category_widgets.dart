@@ -1,15 +1,12 @@
-import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/data_layer/models/home_products_model.dart';
 import 'package:annafi_app/presentation_layer/features/products/provider/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../home_page.dart';
 
-class CategoryCardList extends StatelessWidget {
+class ProductCategoryCardList extends StatelessWidget {
   final categoryList;
 
-  const CategoryCardList({super.key, this.categoryList});
+  const ProductCategoryCardList({super.key, this.categoryList});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +22,7 @@ class CategoryCardList extends StatelessWidget {
               itemBuilder: (context, index) {
                 dynamic category = categoryList[index];
                 if (category != null) {
-                  return CategoryCardItem(
+                  return ProductCategoryCardItem(
                     id: category.id.toString(),
                     name: category.name,
                     image: category.thumbnailImage,
@@ -43,27 +40,25 @@ class CategoryCardList extends StatelessWidget {
   }
 }
 
-class CategoryCardItem extends StatelessWidget {
+class ProductCategoryCardItem extends StatelessWidget {
   final String id;
   final String name;
   final String? image;
   final VoidCallback? onTap;
 
-  CategoryCardItem(
+  ProductCategoryCardItem(
       {super.key,
-      required this.id,
-      required this.name,
-      required this.image,
-      required this.onTap})
+        required this.id,
+        required this.name,
+        required this.image,
+        required this.onTap})
       : super();
 
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: (){
-        context.read<ProductsProvider>().category = id.toString();
-        Navigator.pushNamed(context, AppRoutes.productsScreen);
+        context.read<ProductsProvider>().setCategory(id);
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -77,6 +72,9 @@ class CategoryCardItem extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xffF6F6F6),
                 borderRadius: BorderRadius.circular(26.5),
+                border: Border.all(
+                  color: context.watch<ProductsProvider>().category == id ? Colors.green : Colors.white,
+                ),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(5),

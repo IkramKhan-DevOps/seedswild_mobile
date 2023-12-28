@@ -5,15 +5,37 @@ import 'package:annafi_app/presentation_layer/features/products/models/product_m
 import 'package:flutter/material.dart';
 
 class ProductsProvider with ChangeNotifier {
+
+  // CORE
   BaseApiService service = NetworkApiService();
   ProductModel? productModel;
-  int limit = 10;
+
+  // QUERIES
   final TextEditingController searchController = TextEditingController();
+  int limit = 10;
+  String category = '';
+  String rating = '';
+
+  void setCategory(id){
+    category = id;
+    notifyListeners();
+  }
+
+  void resetQuery(BuildContext context){
+    category = '';
+    rating = '';
+    searchController.text = '';
+    filterProduct(context);
+  }
+
+  void submitQuery(BuildContext context){
+    filterProduct(context);
+  }
 
   Future<void> getProductsAPI(BuildContext context) async {
-    print("Search");
     try {
-      String url = "${AppUrls.product}?title=${searchController.text}&limit=$limit";
+      String url = "${AppUrls.product}?title=${searchController.text}&category=${category}&limit=$limit";
+
       var response = await service.getAPI(url);
       productModel = ProductModel.fromJson(response);
     } catch (error) {
@@ -24,9 +46,8 @@ class ProductsProvider with ChangeNotifier {
   }
 
   Future<void> filterProduct(BuildContext context) async {
-    print("Filter");
     try {
-      String url = "${AppUrls.product}?title=${searchController.text}&limit=$limit";
+      String url = "${AppUrls.product}?title=${searchController.text}&category=${category}&limit=$limit";
       var response = await service.getAPI(url);
       productModel = ProductModel.fromJson(response);
       notifyListeners();

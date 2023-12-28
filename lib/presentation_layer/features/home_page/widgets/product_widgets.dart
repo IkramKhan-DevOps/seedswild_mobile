@@ -8,7 +8,11 @@ class ProductCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 235.v,
+
+      // OVERALL SIZED BOX SIZE
+      height: 250,
+      // ----------------------
+
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         separatorBuilder: (context, index) {
@@ -22,6 +26,7 @@ class ProductCardList extends StatelessWidget {
             image: product.thumbnailImage,
             price: product.price.toString(),
             discount: product.discount.toString(),
+            category: product.category.name,
             onTap: () => Navigator.pushNamed(context, AppRoutes.productViewScreen),
           );
         },
@@ -35,11 +40,12 @@ class ProductCardItem extends StatelessWidget {
   final String? image;
   final String price;
   final String discount;
+  final String category;
   final VoidCallback? onTap;
 
   ProductCardItem({
     super.key, required this.name, this.image,
-    required this.price, required this.discount, required this.onTap
+    required this.price, required this.discount, required this.category, required this.onTap
   }) : super();
 
   @override
@@ -65,6 +71,14 @@ class ProductCardItem extends StatelessWidget {
               SizedBox(height: 10),
 
               // TEXT
+              Text(
+                category,
+                maxLines: 2,
+                style: TextStyle(
+                  color: Colors.green,
+                ),
+
+              ),
               Text(
                 name,
                 maxLines: 3,

@@ -30,11 +30,13 @@ class ProductsScreen extends StatelessWidget {
               ProductModel? product =
                   context.watch<ProductsProvider>().productModel;
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // SEARCH AREA
                   SizedBox(
                     height: 20,
                   ),
+
                   CustomSearchView(
                     controller:
                         context.watch<ProductsProvider>().searchController,
@@ -44,40 +46,37 @@ class ProductsScreen extends StatelessWidget {
                       margin: getMargin(all: 16),
                       child: InkWell(
                         onTap: () {
-                          Provider.of<ProductsProvider>(context, listen: false).filterProduct(context);
+                          showModalBottomSheet(
+                            isDismissible: true,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return ProductSearchDrawer();
+                            },
+                          );
                         },
                         child: Icon(
-                          Icons.search,
+                          Icons.menu,
                           size: 24,
                         ),
                       ),
                     ),
                     suffix: InkWell(
                       onTap: () {
-                        showModalBottomSheet(
-                          isDismissible: true,
-                          context: context,
-                          builder: (BuildContext context) {
-                            return ProductSearchDrawer();
-                          },
-                        );
+                        Provider.of<ProductsProvider>(context, listen: false).filterProduct(context);
                       },
                       child: Container(
-                        padding: getPadding(
-                          left: 13,
-                          top: 12,
-                          right: 14,
-                          bottom: 13,
-                        ),
-                        margin: EdgeInsets.only(right: 0),
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.only(top: 5, bottom: 5, right: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(
                             getHorizontalSize(8),
                           ),
+                          color: Colors.green,
                         ),
                         child: Icon(
-                          Icons.settings,
+                          Icons.search,
                           size: 24,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -104,6 +103,7 @@ class ProductsScreen extends StatelessWidget {
                           name: result.title,
                           price: result.price.toString(),
                           discount: result.discount.toString(),
+                          category: result.category.name,
                           onTap: () {},
                         );
                       },
