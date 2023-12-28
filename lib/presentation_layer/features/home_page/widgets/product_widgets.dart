@@ -27,7 +27,7 @@ class ProductCardList extends StatelessWidget {
             price: product.price.toString(),
             discount: product.discount.toString(),
             category: product.category.name,
-            onTap: () => Navigator.pushNamed(context, AppRoutes.productViewScreen),
+            onTap: () => Navigator.pushNamed(context, AppRoutes.productDetailScreen),
           );
         },
       ),

@@ -3,7 +3,6 @@ import 'package:annafi_app/presentation_layer/features/home_page/widgets/home_pa
 import 'package:annafi_app/presentation_layer/features/my_cart_page/my_cart_page.dart';
 import 'package:annafi_app/presentation_layer/features/products/products_screen.dart';
 import 'package:annafi_app/presentation_layer/features/settings/settings_screen.dart';
-import 'package:annafi_app/presentation_layer/features/search_page/search_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     HomePageContent(),
     ProductsScreen(),
-    SearchPage(),
     MyCartPage(),
     SettingsScreen(),
 
@@ -51,10 +49,6 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.store),
             label: 'Shop',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),

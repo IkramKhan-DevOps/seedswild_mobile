@@ -10,12 +10,11 @@ import '../../presentation_layer/features/home_page/home_page.dart';
 import '../../presentation_layer/features/my_cart_page/my_cart_page.dart';
 import '../../presentation_layer/features/notifications/notification_screen.dart';
 import '../../presentation_layer/features/order_status_screen/myorders_screen.dart';
-import '../../presentation_layer/features/product_view_screen/product_view_screen.dart';
+import '../../presentation_layer/features/products/product_detail_screen.dart';
 import '../../presentation_layer/features/settings/profile_screen.dart';
 import '../../presentation_layer/features/settings/settings_screen.dart';
 import '../../presentation_layer/features/settings/password_change_screen.dart';
 import '../../presentation_layer/features/reviews_page/reviews_page.dart';
-import '../../presentation_layer/features/search_page/search_page.dart';
 import '../../presentation_layer/features/auth/sign_up_screen.dart';
 import '../../presentation_layer/features/splash_screen/splash_screen.dart';
 
@@ -28,6 +27,7 @@ class AppRoutes {
   static const String passwordChangeScreen = '/password_change_screen';
 
   static const String productsScreen = "/products_screen";
+  static const String productDetailScreen = '/product_detail_screen';
 
   // TODO: remove these
   static const String forgotPasswordScreen = '/forgot_password_screen';
@@ -40,8 +40,6 @@ class AppRoutes {
   static const String homeContainerScreen = '/home_container_screen';
 
   static const String popularItemsScreen = '/popular_items_screen';
-
-  static const String productViewScreen = '/product_view_screen';
 
   static const String myCartPage = '/my_cart_page';
   static const String tabReviewScreen = '/tab_bar_review_page';
@@ -84,6 +82,7 @@ class AppRoutes {
     signUpScreen: (context) => SignUpScreen(),
 
     productsScreen: (context) => ProductsScreen(),
+    productDetailScreen: (context) => ProductDetailScreen(),
 
     reviewsPage: (context) => ReviewsPage(),
     profileScreen: (context) => ProfileScreen(),
@@ -94,10 +93,7 @@ class AppRoutes {
 
     homePage: (context) => HomePage(),
     notificationScreen: (context) => NotificationScreen(),
-    searchPage: (context) => SearchPage(),
     tabReviewScreen: (context) => TabContainerScreen(),
-
-    productViewScreen: (context) => ProductViewScreen(),
     checkoutScreen: (context) => CheckoutScreen(),
     completeScreen: (context) => CompleteScreen(),
 
