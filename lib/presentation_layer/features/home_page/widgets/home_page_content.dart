@@ -83,7 +83,7 @@ class _HomePageContentState extends State<HomePageContent> {
                         Sales(
                           saleName: 'All Products',
                           onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.shopScreen);
+                            Navigator.pushNamed(context, AppRoutes.productsScreen);
                           },
                           buttonTextName: 'See All',
                         ),
@@ -99,7 +99,7 @@ class _HomePageContentState extends State<HomePageContent> {
                             buttonTextName: 'See All',
                             onTap: () {
                               Navigator.pushNamed(
-                                  context, AppRoutes.shopScreen);
+                                  context, AppRoutes.productsScreen);
                             }),
                         ProductCardList(
                           productList: data.newProducts,
@@ -112,7 +112,7 @@ class _HomePageContentState extends State<HomePageContent> {
                             buttonTextName: 'See All',
                             onTap: () {
                               Navigator.pushNamed(
-                                  context, AppRoutes.shopScreen);
+                                  context, AppRoutes.productsScreen);
                             }),
                         ProductCardList(
                           productList: data.mostSales,

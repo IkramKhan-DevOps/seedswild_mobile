@@ -58,7 +58,7 @@ class LogoutBottomsheet extends StatelessWidget {
   }
 
   onTapYes(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.signInScreen);
+    Navigator.pushNamed(context, AppRoutes.loginScreen);
   }
 
   onTapNo(BuildContext context) {

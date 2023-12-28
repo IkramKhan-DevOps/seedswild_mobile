@@ -272,6 +272,6 @@ class FilterDraweritem extends StatelessWidget {
   }
 
   onTapComplete(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.shopScreen);
+    Navigator.pushNamed(context, AppRoutes.productsScreen);
   }
 }

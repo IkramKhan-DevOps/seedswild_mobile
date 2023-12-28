@@ -1,12 +1,11 @@
 import 'package:annafi_app/core/app_export.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/widgets/home_page_content.dart';
 import 'package:annafi_app/presentation_layer/features/my_cart_page/my_cart_page.dart';
+import 'package:annafi_app/presentation_layer/features/products/products_screen.dart';
 import 'package:annafi_app/presentation_layer/features/settings/settings_screen.dart';
 import 'package:annafi_app/presentation_layer/features/search_page/search_page.dart';
 import 'package:flutter/material.dart';
 
-
-import '../shop/shop_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,7 +17,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     HomePageContent(),
-    ShopScreen(),
+    ProductsScreen(),
     SearchPage(),
     MyCartPage(),
     SettingsScreen(),

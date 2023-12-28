@@ -51,8 +51,11 @@ class CustomSearchView extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,
-        style: _setFontStyle(),
+        style: TextStyle(
+          fontSize: 18
+        ),
         decoration: _buildDecoration(),
+
       ),
     );
   }
@@ -60,7 +63,9 @@ class CustomSearchView extends StatelessWidget {
   _buildDecoration() {
     return InputDecoration(
       hintText: hintText ?? "",
-      hintStyle: _setFontStyle(),
+      hintStyle: TextStyle(
+        fontSize: 18
+      ),
       border: _setBorderStyle(),
       enabledBorder: _setBorderStyle(),
       focusedBorder: _setBorderStyle(),

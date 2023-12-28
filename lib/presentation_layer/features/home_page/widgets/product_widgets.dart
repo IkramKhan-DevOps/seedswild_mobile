@@ -1,5 +1,4 @@
 import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/data_layer/models/home_products_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductCardList extends StatelessWidget {
@@ -46,7 +45,6 @@ class ProductCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
       child: GestureDetector(
         onTap: onTap,
         child: Container(

@@ -1,3 +1,4 @@
+import 'package:annafi_app/presentation_layer/features/products/products_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../presentation_layer/features/auth/login_screen.dart';
@@ -15,9 +16,6 @@ import '../../presentation_layer/features/settings/settings_screen.dart';
 import '../../presentation_layer/features/settings/password_change_screen.dart';
 import '../../presentation_layer/features/reviews_page/reviews_page.dart';
 import '../../presentation_layer/features/search_page/search_page.dart';
-import '../../presentation_layer/features/shop/all_shops.dart';
-import '../../presentation_layer/features/shop/shop_screen.dart';
-import '../../presentation_layer/features/shop/sub_shops.dart';
 import '../../presentation_layer/features/auth/sign_up_screen.dart';
 import '../../presentation_layer/features/splash_screen/splash_screen.dart';
 
@@ -29,12 +27,11 @@ class AppRoutes {
   static const String profileScreen = '/profile_screen';
   static const String passwordChangeScreen = '/password_change_screen';
 
-  // TODO: remove these
-  static const String signInScreen = '/sign_in_screen';
+  static const String productsScreen = "/products_screen";
 
+  // TODO: remove these
   static const String forgotPasswordScreen = '/forgot_password_screen';
   static const String verificationCodeScreen = '/verification_code_screen';
-  static const String shopScreen = '/shop_screen';
 
   static const String exploreShopScreen = '/explore_shop_screen';
 
@@ -67,7 +64,6 @@ class AppRoutes {
   static const String writeAReviewScreen = '/write_a_review_screen';
 
   static const String searchPage = '/search_page';
-  static const String subShop = '/sub_shop';
 
   static const String notificationScreen = '/notification_screen';
 
@@ -87,21 +83,19 @@ class AppRoutes {
     loginScreen: (context) => LoginScreen(),
     signUpScreen: (context) => SignUpScreen(),
 
+    productsScreen: (context) => ProductsScreen(),
+
     reviewsPage: (context) => ReviewsPage(),
     profileScreen: (context) => ProfileScreen(),
     passwordChangeScreen: (context) => PasswordChangeScreen(),
 
     forgotPasswordScreen: (context) => ForgotPasswordScreen(),
     filterdrawer: (context) => FilterDraweritem(),
-    shopScreen: (context) => ShopScreen(),
 
     homePage: (context) => HomePage(),
     notificationScreen: (context) => NotificationScreen(),
     searchPage: (context) => SearchPage(),
-    allShops: (context) => AllShops(),
     tabReviewScreen: (context) => TabContainerScreen(),
-    subShop: (context) => SubShopsScreen(),
-    // homeContainerScreen: (context) => HomePageContent(),
 
     productViewScreen: (context) => ProductViewScreen(),
     checkoutScreen: (context) => CheckoutScreen(),
