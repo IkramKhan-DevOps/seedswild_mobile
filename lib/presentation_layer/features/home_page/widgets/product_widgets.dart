@@ -45,6 +45,7 @@ class ProductCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 150,
       child: GestureDetector(
         onTap: onTap,
         child: Container(

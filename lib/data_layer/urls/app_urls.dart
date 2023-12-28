@@ -10,9 +10,9 @@ class AppUrls {
 
   static String v1AppBase = "${base}v1/";
   static String home = "${base}v1/home/";
+  static String product = "${base}v1/product/";
 
   static String productCategory = "${v1AppBase}product/category/";
   static String productHome = "${v1AppBase}";
-  static String product = "${v1AppBase}";
 
 }
