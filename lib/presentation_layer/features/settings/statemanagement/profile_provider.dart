@@ -21,7 +21,6 @@ class ProfileProvider with ChangeNotifier {
   Future<void> getProfileAPICAll(BuildContext context) async {
     ProfileModel? _tempData = await WhoIAm.getUser();
     if (_tempData == null) {
-      print(_tempData);
       try {
         var response = await apiServices.getAPI(AppUrls.profile, true);
         _userModel = ProfileModel.fromJson(response);
@@ -32,7 +31,6 @@ class ProfileProvider with ChangeNotifier {
         notifyListeners();
       }
     } else {
-      print("LOCAL");
       _userModel = _tempData;
       notifyListeners();
     }

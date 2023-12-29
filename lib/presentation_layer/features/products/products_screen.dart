@@ -99,12 +99,12 @@ class ProductsScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var result = product.results[index];
                         return ProductCardItem(
+                          id: result.id.toString(),
                           image: result.thumbnailImage,
                           name: result.title,
                           price: result.price.toString(),
                           discount: result.discount.toString(),
                           category: result.category.name,
-                          onTap: () {},
                         );
                       },
                     ),

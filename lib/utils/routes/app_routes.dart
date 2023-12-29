@@ -82,7 +82,7 @@ class AppRoutes {
     signUpScreen: (context) => SignUpScreen(),
 
     productsScreen: (context) => ProductsScreen(),
-    productDetailScreen: (context) => ProductDetailScreen(),
+    productDetailScreen: (context) => ProductDetailScreen(productId: '1'),
 
     reviewsPage: (context) => ReviewsPage(),
     profileScreen: (context) => ProfileScreen(),
