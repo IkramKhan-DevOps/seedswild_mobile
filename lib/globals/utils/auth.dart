@@ -3,7 +3,6 @@ import 'package:annafi_app/data_layer/data/network/network_api_services.dart';
 import 'package:annafi_app/data_layer/models/profile_model.dart';
 import 'package:annafi_app/data_layer/urls/app_urls.dart';
 import 'package:annafi_app/globals/utils/who_am_i.dart';
-import 'package:annafi_app/presentation_layer/features/settings/statemanagement/profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,9 +44,9 @@ class AuthToken{
     AuthToken.getToken().then((value) async {
 
       if(value == null || value == ""){
-        Navigator.pushNamed(context, AppRoutes.loginScreen);
+        Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
       }else{
-        Navigator.pushNamed(context, AppRoutes.homePage);
+        Navigator.pushReplacementNamed(context, AppRoutes.homePage);
       }
 
     }).onError((error, stackTrace) {
@@ -76,7 +75,7 @@ class AuthToken{
     AuthToken.removeToken().then((value) async {
       await WhoIAm.removeUser();
       Navigator.popUntil(context, (route) => route.isFirst);
-      Navigator.pushNamed(context, AppRoutes.loginScreen);
+      Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
     });
   }
 
