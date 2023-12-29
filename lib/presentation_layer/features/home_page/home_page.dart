@@ -1,6 +1,6 @@
 import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/presentation_layer/features/home_page/widgets/home_page_content.dart';
-import 'package:annafi_app/presentation_layer/features/my_cart_page/my_cart_page.dart';
+import 'package:annafi_app/presentation_layer/features/cart/cart_screen.dart';
+import 'package:annafi_app/presentation_layer/features/home_page/home_screen.dart';
 import 'package:annafi_app/presentation_layer/features/products/products_screen.dart';
 import 'package:annafi_app/presentation_layer/features/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,15 +15,11 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    HomePageContent(),
+    HomeScreen(),
     ProductsScreen(),
-    MyCartPage(),
+    CartScreen(),
     SettingsScreen(),
-
   ];
-  onTapSearch(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.searchPage);
-  }
 
   @override
   Widget build(BuildContext context) {

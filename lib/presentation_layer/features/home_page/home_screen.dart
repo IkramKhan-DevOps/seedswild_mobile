@@ -7,15 +7,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../widgets/progress.dart';
-import 'category_widgets.dart';
+import '../../../widgets/progress.dart';
+import 'widgets/category_widgets.dart';
 
-class HomePageContent extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  State<HomePageContent> createState() => _HomePageContentState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageContentState extends State<HomePageContent> {
+class _HomeScreenState extends State<HomeScreen> {
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
 

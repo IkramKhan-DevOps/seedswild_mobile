@@ -1,6 +1,7 @@
 import 'package:annafi_app/core/localization/app_localization.dart';
 import 'package:annafi_app/presentation_layer/features/auth/provider/login_provider.dart';
 import 'package:annafi_app/presentation_layer/features/auth/provider/password_reset_provider.dart';
+import 'package:annafi_app/presentation_layer/features/cart/cart_provider.dart';
 import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_provider.dart';
 import 'package:annafi_app/presentation_layer/features/products/provider/notification_provider.dart';
 import 'package:annafi_app/presentation_layer/features/products/provider/product_detail_provider.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => ProductsProvider()),
           ChangeNotifierProvider(create: (_) => ProductDetailProvider()),
           ChangeNotifierProvider(create: (_) => NotificationProvider()),
+          ChangeNotifierProvider(create: (_) => CartProvider()),
         ],
         child: Builder(builder: (BuildContext context) {
           return MaterialApp(
