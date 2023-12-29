@@ -33,7 +33,7 @@ class SignUpScreen extends StatelessWidget {
       backgroundColor: ColorConstant.whiteA700,
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,7 +58,6 @@ class SignUpScreen extends StatelessWidget {
             // MID
             Column(
               children: [
-
                 // FIELDS
                 CustomTextFormField(
                   globalKey: usernameGlobalKey,
@@ -142,8 +141,8 @@ class SignUpScreen extends StatelessWidget {
                   height: getVerticalSize(52),
                   text: sigInUpProvider.signUploading
                       ? CircularProgressIndicator(
-                    color: Colors.white,
-                  )
+                          color: Colors.white,
+                        )
                       : "Sign Up ",
                   margin: getMargin(top: 20),
                 ),
@@ -180,18 +179,44 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
               ],
             ),
 
             //LOWER
             Column(
               children: [
-                Padding(
-                  padding: getPadding(top: 20),
-                  child: Row(
-                    children: [
-                      SizedBox(
+                Row(
+                  children: [
+                    SizedBox(
+                      width: getHorizontalSize(100),
+                      child: Divider(
+                        height: getVerticalSize(2),
+                        thickness: getVerticalSize(2),
+                        color: ColorConstant.black900,
+                      ),
+                    ),
+                    Container(
+                      padding:
+                      getPadding(left: 10, top: 6, right: 10, bottom: 6),
+                      decoration: AppDecoration.fillWhiteA700,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: getPadding(bottom: 1),
+                            child: Text(
+                              "or continue with",
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.left,
+                              style: AppStyle.txtPoppinsRegular14Black900,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: getPadding(top: 17, bottom: 16),
+                      child: SizedBox(
                         width: getHorizontalSize(100),
                         child: Divider(
                           height: getVerticalSize(2),
@@ -199,73 +224,41 @@ class SignUpScreen extends StatelessWidget {
                           color: ColorConstant.black900,
                         ),
                       ),
-                      Container(
-                        padding: getPadding(
-                            left: 10, top: 6, right: 10, bottom: 6),
-                        decoration: AppDecoration.fillWhiteA700,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: getPadding(bottom: 1),
-                              child: Text(
-                                "or continue with",
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtPoppinsRegular14Black900,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: getPadding(top: 17, bottom: 16),
-                        child: SizedBox(
-                          width: getHorizontalSize(100),
-                          child: Divider(
-                              height: getVerticalSize(2),
-                              thickness: getVerticalSize(2),
-                              color: ColorConstant.black900),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: getPadding(top: 27),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomButton(
-                        height: getVerticalSize(52),
-                        width: getHorizontalSize(164),
-                        text: "Google",
-                        variant: ButtonVariant.FillGray10001,
-                        shape: ButtonShape.RoundedBorder7,
-                        padding: ButtonPadding.PaddingT12,
-                        fontStyle: ButtonFontStyle.PoppinsRegular15Black900,
-                        prefixWidget: Container(
-                          margin: getMargin(right: 16),
-                          child: CustomImageView(
-                              svgPath: ImageConstant.imgGoogle),
-                        ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomButton(
+                      height: getVerticalSize(52),
+                      width: getHorizontalSize(164),
+                      text: "Google",
+                      variant: ButtonVariant.FillGray10001,
+                      shape: ButtonShape.RoundedBorder7,
+                      padding: ButtonPadding.PaddingT12,
+                      fontStyle: ButtonFontStyle.PoppinsRegular15Black900,
+                      prefixWidget: Container(
+                        margin: getMargin(right: 16),
+                        child:
+                        CustomImageView(svgPath: ImageConstant.imgGoogle),
                       ),
-                      CustomButton(
-                        height: getVerticalSize(52),
-                        width: getHorizontalSize(163),
-                        text: "Apple",
-                        variant: ButtonVariant.FillGray10001,
-                        shape: ButtonShape.RoundedBorder7,
-                        padding: ButtonPadding.PaddingT12,
-                        fontStyle: ButtonFontStyle.PoppinsRegular15Black900,
-                        prefixWidget: Container(
-                          margin: getMargin(right: 16),
-                          child: CustomImageView(
-                              svgPath: ImageConstant.imgUimapple),
-                        ),
+                    ),
+                    CustomButton(
+                      height: getVerticalSize(52),
+                      width: getHorizontalSize(163),
+                      text: "Apple",
+                      variant: ButtonVariant.FillGray10001,
+                      shape: ButtonShape.RoundedBorder7,
+                      padding: ButtonPadding.PaddingT12,
+                      fontStyle: ButtonFontStyle.PoppinsRegular15Black900,
+                      prefixWidget: Container(
+                        margin: getMargin(right: 16),
+                        child: CustomImageView(
+                            svgPath: ImageConstant.imgUimapple),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

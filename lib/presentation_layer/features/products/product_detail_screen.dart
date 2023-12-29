@@ -32,16 +32,15 @@ class ProductDetailScreen extends StatelessWidget {
             future: Provider.of<ProductDetailProvider>(context, listen: false)
                 .getProductAPI(context, productId!),
             builder: (context, snapshot) {
-
-              if(snapshot.connectionState == ConnectionState.waiting){
+              if (snapshot.connectionState == ConnectionState.waiting) {
                 return ProgressCircular();
-              }else if(snapshot.hasError){
+              } else if (snapshot.hasError) {
                 return EmptyData(
                   title: snapshot.error.toString(),
                 );
-              }else{
-
-                ProductDetailModel? product = context.watch<ProductDetailProvider>().productModel;
+              } else {
+                ProductDetailModel? product =
+                    context.watch<ProductDetailProvider>().productModel;
 
                 return Column(
                   children: [
@@ -53,94 +52,57 @@ class ProductDetailScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Product Image
-                              Image.network(
-                                product?.thumbnailImage ?? "https://placehold.co/600x400/png"
-                              ),
+                              Image.network(product?.thumbnailImage ??
+                                  "https://placehold.co/600x400/png"),
 
                               // Product details
                               Padding(
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(15),
                                 child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     // Product
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
+                                    Column(
+                                      crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              product!.category.name,
-                                              style: TextStyle(
-                                                color: Colors.green,
-                                              ),
-                                            ),
-                                            Text(
-                                              product.title,
-                                              style: TextStyle(
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            Text(
-                                              product.shop.shopName,
-                                              style: TextStyle(
-                                                color: Colors.grey,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        InkWell(
-                                          onTap: () {},
-                                          child: Container(
-                                            padding: EdgeInsets.all(12),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(12),
-                                              color: Colors.green,
-                                            ),
-                                            child: Icon(
-                                              Icons.add_shopping_cart,
-                                              size: 30,
-                                              color: Colors.white,
-                                            ),
+                                      children: [
+                                        Text(
+                                          product!.category.name,
+                                          style: TextStyle(
+                                            color: Colors.green,
                                           ),
-                                        )
+                                        ),
+                                        Text(
+                                          product.title,
+                                          style: TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                        RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: "by ",
+                                                style: TextStyle(
+                                                    color: Colors.grey),
+                                              ),
+                                              TextSpan(
+                                                text: product.shop.shopName,
+                                                style: TextStyle(
+                                                    color: Colors.black54,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ],
                                     ),
 
-                                    // product tags
                                     SizedBox(height: 20),
-                                    Text(
-                                      "Product Tags",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                    ),
-                                    Container(
-                                      height: 50,
-                                      child: ListView.builder(
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: product.tags.length,
-                                        shrinkWrap: true,
-                                        // Allow it to take up only the necessary height
-                                        itemBuilder: (context, index) {
-                                          return TagTile(
-                                              name: product.tags[index].name);
-                                        },
-                                      ),
-                                    ),
-
-                                    SizedBox(height: 10),
                                     Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "\$${product.price}    ",
@@ -149,14 +111,16 @@ class ProductDetailScreen extends StatelessWidget {
                                               fontSize: 24,
                                               color: Colors.green),
                                         ),
-                                        product.discount > 0 ? Text(
-                                          "${product.discount}% OFF",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 24,
-                                            color: Colors.red,
-                                          ),
-                                        ): Text(""),
+                                        product.discount > 0
+                                            ? Text(
+                                                "( ${product.discount}% OFF )",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                  color: Colors.red,
+                                                ),
+                                              )
+                                            : Text(""),
                                       ],
                                     ),
 
@@ -172,17 +136,58 @@ class ProductDetailScreen extends StatelessWidget {
                                       product.description,
                                     ),
 
-                                    // detailed
-                                    SizedBox(height: 10),
+                                    // product tags
+                                    SizedBox(height: 20),
+                                    Divider(),
                                     Text(
-                                      "Content",
+                                      "Tags: ",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
                                     ),
-                                    Text(
-                                      product.content,
+                                    Container(
+                                      height: 50,
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: product.tags.length,
+                                        shrinkWrap: true,
+                                        // Allow it to take up only the necessary height
+                                        itemBuilder: (context, index) {
+                                          return TagTile(
+                                              name: product.tags[index].name);
+                                        },
+                                      ),
                                     ),
+
+                                    // button
+                                    Container(
+                                      margin:
+                                          EdgeInsets.symmetric(vertical: 15),
+                                      decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      padding: EdgeInsets.all(20),
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.add_shopping_cart_rounded,
+                                              color: Colors.white,
+                                            ),
+                                            Text(
+                                              "Add To Cart",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),

@@ -8,9 +8,9 @@ import '../../presentation_layer/features/filter_draweritem/filter_draweritem.da
 import '../../presentation_layer/features/auth/password_reset_screen.dart';
 import '../../presentation_layer/features/home_page/home_page.dart';
 import '../../presentation_layer/features/my_cart_page/my_cart_page.dart';
-import '../../presentation_layer/features/notifications/notification_screen.dart';
 import '../../presentation_layer/features/order_status_screen/myorders_screen.dart';
 import '../../presentation_layer/features/products/product_detail_screen.dart';
+import '../../presentation_layer/features/settings/notifications_screen.dart';
 import '../../presentation_layer/features/settings/profile_screen.dart';
 import '../../presentation_layer/features/settings/settings_screen.dart';
 import '../../presentation_layer/features/settings/password_change_screen.dart';
@@ -28,6 +28,7 @@ class AppRoutes {
 
   static const String productsScreen = "/products_screen";
   static const String productDetailScreen = '/product_detail_screen';
+  static const String notificationScreen = '/notification_screen';
 
   // TODO: remove these
   static const String forgotPasswordScreen = '/forgot_password_screen';
@@ -63,8 +64,6 @@ class AppRoutes {
 
   static const String searchPage = '/search_page';
 
-  static const String notificationScreen = '/notification_screen';
-
   static const String socialAccountLinkScreen = '/social_account_link_screen';
 
   static const String settingsScreen = '/settings_screen';
@@ -84,6 +83,9 @@ class AppRoutes {
     productsScreen: (context) => ProductsScreen(),
     productDetailScreen: (context) => ProductDetailScreen(productId: '1'),
 
+    homePage: (context) => HomePage(),
+    notificationScreen: (context) => NotificationScreen(),
+
     reviewsPage: (context) => ReviewsPage(),
     profileScreen: (context) => ProfileScreen(),
     passwordChangeScreen: (context) => PasswordChangeScreen(),
@@ -91,8 +93,6 @@ class AppRoutes {
     forgotPasswordScreen: (context) => ForgotPasswordScreen(),
     filterdrawer: (context) => FilterDraweritem(),
 
-    homePage: (context) => HomePage(),
-    notificationScreen: (context) => NotificationScreen(),
     tabReviewScreen: (context) => TabContainerScreen(),
     checkoutScreen: (context) => CheckoutScreen(),
     completeScreen: (context) => CompleteScreen(),
