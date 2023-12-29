@@ -18,7 +18,7 @@ class CategoryProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.productViewScreen);
+        Navigator.pushNamed(context, AppRoutes.productDetailScreen);
       },
       child: Container(
         width: 140,
