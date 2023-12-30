@@ -11,4 +11,27 @@ class Cart{
     required this.price, required this.quantity, this.image
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'category': category,
+      'price': price,
+      'quantity': quantity,
+      'image': image,
+    };
+  }
+
+  // Create a Cart object from a map
+  factory Cart.fromJson(Map<String, dynamic> json) {
+    return Cart(
+      id: json['id'],
+      name: json['name'],
+      category: json['category'],
+      price: json['price'],
+      quantity: json['quantity'],
+      image: json['image'],
+    );
+  }
+
 }

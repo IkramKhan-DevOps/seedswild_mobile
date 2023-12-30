@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'cart_model.dart';
 
@@ -8,32 +11,12 @@ class CartProvider with ChangeNotifier {
   num subTotal = 500;
   num deliveryCharges = 0;
 
-  List<Cart> cart = [
-    Cart(
-        id: "0",
-        name: "xnxx Premium",
-        category: "Desi",
-        price: 100,
-        quantity: 1,
-        image:
-            "https://i.pinimg.com/236x/03/6b/7e/036b7eae25be123557d54326112e30ea.jpg"),
-    Cart(
-        id: "1",
-        name: "red tube",
-        category: "Big Boobs",
-        price: 100,
-        quantity: 2,
-        image:
-            "https://fashionjournal.com.au/wp-content/uploads/2022/10/fashion-journal-bras-things-mob-min.jpeg"),
-    Cart(
-        id: "2",
-        name: "Toons",
-        category: "Chinese",
-        price: 100,
-        quantity: 2,
-        image:
-            "https://i.pinimg.com/736x/f8/a3/0d/f8a30df56fe0e897a3b5562f8aa7d374.jpg"),
-  ];
+  final List<Cart> _cart = [];
+  List<Cart> get cart => _cart;
+
+  CartProvider() {
+    _loadCartFromStorage();
+  }
 
   bool doesCartItemExist(String id) {
     return cart.any((cartItem) => cartItem.id == id);
@@ -41,14 +24,14 @@ class CartProvider with ChangeNotifier {
 
   void addToCart(Cart _cart){
     cart.add(_cart);
+    _saveCartToStorage();
     notifyListeners();
   }
 
-
   void deleteItem(int index) {
-    print(index);
     cart.removeAt(index);
     calculate();
+    _saveCartToStorage();
     notifyListeners();
   }
 
@@ -57,8 +40,8 @@ class CartProvider with ChangeNotifier {
     for(Cart item in cart){
       _totalCharges += item.quantity * item.price;
     }
-    total = _totalCharges;
-    subTotal = total + deliveryCharges;
+    total = double.parse(_totalCharges.toStringAsFixed(2));
+    subTotal = double.parse((total + deliveryCharges).toStringAsFixed(2));
   }
 
   void increaseItem(int index) {
@@ -72,6 +55,7 @@ class CartProvider with ChangeNotifier {
     );
     cart[index] = item;
     calculate();
+    _saveCartToStorage();
     notifyListeners();
   }
 
@@ -88,7 +72,25 @@ class CartProvider with ChangeNotifier {
       );
       cart[index] = item;
       calculate();
+      _saveCartToStorage();
     }
     notifyListeners();
   }
+
+  void _saveCartToStorage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final cartJson = cart.map((item) => jsonEncode(item.toJson())).toList();
+    prefs.setStringList('cart', cartJson);
+  }
+
+  void _loadCartFromStorage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final cartJson = prefs.getStringList('cart');
+    if (cartJson != null) {
+      _cart.clear();
+      _cart.addAll(cartJson.map((json) => Cart.fromJson(jsonDecode(json))));
+      notifyListeners();
+    }
+  }
+
 }

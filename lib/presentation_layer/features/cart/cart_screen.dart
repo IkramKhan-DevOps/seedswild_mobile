@@ -13,6 +13,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     List<Cart> cart = Provider.of<CartProvider>(context, listen: false).cart;
+    Provider.of<CartProvider>(context, listen: false).calculate();
 
     return Scaffold(
       backgroundColor: ColorConstant.whiteA700,
