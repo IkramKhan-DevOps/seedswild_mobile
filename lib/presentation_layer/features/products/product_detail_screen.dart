@@ -1,10 +1,14 @@
 import 'package:annafi_app/core/app_export.dart';
+import 'package:annafi_app/data_layer/error_handling/app_errors.dart';
+import 'package:annafi_app/presentation_layer/features/cart/cart_provider.dart';
 import 'package:annafi_app/presentation_layer/features/products/models/product_detail_model.dart';
 import 'package:annafi_app/presentation_layer/features/products/provider/product_detail_provider.dart';
 import 'package:annafi_app/widgets/empty.dart';
 import 'package:annafi_app/widgets/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../cart/cart_model.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final String productId;
@@ -161,30 +165,50 @@ class ProductDetailScreen extends StatelessWidget {
                                     ),
 
                                     // button
-                                    Container(
-                                      margin:
-                                          EdgeInsets.symmetric(vertical: 15),
-                                      decoration: BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      padding: EdgeInsets.all(20),
-                                      child: Center(
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.add_shopping_cart_rounded,
-                                              color: Colors.white,
-                                            ),
-                                            Text(
-                                              "Add To Cart",
-                                              style: TextStyle(
+                                    InkWell(
+                                      onTap: (){
+
+                                        bool result = Provider.of<CartProvider>(context, listen: false).doesCartItemExist(product.id.toString());
+                                        if(result){
+                                          ErrorMessage.flushBar(context, "Already exists", "danger");
+                                        }else{
+                                          Cart cart = Cart(
+                                              id: product.id.toString(),
+                                              name: product.title,
+                                              category: product.category.name,
+                                              price: product.price,
+                                              quantity: 1,
+                                              image: product.thumbnailImage
+                                          );
+                                          Provider.of<CartProvider>(context, listen: false).addToCart(cart);
+                                          ErrorMessage.flushBar(context, "Product added to cart");
+                                        }
+                                      },
+                                      child: Container(
+                                        margin:
+                                            EdgeInsets.symmetric(vertical: 15),
+                                        decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius: BorderRadius.circular(12),
+                                        ),
+                                        padding: EdgeInsets.all(20),
+                                        child: Center(
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.add_shopping_cart_rounded,
                                                 color: Colors.white,
-                                                fontWeight: FontWeight.bold,
                                               ),
-                                            ),
-                                          ],
+                                              Text(
+                                                "Add To Cart",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     )

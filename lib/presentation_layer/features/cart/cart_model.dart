@@ -2,8 +2,8 @@ class Cart{
   final String id;
   final String name;
   final String category;
-  final String price;
-  final String quantity;
+  final num price;
+  late final int quantity;
   final String? image;
 
   Cart({

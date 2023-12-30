@@ -17,14 +17,14 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorConstant.whiteA700,
 
-      // bar
+      // BAR
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text("Cart", style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
 
-      // body
+      // BODY
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -43,14 +43,10 @@ class CartScreen extends StatelessWidget {
                 },
                 itemCount: cart.length,
                 itemBuilder: (context, index) {
+                  Cart c = cart[index];
                   return CartTile(
                     index: index,
-                    id: cart[index].id,
-                    name: cart[index].name,
-                    category: cart[index].category,
-                    price: cart[index].price,
-                    quantity: cart[index].quantity,
-                    image: cart[index].image,
+                    id: c.id,
                   );
                 },
               ),
@@ -72,7 +68,7 @@ class CartScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "10.2",
+                      context.watch<CartProvider>().total.toString(),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -94,7 +90,7 @@ class CartScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "5.0",
+                      context.watch<CartProvider>().deliveryCharges.toString(),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -116,7 +112,7 @@ class CartScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "15.2",
+                      context.watch<CartProvider>().subTotal.toString(),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
