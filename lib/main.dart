@@ -37,19 +37,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => LoginProvider()),
-          ChangeNotifierProvider(create: (_) => SignUpProvider()),
-          ChangeNotifierProvider(create: (_) => HomeProvider()),
-          ChangeNotifierProvider(create: (_) => ProfileProvider()),
-          ChangeNotifierProvider(create: (_) => PasswordChangeProvider()),
-          ChangeNotifierProvider(create: (_) => PasswordResetProvider()),
-          ChangeNotifierProvider(create: (_) => ProductsProvider()),
-          ChangeNotifierProvider(create: (_) => ProductDetailProvider()),
-          ChangeNotifierProvider(create: (_) => NotificationProvider()),
-          ChangeNotifierProvider(create: (_) => CartProvider()),
-        ],
-        child: Builder(builder: (BuildContext context) {
+      providers: [
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => SignUpProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => PasswordChangeProvider()),
+        ChangeNotifierProvider(create: (_) => PasswordResetProvider()),
+        ChangeNotifierProvider(create: (_) => ProductsProvider()),
+        ChangeNotifierProvider(create: (_) => ProductDetailProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+      ],
+      child: Builder(
+        builder: (BuildContext context) {
           return MaterialApp(
             navigatorKey: NavigatorService.navigatorKey,
             localizationsDelegates: const [
@@ -76,6 +77,8 @@ class MyApp extends StatelessWidget {
             initialRoute: AppRoutes.splashScreen,
             routes: AppRoutes.routes,
           );
-        }));
+        },
+      ),
+    );
   }
 }

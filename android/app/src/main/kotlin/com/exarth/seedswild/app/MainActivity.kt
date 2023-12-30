@@ -1,4 +1,4 @@
-package com.exarth_annafi_app.annafi_app
+package com.exarth.seedswild.app
 
 import io.flutter.embedding.android.FlutterActivity
 
