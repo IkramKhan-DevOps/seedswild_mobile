@@ -1,4 +1,4 @@
-import 'package:annafi_app/core/app_export.dart';
+import 'package:seedswild/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 class ProductCardList extends StatelessWidget {

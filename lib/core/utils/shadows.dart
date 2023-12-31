@@ -1,4 +1,4 @@
-import 'package:annafi_app/core/utils/color_constant.dart';
+import 'package:seedswild/core/utils/color_constant.dart';
 import 'package:flutter/material.dart';
 
 class ProductShadow {

@@ -1,6 +1,5 @@
-import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/core/localization/app_localization.dart';
-import 'package:annafi_app/utils/components/app_bar/custom_rating_bar.dart';
+import 'package:seedswild/core/localization/app_localization.dart';
+import 'package:seedswild/utils/components/app_bar/custom_rating_bar.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -26,17 +25,6 @@ class DashboardItemWidget extends StatelessWidget {
                   // mainAxisSize: MainAxisSize.min,
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      // color: Colors.grey[500],
-                      child: CustomImageView(
-                        imagePath: ImageConstant.perfume,
-                        height: 190,
-                        width: 160,
-                        radius: BorderRadius.circular(
-                          5,
-                        ),
-                      ),
-                    ),
                     Text(
                       "msg_nike_air_max_270".tr,
                       maxLines: 1,

@@ -1,4 +1,4 @@
-import 'package:annafi_app/core/app_export.dart';
+import 'package:seedswild/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -31,35 +31,6 @@ class ListunsplashemlkhdeydhgItemWidget extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.topRight,
                   children: [
-                    CustomImageView(
-                      imagePath: ImageConstant.product1,
-                      height: getVerticalSize(
-                        235,
-                      ),
-                      width: getHorizontalSize(
-                        164,
-                      ),
-                      radius: BorderRadius.circular(
-                        getHorizontalSize(
-                          15,
-                        ),
-                      ),
-                      alignment: Alignment.center,
-                    ),
-                    CustomImageView(
-                      svgPath: ImageConstant.imgDashboard,
-                      height: getSize(
-                        26,
-                      ),
-                      width: getSize(
-                        26,
-                      ),
-                      alignment: Alignment.topRight,
-                      margin: getMargin(
-                        top: 12,
-                        right: 12,
-                      ),
-                    ),
                   ],
                 ),
               ),

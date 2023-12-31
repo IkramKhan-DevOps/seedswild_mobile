@@ -1,4 +1,4 @@
-import 'package:annafi_app/data_layer/models/profile_model.dart';
+import 'package:seedswild/data_layer/models/profile_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 

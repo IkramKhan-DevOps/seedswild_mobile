@@ -1,4 +1,4 @@
-import 'package:annafi_app/data_layer/error_handling/app_errors.dart';
+import 'package:seedswild/data_layer/error_handling/app_errors.dart';
 import 'package:flutter/material.dart';
 import '../../../../data_layer/data/network/base_api_services.dart';
 import '../../../../data_layer/data/network/network_api_services.dart';

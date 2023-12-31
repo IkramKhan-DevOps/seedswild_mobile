@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:annafi_app/data_layer/error_handling/app_exception.dart';
-import 'package:annafi_app/globals/utils/auth.dart';
+import 'package:seedswild/data_layer/error_handling/app_exception.dart';
+import 'package:seedswild/globals/utils/auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';

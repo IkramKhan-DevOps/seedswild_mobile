@@ -1,6 +1,6 @@
-import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/data_layer/models/home_products_model.dart';
-import 'package:annafi_app/presentation_layer/features/products/provider/products_provider.dart';
+import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/data_layer/models/home_products_model.dart';
+import 'package:seedswild/presentation_layer/features/products/provider/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

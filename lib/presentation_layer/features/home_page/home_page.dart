@@ -1,8 +1,8 @@
-import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/presentation_layer/features/cart/cart_screen.dart';
-import 'package:annafi_app/presentation_layer/features/home_page/home_screen.dart';
-import 'package:annafi_app/presentation_layer/features/products/products_screen.dart';
-import 'package:annafi_app/presentation_layer/features/settings/settings_screen.dart';
+import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/presentation_layer/features/cart/cart_screen.dart';
+import 'package:seedswild/presentation_layer/features/home_page/home_screen.dart';
+import 'package:seedswild/presentation_layer/features/products/products_screen.dart';
+import 'package:seedswild/presentation_layer/features/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 

@@ -1,4 +1,4 @@
-import 'package:annafi_app/utils/theme/app_stylea.dart';
+import 'package:seedswild/utils/theme/app_stylea.dart';
 import 'package:flutter/material.dart';
 
 class Sales extends StatelessWidget {

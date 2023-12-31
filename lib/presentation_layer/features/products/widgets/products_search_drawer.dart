@@ -1,6 +1,6 @@
-import 'package:annafi_app/presentation_layer/features/home_page/statemanagement/home_provider.dart';
-import 'package:annafi_app/presentation_layer/features/products/provider/products_provider.dart';
-import 'package:annafi_app/presentation_layer/features/products/widgets/products_category_widgets.dart';
+import 'package:seedswild/presentation_layer/features/home_page/statemanagement/home_provider.dart';
+import 'package:seedswild/presentation_layer/features/products/provider/products_provider.dart';
+import 'package:seedswild/presentation_layer/features/products/widgets/products_category_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,6 +1,6 @@
-import 'package:annafi_app/data_layer/data/network/base_api_services.dart';
-import 'package:annafi_app/data_layer/data/network/network_api_services.dart';
-import 'package:annafi_app/data_layer/urls/app_urls.dart';
+import 'package:seedswild/data_layer/data/network/base_api_services.dart';
+import 'package:seedswild/data_layer/data/network/network_api_services.dart';
+import 'package:seedswild/data_layer/urls/app_urls.dart';
 import 'package:flutter/material.dart';
 
 import '../models/notification_model.dart';

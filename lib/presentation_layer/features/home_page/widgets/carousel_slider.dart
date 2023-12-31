@@ -1,6 +1,7 @@
-import 'package:annafi_app/core/utils/image_constant.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/utils/image_constant.dart';
 
 class MySlider extends StatefulWidget {
   const MySlider({Key? key}) : super(key: key);
@@ -11,8 +12,9 @@ class MySlider extends StatefulWidget {
 
 class _MySliderState extends State<MySlider> {
   final List<Map<String, dynamic>> imageList = [
-    {"id": 2, "image_path": ImageConstant.bannersale2},
-    {"id": 1, "image_path": ImageConstant.bannersale2},
+    {"id": 1, "image_path": ImageConstant.banner1},
+    {"id": 2, "image_path": ImageConstant.banner2},
+    {"id": 3, "image_path": ImageConstant.banner3},
   ];
 
   final CarouselController carouselController = CarouselController();

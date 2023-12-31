@@ -1,4 +1,4 @@
-import 'package:annafi_app/data_layer/data/response/app_status.dart';
+import 'package:seedswild/data_layer/data/response/app_status.dart';
 
 class ApiResponse<T> {
 

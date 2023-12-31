@@ -1,6 +1,6 @@
-import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/data_layer/error_handling/app_errors.dart';
-import 'package:annafi_app/globals/utils/auth.dart';
+import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/data_layer/error_handling/app_errors.dart';
+import 'package:seedswild/globals/utils/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 

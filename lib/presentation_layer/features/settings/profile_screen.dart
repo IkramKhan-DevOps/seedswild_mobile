@@ -1,13 +1,10 @@
-import 'package:annafi_app/core/utils/color_constant.dart';
-import 'package:annafi_app/core/utils/image_constant.dart';
-import 'package:annafi_app/core/utils/size_utils.dart';
-import 'package:annafi_app/data_layer/models/profile_model.dart';
-import 'package:annafi_app/presentation_layer/features/settings/statemanagement/profile_provider.dart';
-import 'package:annafi_app/utils/components/custom_button.dart';
-import 'package:annafi_app/utils/components/custom_icon_button.dart';
-import 'package:annafi_app/utils/components/custom_image_view.dart';
-import 'package:annafi_app/utils/components/custom_text_form_field.dart';
-import 'package:annafi_app/utils/theme/app_stylea.dart';
+import 'package:seedswild/core/utils/color_constant.dart';
+import 'package:seedswild/core/utils/size_utils.dart';
+import 'package:seedswild/data_layer/models/profile_model.dart';
+import 'package:seedswild/presentation_layer/features/settings/statemanagement/profile_provider.dart';
+import 'package:seedswild/utils/components/custom_button.dart';
+import 'package:seedswild/utils/components/custom_text_form_field.dart';
+import 'package:seedswild/utils/theme/app_stylea.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

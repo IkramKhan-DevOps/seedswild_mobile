@@ -1,7 +1,7 @@
-import 'package:annafi_app/data_layer/data/network/base_api_services.dart';
-import 'package:annafi_app/data_layer/data/network/network_api_services.dart';
-import 'package:annafi_app/data_layer/error_handling/app_errors.dart';
-import 'package:annafi_app/data_layer/urls/app_urls.dart';
+import 'package:seedswild/data_layer/data/network/base_api_services.dart';
+import 'package:seedswild/data_layer/data/network/network_api_services.dart';
+import 'package:seedswild/data_layer/error_handling/app_errors.dart';
+import 'package:seedswild/data_layer/urls/app_urls.dart';
 import 'package:flutter/material.dart';
 
 class PasswordResetProvider with ChangeNotifier{

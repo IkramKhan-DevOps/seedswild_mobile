@@ -1,7 +1,7 @@
-import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/presentation_layer/features/settings/statemanagement/password_change_provider.dart';
-import 'package:annafi_app/utils/components/custom_button.dart';
-import 'package:annafi_app/utils/components/custom_text_form_field.dart';
+import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/presentation_layer/features/settings/statemanagement/password_change_provider.dart';
+import 'package:seedswild/utils/components/custom_button.dart';
+import 'package:seedswild/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

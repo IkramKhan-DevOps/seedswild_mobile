@@ -1,4 +1,4 @@
-import 'package:annafi_app/presentation_layer/features/products/provider/products_provider.dart';
+import 'package:seedswild/presentation_layer/features/products/provider/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

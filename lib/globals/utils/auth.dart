@@ -1,8 +1,8 @@
-import 'package:annafi_app/data_layer/data/network/base_api_services.dart';
-import 'package:annafi_app/data_layer/data/network/network_api_services.dart';
-import 'package:annafi_app/data_layer/models/profile_model.dart';
-import 'package:annafi_app/data_layer/urls/app_urls.dart';
-import 'package:annafi_app/globals/utils/who_am_i.dart';
+import 'package:seedswild/data_layer/data/network/base_api_services.dart';
+import 'package:seedswild/data_layer/data/network/network_api_services.dart';
+import 'package:seedswild/data_layer/models/profile_model.dart';
+import 'package:seedswild/data_layer/urls/app_urls.dart';
+import 'package:seedswild/globals/utils/who_am_i.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -1,5 +1,5 @@
-import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/utils/components/custom_button.dart';
+import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/utils/components/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class LogoutBottomsheet extends StatelessWidget {
@@ -51,7 +51,7 @@ class LogoutBottomsheet extends StatelessWidget {
                                     fontStyle: ButtonFontStyle
                                         .PoppinsMedium16Black900_1,
                                     onTap: () {
-                                      onTapNo(context);
+                                      Navigator.pop(context);
                                     })
                               ]))
                     ]))));
@@ -59,9 +59,5 @@ class LogoutBottomsheet extends StatelessWidget {
 
   onTapYes(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.loginScreen);
-  }
-
-  onTapNo(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homeContainerScreen);
   }
 }

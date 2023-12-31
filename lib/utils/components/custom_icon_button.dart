@@ -1,5 +1,5 @@
-import 'package:annafi_app/core/utils/color_constant.dart';
-import 'package:annafi_app/core/utils/size_utils.dart';
+import 'package:seedswild/core/utils/color_constant.dart';
+import 'package:seedswild/core/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 
 class CustomIconButton extends StatelessWidget {

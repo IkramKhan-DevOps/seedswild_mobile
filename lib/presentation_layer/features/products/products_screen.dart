@@ -1,10 +1,10 @@
-import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/presentation_layer/features/products/models/product_model.dart';
-import 'package:annafi_app/presentation_layer/features/products/provider/products_provider.dart';
-import 'package:annafi_app/presentation_layer/features/products/widgets/products_search_drawer.dart';
-import 'package:annafi_app/utils/components/custom_search_view.dart';
-import 'package:annafi_app/widgets/empty.dart';
-import 'package:annafi_app/widgets/progress.dart';
+import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/presentation_layer/features/products/models/product_model.dart';
+import 'package:seedswild/presentation_layer/features/products/provider/products_provider.dart';
+import 'package:seedswild/presentation_layer/features/products/widgets/products_search_drawer.dart';
+import 'package:seedswild/utils/components/custom_search_view.dart';
+import 'package:seedswild/widgets/empty.dart';
+import 'package:seedswild/widgets/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

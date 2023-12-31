@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:annafi_app/core/app_export.dart';
-import 'package:annafi_app/globals/utils/auth.dart';
+import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/globals/utils/auth.dart';
 import 'package:flutter/material.dart';
 
 
