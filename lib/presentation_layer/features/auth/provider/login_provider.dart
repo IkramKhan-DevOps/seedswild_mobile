@@ -9,17 +9,20 @@ import '../../../../data_layer/data/network/network_api_services.dart';
 import '../../../../data_layer/urls/app_urls.dart';
 
 
+// GOOGLE SETTINGS
+List<String> scopes = <String>['email'];
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  clientId: "370944119419-lcf8s0uj0uhe74cckc2kt9sbekg17lm7.apps.googleusercontent.com",
+  scopes: scopes,
+);
+
+
 class LoginProvider with ChangeNotifier {
 
   // attributes
   BaseApiService apiServices = NetworkApiService();
   bool _loading = false;
   bool _obSecure = true;
-
-  final GoogleSignIn _googleSignIn = GoogleSignIn(
-      scopes: ['email'],
-    clientId: "370944119419-gfc71o64bbdr9g9dcaqdb0trigm90fh5.apps.googleusercontent.com"
-  );
 
   // getters
   bool get loading => _loading;
@@ -45,30 +48,59 @@ class LoginProvider with ChangeNotifier {
       var response = await apiServices.postAPI(AppUrls.signIn, data);
       AuthToken.saveToken(response['key']);
       setLoading(false);
-      Navigator.pushNamed(context, AppRoutes.homePage);
+      Navigator.pushReplacementNamed(context, AppRoutes.homePage);
 
     } catch (error) {
-
-      setLoading(false);
       ErrorMessage.flushBar(context, error.toString(), "danger");
+    }finally{
+      setLoading(false);
     }
 
   }
 
-  Future<void> handleGoogleSignIn() async {
+  Future<void> handleSignOut() => _googleSignIn.disconnect();
+
+  Future<void> handleGoogleSignIn(BuildContext context) async {
+    handleSignOut();
     try {
       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+
       if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+        final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount.authentication;
+
         final String accessToken = googleSignInAuthentication.accessToken ?? '';
         final String idToken = googleSignInAuthentication.idToken ?? '';
 
-        print(accessToken);
-        print(idToken);
+        handleGoogleLoginServer(context, accessToken, idToken);
       }
     } catch (error) {
-      print('Google Sign-In Error: $error');
+      ErrorMessage.flushBar(context, error.toString(), "danger");
+    }
+  }
+
+  Future<void> handleGoogleLoginServer(BuildContext context, String accessToken, String idToken) async{
+    Map data = {
+      "access_token": accessToken,
+      "code": "",
+      "id_token": idToken
+    };
+
+    setLoading(true);
+    try{
+      var response = await apiServices.postAPI(AppUrls.signInGoogle, data);
+      AuthToken.saveToken(response['key']);
+      setLoading(false);
+      Navigator.pushReplacementNamed(context, AppRoutes.homePage);
+
+    } catch (error) {
+      ErrorMessage.flushBar(context, error.toString(), "danger");
+    }
+    finally{
+      setLoading(false);
     }
   }
 
 }
+
+

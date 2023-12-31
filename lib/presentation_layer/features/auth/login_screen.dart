@@ -3,8 +3,8 @@ import 'package:annafi_app/presentation_layer/features/auth/provider/login_provi
 import 'package:annafi_app/utils/components/custom_button.dart';
 import 'package:annafi_app/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -14,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   // CONTROLLERS
   TextEditingController passController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -231,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     CustomButton(
                       onTap: (){
-                        loginProvider.handleGoogleSignIn();
+                        context.read<LoginProvider>().handleGoogleSignIn(context);
                       },
                       height: getVerticalSize(52),
                       width: getHorizontalSize(164),

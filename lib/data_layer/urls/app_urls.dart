@@ -1,11 +1,12 @@
 class AppUrls {
 
-  static String protocol = "https";
-  static String domain = "seedswild.exarth.com";
+  static String protocol = "http";
+  static String domain = "192.168.1.14:8080";
   static String root = "$protocol://$domain/";
   static String api = "${root}api/";
 
   static String accountsAppBase = "${api}accounts/";
+  static String signInGoogle = accountsAppBase + "google/";
   static String signIn = accountsAppBase + "auth/login/";
   static String signUp = accountsAppBase + "auth/registration/";
   static String passwordChange = accountsAppBase + "auth/password/change/";
