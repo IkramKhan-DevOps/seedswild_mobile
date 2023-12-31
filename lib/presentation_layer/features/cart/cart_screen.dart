@@ -1,5 +1,6 @@
 import 'package:annafi_app/core/app_export.dart';
 import 'package:annafi_app/utils/components/custom_button.dart';
+import 'package:annafi_app/widgets/empty.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +9,6 @@ import 'cart_provider.dart';
 import 'cart_tile.dart';
 
 class CartScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
 
@@ -25,8 +25,7 @@ class CartScreen extends StatelessWidget {
         centerTitle: true,
       ),
 
-      // BODY
-      body: SingleChildScrollView(
+      body : cart.length < 1 ? EmptyData(title: "No items added to cart") : SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(

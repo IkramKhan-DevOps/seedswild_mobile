@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 class ProfileScreen extends StatelessWidget {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,6 @@ class ProfileScreen extends StatelessWidget {
 
     firstNameController.text = data!.firstName;
     lastNameController.text = data.lastName;
-    emailController.text = data.email;
 
     return Scaffold(
       backgroundColor: ColorConstant.whiteA700,
@@ -47,35 +46,12 @@ class ProfileScreen extends StatelessWidget {
               // HEADER
 
               SizedBox(height: 20),
+
               Align(
                 alignment: Alignment.center,
-                child: Container(
-                  height: getVerticalSize(104),
-                  width: getHorizontalSize(92),
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      CustomImageView(
-                        imagePath: ImageConstant.imgEllipse591x92,
-                        height: getVerticalSize(91),
-                        width: getHorizontalSize(92),
-                        radius: BorderRadius.circular(
-                          getHorizontalSize(46),
-                        ),
-                        alignment: Alignment.topCenter,
-                      ),
-                      CustomIconButton(
-                        height: 29,
-                        width: 30,
-                        variant: IconButtonVariant.OutlineWhiteA700,
-                        padding: IconButtonPadding.PaddingAll6,
-                        alignment: Alignment.bottomCenter,
-                        child: CustomImageView(
-                          svgPath: ImageConstant.imgCamera,
-                        ),
-                      )
-                    ],
-                  ),
+                child: Icon(
+                  Icons.verified_user_outlined, size: 100,
+                  color: Colors.green,
                 ),
               ),
               Align(
@@ -111,7 +87,7 @@ class ProfileScreen extends StatelessWidget {
                 hintText: "Ana",
                 margin: getMargin(top: 5),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 10),
 
               Text(
                 "Last Name",
@@ -125,21 +101,7 @@ class ProfileScreen extends StatelessWidget {
                 hintText: "Maria",
                 margin: getMargin(top: 5),
               ),
-              SizedBox(height: 15),
-
-              Text(
-                "Email",
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.left,
-                style: AppStyle.txtPoppinsMedium15,
-              ),
-              CustomTextFormField(
-                focusNode: FocusNode(),
-                controller: emailController,
-                hintText: "ana_maria@exarth.com",
-                margin: getMargin(top: 5),
-              ),
-              SizedBox(height: 15),
+              SizedBox(height: 20),
 
               CustomButton(
                 height: getVerticalSize(52),

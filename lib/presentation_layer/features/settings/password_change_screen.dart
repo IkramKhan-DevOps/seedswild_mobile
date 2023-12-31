@@ -55,7 +55,13 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
 
           // FIELDS
           children: [
-            SizedBox(height: 50),
+
+            Center(
+              child: Icon(
+                Icons.shield_moon_outlined, size: 100, color: Colors.green,
+              ),
+            ),
+            SizedBox(height: 20),
 
             //previous password
             Text("Previous Password", style: AppStyle.txtPoppinsMedium15),
@@ -88,7 +94,28 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
               isObscureText: true,
               margin: getMargin(top: 5),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 10),
+            Align(
+              alignment: Alignment.centerRight,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoutes.forgotPasswordScreen,
+                  );
+                },
+                child: Text(
+                  "Forgot Password!",
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.blueAccent,
+                    fontWeight: FontWeight.w600
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
 
             CustomButton(
               height: getVerticalSize(52),
@@ -101,6 +128,30 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
                 };
                 provider.postPasswordChangeAPICall(context, data);
               },
+            ),
+            SizedBox(height: 20),
+
+            Center(
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "NOTE! ",
+                      style: TextStyle(
+                        color: Colors.redAccent,
+                        fontWeight: FontWeight.bold
+                      )
+                    ),
+                    TextSpan(
+                      text: "If you have log in using Google/Apple and you didn't set "
+                          "password previously, leave the previous password blank",
+                      style: TextStyle(
+                        color: Colors.grey
+                      )
+                    )
+                  ]
+                ),
+              ),
             ),
 
           ],

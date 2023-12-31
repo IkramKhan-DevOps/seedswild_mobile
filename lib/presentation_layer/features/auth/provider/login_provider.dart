@@ -72,9 +72,13 @@ class LoginProvider with ChangeNotifier {
         final String accessToken = googleSignInAuthentication.accessToken ?? '';
         final String idToken = googleSignInAuthentication.idToken ?? '';
 
+        print(accessToken);
+        print(idToken);
+
         handleGoogleLoginServer(context, accessToken, idToken);
       }
     } catch (error) {
+      throw error;
       ErrorMessage.flushBar(context, error.toString(), "danger");
     }
   }
@@ -94,6 +98,7 @@ class LoginProvider with ChangeNotifier {
       Navigator.pushReplacementNamed(context, AppRoutes.homePage);
 
     } catch (error) {
+      throw error;
       ErrorMessage.flushBar(context, error.toString(), "danger");
     }
     finally{

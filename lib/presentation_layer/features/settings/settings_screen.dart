@@ -52,34 +52,11 @@ class SettingsScreen extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          height: getVerticalSize(104),
-                                          width: getHorizontalSize(92),
-                                          child: Stack(
-                                            alignment: Alignment.bottomCenter,
-                                            children: [
-                                              CustomImageView(
-                                                imagePath:
-                                                ImageConstant.imgEllipse592x92,
-                                                height: getSize(92),
-                                                width: getSize(92),
-                                                radius: BorderRadius.circular(
-                                                  getHorizontalSize(46),
-                                                ),
-                                                alignment: Alignment.topCenter,
-                                              ),
-                                              CustomIconButton(
-                                                height: 30,
-                                                width: 30,
-                                                variant:
-                                                IconButtonVariant.OutlineWhiteA700,
-                                                padding: IconButtonPadding.PaddingAll6,
-                                                alignment: Alignment.bottomCenter,
-                                                child: CustomImageView(
-                                                  svgPath: ImageConstant.imgCamera,
-                                                ),
-                                              ),
-                                            ],
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Icon(
+                                            Icons.verified_user_outlined, size: 100,
+                                            color: Colors.green,
                                           ),
                                         ),
                                         Text(
