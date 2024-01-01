@@ -85,7 +85,7 @@ class SettingsScreen extends StatelessWidget {
                             "Orders",
                             Icons.add_shopping_cart,
                                 () =>
-                                Navigator.pushNamed(context, AppRoutes.checkoutScreen),
+                                Navigator.pushNamed(context, AppRoutes.completeScreen),
                           ),
 
                           MenuTile(

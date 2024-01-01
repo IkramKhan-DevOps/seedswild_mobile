@@ -46,7 +46,7 @@ class CartScreen extends StatelessWidget {
                   Cart c = cart[index];
                   return CartTile(
                     index: index,
-                    id: c.id,
+                    cart: c,
                   );
                 },
               ),
