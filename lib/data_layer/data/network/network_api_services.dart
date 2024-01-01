@@ -40,7 +40,10 @@ class NetworkApiService extends BaseApiService {
         res = await http.post(
           Uri.parse(url),
           body: data,
-          headers: {'Authorization': 'Token ${await AuthToken.getToken()}'},
+          headers: {
+            'Authorization': 'Token ${await AuthToken.getToken()}',
+            'Content-Type': 'application/json',
+          },
         ).timeout(
           Duration(seconds: 15),
         );
@@ -92,9 +95,7 @@ class NetworkApiService extends BaseApiService {
         throw UnauthorizedException(response.body.toString());
 
       default:
-        throw FetchDataException(
-          "Communication Error: " + response.statusCode.toString(),
-        );
+        throw response.body.toString();
     }
   }
 

@@ -16,12 +16,15 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'globals/providers/general_providers.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize SharedPreferences
   await SharedPreferences.getInstance();
   CartProvider cartProvider = CartProvider();
+  GeneralProvider generalProvider = GeneralProvider();
 
   // Set preferred orientations
   SystemChrome.setPreferredOrientations([
@@ -48,6 +51,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ProductDetailProvider()),
         ChangeNotifierProvider(create: (_) => NotificationProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => GeneralProvider()),
       ],
       child: Builder(
         builder: (BuildContext context) {

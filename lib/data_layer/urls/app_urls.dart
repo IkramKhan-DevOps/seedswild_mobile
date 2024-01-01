@@ -16,6 +16,8 @@ class AppUrls {
 
   static String v1AppBase = "${api}v1/";
   static String home = "${api}v1/home/";
+  static String order = "${api}v1/order/";
+  static String country = "${api}v1/country/";
   static String product = "${api}v1/product/";
 
   static String productCategory = "${v1AppBase}product/category/";

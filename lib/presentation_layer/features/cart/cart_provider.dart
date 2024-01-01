@@ -17,6 +17,7 @@ class CartProvider with ChangeNotifier {
   // PROVIDER INITIALIZATION ---------------------------------------------------
   CartProvider() {
     _loadCartFromStorage();
+    notifyListeners();
   }
 
   // CART METHODS --------------------------------------------------------------
@@ -107,9 +108,11 @@ class CartProvider with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     final cartJson = prefs.getStringList('cart');
     if (cartJson != null) {
-      _cart.clear();
       _cart.addAll(cartJson.map((json) => Cart.fromJson(jsonDecode(json))));
+      calculate(); // Add this line to recalculate totals
       notifyListeners();
+    } else {
+      print("No cart data found in storage");
     }
   }
 
