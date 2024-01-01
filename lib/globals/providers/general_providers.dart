@@ -101,8 +101,11 @@ class GeneralProvider extends ChangeNotifier {
         ErrorMessage.flushBar(context, "Order Placed Successfully - You will be redirected to Payments page", "success");
         Future.delayed(Duration(seconds: 4), (){});
 
+        // Launch the payment page in browser
+        await launch(order.sessionUrl!);
         CartProvider cartProvider = CartProvider();
         cartProvider.clearCart();
+        notifyListeners();
 
         Future.delayed(Duration(seconds: 5), (){});
         ErrorMessage.flushBar(context, "Order Placed Successfully", "success");
