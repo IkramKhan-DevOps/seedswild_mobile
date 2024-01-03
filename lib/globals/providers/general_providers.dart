@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/data_layer/data/network/base_api_services.dart';
 import 'package:seedswild/data_layer/data/network/network_api_services.dart';
 import 'package:seedswild/data_layer/error_handling/app_errors.dart';
@@ -8,8 +9,8 @@ import 'package:seedswild/data_layer/urls/app_urls.dart';
 import 'package:seedswild/globals/models/general_models.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../presentation_layer/features/cart/cart_model.dart';
-import '../../presentation_layer/features/cart/cart_provider.dart';
+import '../../services/cart/cart_model.dart';
+import '../../services/cart/cart_provider.dart';
 
 
 class GeneralProvider extends ChangeNotifier {
@@ -102,13 +103,11 @@ class GeneralProvider extends ChangeNotifier {
         Future.delayed(Duration(seconds: 4), (){});
 
         // Launch the payment page in browser
-        await launch(order.sessionUrl!);
+        await launchUrl(Uri.parse(order.sessionUrl!));
         CartProvider cartProvider = CartProvider();
         cartProvider.clearCart();
-        notifyListeners();
 
-        Future.delayed(Duration(seconds: 5), (){});
-        ErrorMessage.flushBar(context, "Order Placed Successfully", "success");
+        Navigator.pushNamed(context, AppRoutes.completeScreen);
       }
 
     } catch (e) {

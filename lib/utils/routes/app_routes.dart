@@ -1,19 +1,19 @@
-import 'package:seedswild/presentation_layer/features/cart/cart_screen.dart';
-import 'package:seedswild/presentation_layer/features/products/products_screen.dart';
+import 'package:seedswild/services/cart/cart_screen.dart';
+import 'package:seedswild/services/products/products_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../presentation_layer/features/auth/login_screen.dart';
-import '../../presentation_layer/features/orders/checkout_screen.dart';
-import '../../presentation_layer/features/orders/complete_screen.dart';
-import '../../presentation_layer/features/auth/password_reset_screen.dart';
-import '../../presentation_layer/features/home_page/home_page.dart';
-import '../../presentation_layer/features/products/product_detail_screen.dart';
-import '../../presentation_layer/features/settings/notifications_screen.dart';
-import '../../presentation_layer/features/settings/profile_screen.dart';
-import '../../presentation_layer/features/settings/settings_screen.dart';
-import '../../presentation_layer/features/settings/password_change_screen.dart';
-import '../../presentation_layer/features/auth/sign_up_screen.dart';
-import '../../presentation_layer/features/splash/splash_screen.dart';
+import '../../services/auth/login_screen.dart';
+import '../../services/orders/checkout_screen.dart';
+import '../../services/orders/complete_screen.dart';
+import '../../services/auth/password_reset_screen.dart';
+import '../../services/home/home_page.dart';
+import '../../services/products/product_detail_screen.dart';
+import '../../services/settings/notifications_screen.dart';
+import '../../services/settings/profile_screen.dart';
+import '../../services/settings/settings_screen.dart';
+import '../../services/settings/password_change_screen.dart';
+import '../../services/auth/sign_up_screen.dart';
+import '../../services/splash/splash_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splash_screen';
