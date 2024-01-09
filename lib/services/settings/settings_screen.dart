@@ -110,7 +110,9 @@ class SettingsScreen extends StatelessWidget {
                               title: "Logout",
                               icon: Icons.logout,
                               padding: EdgeInsets.all(15),
-                              onPressed: (){},
+                              onPressed: (){
+                                AuthToken.logoutUser(context);
+                              },
                             ),
                           ),
                         ],

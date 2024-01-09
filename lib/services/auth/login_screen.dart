@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/services/auth/provider/login_provider.dart';
 import 'package:seedswild/utils/components/custom_button.dart';
@@ -5,6 +6,7 @@ import 'package:seedswild/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/form_fields.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -14,7 +16,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   // CONTROLLERS
   TextEditingController passController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -40,144 +41,123 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     var loginProvider = Provider.of<LoginProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(248, 248, 252, 1),
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 80, horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // TOP
-            Column(
-              children: [
-                Image.asset("assets/images/logo.png", width: 200),
-                SizedBox(height: 10),
-                Text(
-                  "First European Organic Seeds \nAI Powered Marketplace",
-                  maxLines: null,
-                  textAlign: TextAlign.center,
-                  style: AppStyle.txtPoppinsRegular127,
-                ),
-              ],
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: Color.fromRGBO(89, 175, 109, 1),
+              ),
+              child: Icon(
+                Icons.eco_outlined,
+                size: 100,
+                color: Colors.white,
+              ),
             ),
 
             // MID
             Column(
               children: [
-                //FIELDS AND FORGET PASS LINK
-                CustomTextFormField(
-                  globalKey: nameKey,
+                SeedsTextFormField(
                   focusNode: emailFocusNode,
-                  textInputType: TextInputType.emailAddress,
                   controller: nameController,
-                  hintText: "example@exarth.com",
-                  onFieldSubmitted: () {
-                    CustomFocusNodes.feildFocusChnage(
-                      context,
-                      emailFocusNode,
-                      passwordFocusNode,
-                    );
-                  },
+                  hintText: "Email",
+                  prefixIcon: Icons.email_outlined,
                 ),
                 SizedBox(height: 10),
-                CustomTextFormField(
-                  globalKey: passwordKey,
+                SeedsTextFormField(
+                  obscureText: loginProvider.obSecure,
                   focusNode: passwordFocusNode,
                   controller: passController,
-                  hintText: "********",
-                  padding: TextFormFieldPadding.PaddingT14,
-                  textInputAction: TextInputAction.done,
-                  textInputType: TextInputType.visiblePassword,
+                  hintText: "Password",
+                  prefixIcon: Icons.lock_outline,
                   suffix: GestureDetector(
                     onTap: () {
                       loginProvider
                           .setObSecure(); // Call a method to toggle ob secure
                     },
-                    child: Container(
-                      margin:
-                          getMargin(left: 30, top: 18, right: 16, bottom: 18),
-                      child: loginProvider.obSecure
-                          ? Icon(Icons.visibility_off)
-                          : Icon(Icons.visibility),
-                    ),
-                  ),
-                  suffixConstraints: BoxConstraints(
-                    maxHeight: getVerticalSize(52),
-                  ),
-                  isObscureText: loginProvider.obSecure,
-                ),
-                SizedBox(height: 10),
-
-                // ADD FORGOT URL
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        AppRoutes.forgotPasswordScreen,
-                      );
-                    },
-                    child: Text(
-                      "Forgot Password",
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                      style: AppStyle.txtPoppinsMedium14,
-                    ),
+                    child: loginProvider.obSecure
+                        ? Icon(Icons.visibility_off,
+                            color: Color.fromRGBO(89, 175, 109, 1))
+                        : Icon(Icons.visibility,
+                            color: Color.fromRGBO(89, 175, 109, 1)),
                   ),
                 ),
                 SizedBox(height: 10),
 
                 // SIGN IN BTN, SIGNUP LINK
-                CustomButton(
-                  height: getVerticalSize(52),
-                  onTap: () {
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(89, 175, 109, 1),
+                    foregroundColor: Colors.white,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    shadowColor: Colors.lightGreen,
+                    minimumSize: Size(double.infinity, 52),
+                  ),
+                  onPressed: () {
                     Map data = {
                       "email": nameController.text.toString(),
                       "password": passController.text.toString(),
                     };
                     loginProvider.loginAPI(data, context);
                   },
-                  text: loginProvider.loading
+                  child: loginProvider.loading
                       ? CircularProgressIndicator(
                           color: Colors.white,
                         )
-                      : "Sign In ",
-                ),
-                SizedBox(height: 10),
-
-                Align(
-                  alignment: Alignment.center,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.signUpScreen);
-                    },
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Don’t have an account? ",
-                            style: TextStyle(
-                              color: ColorConstant.gray500,
-                              fontSize: getFontSize(13),
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w400,
-                            ),
+                      : Text(
+                          "LOGIN",
+                          style: GoogleFonts.aBeeZee(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
-                          TextSpan(
-                            text: "Sign Up",
-                            style: TextStyle(
-                              color: ColorConstant.black900,
-                              fontSize: getFontSize(13),
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          )
-                        ],
+                        ),
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.signUpScreen,
+                        );
+                      },
+                      child: Text(
+                        "Signup",
+                        style: GoogleFonts.aBeeZee(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(89, 175, 109, 1),
+                        ),
                       ),
                     ),
-                  ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.forgotPasswordScreen,
+                        );
+                      },
+                      child: Text(
+                        "Forgot Password",
+                        style: GoogleFonts.aBeeZee(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(89, 175, 109, 1),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -187,78 +167,60 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Row(
                   children: [
-                    SizedBox(
-                      width: getHorizontalSize(100),
-                      child: Divider(
-                        height: getVerticalSize(2),
-                        thickness: getVerticalSize(2),
-                        color: ColorConstant.black900,
-                      ),
-                    ),
-                    Container(
-                      padding:
-                          getPadding(left: 10, top: 6, right: 10, bottom: 6),
-                      decoration: AppDecoration.fillWhiteA700,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: getPadding(bottom: 1),
-                            child: Text(
-                              "or continue with",
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.left,
-                              style: AppStyle.txtPoppinsRegular14Black900,
-                            ),
-                          ),
-                        ],
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: Color.fromRGBO(89, 175, 109, 1),
                       ),
                     ),
                     Padding(
-                      padding: getPadding(top: 17, bottom: 16),
-                      child: SizedBox(
-                        width: getHorizontalSize(100),
-                        child: Divider(
-                          height: getVerticalSize(2),
-                          thickness: getVerticalSize(2),
-                          color: ColorConstant.black900,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        "or",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: Color.fromRGBO(89, 175, 109, 1),
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: 10),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CustomButton(
-                      onTap: (){
-                        context.read<LoginProvider>().handleGoogleSignIn(context);
-                      },
-                      height: getVerticalSize(52),
-                      width: getHorizontalSize(164),
-                      text: "Google",
-                      variant: ButtonVariant.FillGray10001,
-                      shape: ButtonShape.RoundedBorder7,
-                      padding: ButtonPadding.PaddingT12,
-                      fontStyle: ButtonFontStyle.PoppinsRegular15Black900,
-                      prefixWidget: Container(
-                        margin: getMargin(right: 16),
-                        child:
-                            CustomImageView(svgPath: ImageConstant.google),
+                    Container(
+                      height: 52,
+                      width: 52,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.facebook,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    CustomButton(
-                      height: getVerticalSize(52),
-                      width: getHorizontalSize(163),
-                      text: "Apple",
-                      variant: ButtonVariant.FillGray10001,
-                      shape: ButtonShape.RoundedBorder7,
-                      padding: ButtonPadding.PaddingT12,
-                      fontStyle: ButtonFontStyle.PoppinsRegular15Black900,
-                      prefixWidget: Container(
-                        margin: getMargin(right: 16),
-                        child: CustomImageView(
-                            svgPath: ImageConstant.apple),
+                    Container(
+                      height: 52,
+                      width: 52,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.g_mobiledata_outlined,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
