@@ -1,4 +1,5 @@
-import 'package:seedswild/utils/theme/app_stylea.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:seedswild/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class Sales extends StatelessWidget {
@@ -22,15 +23,17 @@ class Sales extends StatelessWidget {
           saleName,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.left,
-          style: AppStyle.txtPoppinsMedium18Black900,
+          style: GoogleFonts.aBeeZee(
+            color: SeedsColor.primary,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         GestureDetector(
           onTap: onTap,
-          child: Text(
-            buttonTextName, // Assuming you want a fixed text here
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.left,
-            style: AppStyle.txtPoppinsMedium14MainGreenColor,
+          child: Icon(
+            Icons.more_horiz,
+            color: SeedsColor.primary,
+            size: 24,
           ),
         ),
       ],

@@ -55,7 +55,7 @@ class LoginProvider with ChangeNotifier {
       Navigator.pushReplacementNamed(context, AppRoutes.homePage);
 
     } catch (error) {
-      throw error;
+      ErrorMessage.flushBar(context, error.toString(), "danger");
     }finally{
       setLoading(false);
     }

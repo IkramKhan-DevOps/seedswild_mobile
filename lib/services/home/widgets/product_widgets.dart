@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
 import 'package:flutter/material.dart';
 
@@ -57,10 +58,10 @@ class ProductCardItem extends StatelessWidget {
           Navigator.pushNamed(context, AppRoutes.productDetailScreen, arguments: id);
         },
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.green, width: 2),
+            color: Colors.grey[200],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +77,7 @@ class ProductCardItem extends StatelessWidget {
               Text(
                 category,
                 maxLines: 2,
-                style: TextStyle(
+                style: GoogleFonts.aBeeZee(
                   color: Colors.green,
                 ),
 
@@ -84,19 +85,19 @@ class ProductCardItem extends StatelessWidget {
               Text(
                 name,
                 maxLines: 3,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold),
               ),
               Spacer(),
               Row(
                 children: [
                   Text(
                     "$price\$",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.aBeeZee(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   Spacer(),
                   Text(
                     "$discount\$",
-                    style: TextStyle(
+                    style: GoogleFonts.aBeeZee(
                       color: Colors.red,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

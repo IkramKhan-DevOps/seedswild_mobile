@@ -1,9 +1,12 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/services/auth/provider/login_provider.dart';
 import 'package:seedswild/services/auth/provider/sign_up_provider.dart';
-import 'package:seedswild/utils/components/custom_button.dart';
-import 'package:seedswild/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../core/constants/colors.dart';
+import '../../widgets/form_fields.dart';
 
 class SignUpScreen extends StatelessWidget {
   // CONTROLLERS
@@ -30,28 +33,24 @@ class SignUpScreen extends StatelessWidget {
     var sigInUpProvider = Provider.of<SignUpProvider>(context);
 
     return Scaffold(
-      backgroundColor: ColorConstant.whiteA700,
+      backgroundColor: Color.fromRGBO(248, 248, 252, 1),
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             //TOP
-            Padding(
-              padding: const EdgeInsets.only(top: 0),
-              child: Column(
-                children: [
-                  Image.asset("assets/images/logo.png", width: 200),
-                  SizedBox(height: 10),
-                  Text(
-                    "First European Organic Seeds \nAI Powered Marketplace",
-                    maxLines: null,
-                    textAlign: TextAlign.center,
-                    style: AppStyle.txtPoppinsRegular127,
-                  ),
-                ],
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: SeedsColor.primary,
+              ),
+              child: Icon(
+                Icons.eco_outlined,
+                size: 100,
+                color: Colors.white,
               ),
             ),
 
@@ -59,77 +58,73 @@ class SignUpScreen extends StatelessWidget {
             Column(
               children: [
                 // FIELDS
-                CustomTextFormField(
-                  globalKey: usernameGlobalKey,
+                SeedsTextFormField(
                   focusNode: usernameFocusNode,
                   controller: usernameController,
                   hintText: "Username",
+                  prefixIcon: Icons.verified_user,
                 ),
-                CustomTextFormField(
-                    globalKey: emailGlobalKey,
-                    focusNode: emailFocusNode,
-                    controller: emailController,
-                    hintText: "Email",
-                    margin: getMargin(top: 5),
-                    textInputType: TextInputType.emailAddress),
-                CustomTextFormField(
-                  globalKey: password1GlobalKey,
+                SizedBox(height: 10),
+
+                SeedsTextFormField(
+                  focusNode: emailFocusNode,
+                  controller: emailController,
+                  hintText: "Email",
+                  keyboardType: TextInputType.emailAddress,
+                  prefixIcon: Icons.email_outlined,
+                ),
+                SizedBox(height: 10),
+
+                SeedsTextFormField(
                   focusNode: password1FocusNode,
                   controller: password1Controller,
                   hintText: "Password",
-                  margin: getMargin(top: 5),
-                  padding: TextFormFieldPadding.PaddingT14,
-                  textInputAction: TextInputAction.done,
-                  textInputType: TextInputType.visiblePassword,
+                  keyboardType: TextInputType.visiblePassword,
                   suffix: GestureDetector(
                     onTap: () {
-                      sigInUpProvider.setObSecurePassword(
-                          "p1"); // Call a method to toggle obsecure
+                      sigInUpProvider.setObSecurePassword("p1");
                     },
-                    child: Container(
-                      margin:
-                          getMargin(left: 30, top: 18, right: 16, bottom: 18),
-                      child: sigInUpProvider.obSecurePassword1
-                          ? Icon(Icons.visibility_off)
-                          : Icon(Icons.visibility),
-                    ),
+                    child: sigInUpProvider.obSecurePassword1
+                          ? Icon(Icons.visibility_off, color: SeedsColor.primary)
+                          : Icon(Icons.visibility, color: SeedsColor.primary),
                   ),
-                  suffixConstraints: BoxConstraints(
-                    maxHeight: getVerticalSize(52),
-                  ),
-                  isObscureText: sigInUpProvider.obSecurePassword1,
+                  obscureText: sigInUpProvider.obSecurePassword1,
+                  prefixIcon: Icons.lock_outline,
                 ),
-                CustomTextFormField(
-                  globalKey: password2GlobalKey,
+                SizedBox(height: 10),
+
+                SeedsTextFormField(
                   focusNode: password2FocusNode,
                   controller: password2Controller,
                   hintText: "Confirm Password",
-                  margin: getMargin(top: 5),
-                  padding: TextFormFieldPadding.PaddingT14,
-                  textInputAction: TextInputAction.done,
-                  textInputType: TextInputType.visiblePassword,
+                  prefixIcon: Icons.lock_outline,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: sigInUpProvider.obSecurePassword2,
                   suffix: GestureDetector(
                     onTap: () {
                       sigInUpProvider.setObSecurePassword(
                           "p2"); // Call a method to toggle obsecure
                     },
-                    child: Container(
-                      margin:
-                          getMargin(left: 30, top: 18, right: 16, bottom: 18),
-                      child: sigInUpProvider.obSecurePassword2
-                          ? Icon(Icons.visibility_off)
-                          : Icon(Icons.visibility),
-                    ),
+                    child: sigInUpProvider.obSecurePassword2
+                          ? Icon(Icons.visibility_off, color: SeedsColor.primary)
+                          : Icon(Icons.visibility, color: SeedsColor.primary),
                   ),
-                  suffixConstraints: BoxConstraints(
-                    maxHeight: getVerticalSize(52),
-                  ),
-                  isObscureText: sigInUpProvider.obSecurePassword2,
                 ),
+                SizedBox(height: 10),
 
                 // LOWER
-                CustomButton(
-                  onTap: () {
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: SeedsColor.primary,
+                    foregroundColor: Colors.white,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    shadowColor: Colors.lightGreen,
+                    minimumSize: Size(double.infinity, 52),
+                  ),
+                  onPressed: () {
                     Map data = {
                       "username": usernameController.text.toString(),
                       "email": emailController.text.toString(),
@@ -138,13 +133,17 @@ class SignUpScreen extends StatelessWidget {
                     };
                     sigInUpProvider.signUpApi(data, context);
                   },
-                  height: getVerticalSize(52),
-                  text: sigInUpProvider.signUploading
+                  child: sigInUpProvider.signUploading
                       ? CircularProgressIndicator(
                           color: Colors.white,
                         )
-                      : "Sign Up ",
-                  margin: getMargin(top: 20),
+                      : Text(
+                          "Sign Up ",
+                          style: GoogleFonts.aBeeZee(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
                 ),
                 Align(
                   alignment: Alignment.center,
@@ -155,27 +154,27 @@ class SignUpScreen extends StatelessWidget {
                     child: Padding(
                       padding: getPadding(top: 14),
                       child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: "Already have an account? ",
-                                style: TextStyle(
-                                    color: ColorConstant.gray500,
-                                    fontSize: getFontSize(13),
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w400),
+                        textAlign: TextAlign.left,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Already have an account? ",
+                              style: GoogleFonts.aBeeZee(
+                                color: ColorConstant.gray500,
+                                fontSize: getFontSize(13),
+                                fontWeight: FontWeight.w400,
                               ),
-                              TextSpan(
-                                text: "Sign In",
-                                style: TextStyle(
-                                    color: ColorConstant.black900,
-                                    fontSize: getFontSize(13),
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
-                          ),
-                          textAlign: TextAlign.left),
+                            ),
+                            TextSpan(
+                              text: "Sign In",
+                              style: GoogleFonts.aBeeZee(
+                                fontWeight: FontWeight.bold,
+                                color: SeedsColor.primary,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -187,75 +186,65 @@ class SignUpScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SizedBox(
-                      width: getHorizontalSize(100),
-                      child: Divider(
-                        height: getVerticalSize(2),
-                        thickness: getVerticalSize(2),
-                        color: ColorConstant.black900,
-                      ),
-                    ),
-                    Container(
-                      padding:
-                      getPadding(left: 10, top: 6, right: 10, bottom: 6),
-                      decoration: AppDecoration.fillWhiteA700,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: getPadding(bottom: 1),
-                            child: Text(
-                              "or continue with",
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.left,
-                              style: AppStyle.txtPoppinsRegular14Black900,
-                            ),
-                          ),
-                        ],
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: SeedsColor.primary,
                       ),
                     ),
                     Padding(
-                      padding: getPadding(top: 17, bottom: 16),
-                      child: SizedBox(
-                        width: getHorizontalSize(100),
-                        child: Divider(
-                          height: getVerticalSize(2),
-                          thickness: getVerticalSize(2),
-                          color: ColorConstant.black900,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        "or",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: SeedsColor.primary,
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: 10),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CustomButton(
-                      height: getVerticalSize(52),
-                      width: getHorizontalSize(164),
-                      text: "Google",
-                      variant: ButtonVariant.FillGray10001,
-                      shape: ButtonShape.RoundedBorder7,
-                      padding: ButtonPadding.PaddingT12,
-                      fontStyle: ButtonFontStyle.PoppinsRegular15Black900,
-                      prefixWidget: Container(
-                        margin: getMargin(right: 16),
-                        child:
-                        CustomImageView(svgPath: ImageConstant.google),
+                    Container(
+                      height: 52,
+                      width: 52,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.facebook,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    CustomButton(
-                      height: getVerticalSize(52),
-                      width: getHorizontalSize(163),
-                      text: "Apple",
-                      variant: ButtonVariant.FillGray10001,
-                      shape: ButtonShape.RoundedBorder7,
-                      padding: ButtonPadding.PaddingT12,
-                      fontStyle: ButtonFontStyle.PoppinsRegular15Black900,
-                      prefixWidget: Container(
-                        margin: getMargin(right: 16),
-                        child: CustomImageView(
-                            svgPath: ImageConstant.apple),
+                    InkWell(
+                      onTap: () {
+                        context.read<LoginProvider>().handleGoogleSignIn(context);
+                      },
+                      child: Container(
+                        height: 52,
+                        width: 52,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.g_mobiledata_outlined,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                   ],

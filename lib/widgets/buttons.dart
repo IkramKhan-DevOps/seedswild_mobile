@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../core/constants/colors.dart';
+
 class SeedsElevatedButton extends StatelessWidget {
 
   final String title;
   final IconData icon;
   final Color? backgroundColor;
+  final Color? foregroundColor;
   final EdgeInsets? padding;
   final void Function()? onPressed;
 
   const SeedsElevatedButton({
-    super.key, required this.title, required this.icon, required
-    this.onPressed, this.backgroundColor, this.padding
+    super.key, required this.title, required this.icon,
+    required this.onPressed,
+    this.backgroundColor = SeedsColor.primary,
+    this.foregroundColor = Colors.white,
+    this.padding,
   });
 
   @override

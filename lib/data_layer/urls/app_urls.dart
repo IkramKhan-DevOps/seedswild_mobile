@@ -1,7 +1,7 @@
 class AppUrls {
 
   static String protocol = "https";
-  static String domain = "seedswild.exarth.com";
+  static String domain = "alpha.seedswild.com";
   static String root = "$protocol://$domain/";
   static String api = "${root}api/";
 

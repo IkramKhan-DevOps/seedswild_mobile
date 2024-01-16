@@ -1,13 +1,8 @@
-import 'dart:convert';
-
-ProductModel productModelFromJson(String str) => ProductModel.fromJson(json.decode(str));
-String productModelToJson(ProductModel data) => json.encode(data.toJson());
-
 class ProductModel {
   int count;
   String? next;
   String? previous;
-  List<Result> results;
+  List<Product> results;
 
   ProductModel({
     required this.count,
@@ -20,7 +15,9 @@ class ProductModel {
     count: json["count"],
     next: json["next"],
     previous: json["previous"],
-    results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+    results: List<Product>.from(
+      json["results"].map((x) => Product.fromJson(x)),
+    ),
   );
 
   Map<String, dynamic> toJson() => {
@@ -31,11 +28,11 @@ class ProductModel {
   };
 }
 
-class Result {
+class Product {
   int id;
   String title;
   String slug;
-  String thumbnailImage;
+  String? thumbnailImage;
   int quantity;
   double price;
   int discount;
@@ -43,10 +40,10 @@ class Result {
   int totalReviews;
   int averageReview;
   Shop shop;
-  Category category;
-  List<Tag> tags;
+  ProductCategory category;
+  List<ProductTag> tags;
 
-  Result({
+  Product({
     required this.id,
     required this.title,
     required this.slug,
@@ -62,20 +59,22 @@ class Result {
     required this.tags,
   });
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
     id: json["id"],
     title: json["title"],
     slug: json["slug"],
     thumbnailImage: json["thumbnail_image"],
     quantity: json["quantity"],
-    price: json["price"]?.toDouble(),
+    price: json["price"]?.toDouble() ?? 0.0,
     discount: json["discount"],
     promotional: json["promotional"],
     totalReviews: json["total_reviews"],
     averageReview: json["average_review"],
     shop: Shop.fromJson(json["shop"]),
-    category: Category.fromJson(json["category"]),
-    tags: List<Tag>.from(json["tags"].map((x) => Tag.fromJson(x))),
+    category: ProductCategory.fromJson(json["category"]),
+    tags: List<ProductTag>.from(
+      json["tags"].map((x) => ProductTag.fromJson(x)),
+    ),
   );
 
   Map<String, dynamic> toJson() => {
@@ -95,20 +94,68 @@ class Result {
   };
 }
 
-class Category {
+class Shop {
+  int pk;
+  User user;
+  String? shopName;
+
+  Shop({
+    required this.pk,
+    required this.user,
+    required this.shopName,
+  });
+
+  factory Shop.fromJson(Map<String, dynamic> json) => Shop(
+    pk: json["pk"],
+    user: User.fromJson(json["user"]),
+    shopName: json["shop_name"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "pk": pk,
+    "user": user.toJson(),
+    "shop_name": shopName,
+  };
+}
+
+class User {
+  int id;
+  String username;
+  String email;
+
+  User({
+    required this.id,
+    required this.username,
+    required this.email,
+  });
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+    id: json["id"],
+    username: json["username"],
+    email: json["email"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "username": username,
+    "email": email,
+  };
+}
+
+class ProductCategory {
   int id;
   String name;
-  dynamic parent;
-  String thumbnailImage;
+  int? parent;
+  String? thumbnailImage;
 
-  Category({
+  ProductCategory({
     required this.id,
     required this.name,
     required this.parent,
     required this.thumbnailImage,
   });
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
+  factory ProductCategory.fromJson(Map<String, dynamic> json) => ProductCategory(
     id: json["id"],
     name: json["name"],
     parent: json["parent"],
@@ -123,88 +170,16 @@ class Category {
   };
 }
 
-class Shop {
-  int pk;
-  User user;
-  ShopName shopName;
-
-  Shop({
-    required this.pk,
-    required this.user,
-    required this.shopName,
-  });
-
-  factory Shop.fromJson(Map<String, dynamic> json) => Shop(
-    pk: json["pk"],
-    user: User.fromJson(json["user"]),
-    shopName: shopNameValues.map[json["shop_name"]]!,
-  );
-
-  Map<String, dynamic> toJson() => {
-    "pk": pk,
-    "user": user.toJson(),
-    "shop_name": shopNameValues.reverse[shopName],
-  };
-}
-
-enum ShopName {
-  EXARTH
-}
-
-final shopNameValues = EnumValues({
-  "exarth": ShopName.EXARTH
-});
-
-class User {
-  int id;
-  Username username;
-  Email email;
-
-  User({
-    required this.id,
-    required this.username,
-    required this.email,
-  });
-
-  factory User.fromJson(Map<String, dynamic> json) => User(
-    id: json["id"],
-    username: usernameValues.map[json["username"]]!,
-    email: emailValues.map[json["email"]]!,
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "username": usernameValues.reverse[username],
-    "email": emailValues.reverse[email],
-  };
-}
-
-enum Email {
-  NBSHERAZKHAN_GMAIL_COM
-}
-
-final emailValues = EnumValues({
-  "nbsherazkhan@gmail.com": Email.NBSHERAZKHAN_GMAIL_COM
-});
-
-enum Username {
-  NBSHERAZKHAN
-}
-
-final usernameValues = EnumValues({
-  "nbsherazkhan": Username.NBSHERAZKHAN
-});
-
-class Tag {
+class ProductTag {
   int id;
   String name;
 
-  Tag({
+  ProductTag({
     required this.id,
     required this.name,
   });
 
-  factory Tag.fromJson(Map<String, dynamic> json) => Tag(
+  factory ProductTag.fromJson(Map<String, dynamic> json) => ProductTag(
     id: json["id"],
     name: json["name"],
   );
@@ -213,16 +188,4 @@ class Tag {
     "id": id,
     "name": name,
   };
-}
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

@@ -1,9 +1,12 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/services/auth/provider/password_reset_provider.dart';
-import 'package:seedswild/utils/components/custom_button.dart';
-import 'package:seedswild/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seedswild/widgets/app_bar.dart';
+import 'package:seedswild/widgets/form_fields.dart';
+
+import '../../core/constants/colors.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -13,19 +16,26 @@ class ForgotPasswordScreen extends StatelessWidget {
     PasswordResetProvider provider = Provider.of<PasswordResetProvider>(context);
 
     return Scaffold(
-      backgroundColor: ColorConstant.whiteA700,
+      backgroundColor: Color.fromRGBO(248, 248, 252, 1),
       resizeToAvoidBottomInset: false,
 
       // APP BAR
       appBar: AppBar(
-        title: Text("Password Reset", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.green,
-        elevation: 0,
+        centerTitle: true,
+        backgroundColor: SeedsColor.primary,
+        title: Text("Password Reset", style: GoogleFonts.aBeeZee(color: Colors.white)),
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+        ),
       ),
 
       // BODY
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(30),
         child: Column(
 
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,27 +46,47 @@ class ForgotPasswordScreen extends StatelessWidget {
               "We need your registration email to send you password reset code!",
               maxLines: null,
               textAlign: TextAlign.left,
-              style: AppStyle.txtPoppinsRegular16,
+              style: GoogleFonts.aBeeZee(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: Colors.grey[700],
+              ),
             ),
             SizedBox(height: 20),
 
-            CustomTextFormField(
+            SeedsTextFormField(
               focusNode: FocusNode(),
               controller: emailController,
               hintText: "mark@exarth.com",
-              textInputType: TextInputType.emailAddress,
+              keyboardType: TextInputType.emailAddress,
+              prefixIcon: Icons.email_outlined,
             ),
             SizedBox(height: 20),
 
-            CustomButton(
-              height: getVerticalSize(52),
-              onTap: () {
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: SeedsColor.primary,
+                foregroundColor: Colors.white,
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                shadowColor: Colors.lightGreen,
+                minimumSize: Size(double.infinity, 52),
+              ),
+              onPressed: () {
                 Map data = {
                   'email': emailController.text
                 };
                 provider.forgetAPICall(context, data);
               },
-              text: provider.isLoading? CircularProgressIndicator(color: Colors.white): "Submit",
+              child: provider.isLoading? CircularProgressIndicator(color: Colors.white): Text(
+                "Send Link",
+                style: GoogleFonts.aBeeZee(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              )
             ),
           ],
         ),

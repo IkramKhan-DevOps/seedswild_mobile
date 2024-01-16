@@ -1,3 +1,4 @@
+import 'package:seedswild/core/constants/colors.dart';
 import 'package:seedswild/services/products/provider/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -70,11 +71,8 @@ class ProductCategoryCardItem extends StatelessWidget {
               height: 53,
               width: 53,
               decoration: BoxDecoration(
-                color: const Color(0xffF6F6F6),
+                color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(26.5),
-                border: Border.all(
-                  color: context.watch<ProductsProvider>().category == id ? Colors.green : Colors.white,
-                ),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(5),

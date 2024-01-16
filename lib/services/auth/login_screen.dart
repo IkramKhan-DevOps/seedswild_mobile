@@ -1,8 +1,7 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/core/constants/colors.dart';
 import 'package:seedswild/services/auth/provider/login_provider.dart';
-import 'package:seedswild/utils/components/custom_button.dart';
-import 'package:seedswild/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,10 +40,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     var loginProvider = Provider.of<LoginProvider>(context);
     return Scaffold(
-      backgroundColor: Color.fromRGBO(248, 248, 252, 1),
+      backgroundColor: SeedsColor.background,
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 80, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 80, horizontal: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: Color.fromRGBO(89, 175, 109, 1),
+                color: SeedsColor.primary,
               ),
               child: Icon(
                 Icons.eco_outlined,
@@ -85,9 +84,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: loginProvider.obSecure
                         ? Icon(Icons.visibility_off,
-                            color: Color.fromRGBO(89, 175, 109, 1))
+                            color: SeedsColor.primary)
                         : Icon(Icons.visibility,
-                            color: Color.fromRGBO(89, 175, 109, 1)),
+                            color: SeedsColor.primary),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -95,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // SIGN IN BTN, SIGNUP LINK
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(89, 175, 109, 1),
+                    backgroundColor: SeedsColor.primary,
                     foregroundColor: Colors.white,
                     elevation: 5,
                     shape: RoundedRectangleBorder(
@@ -138,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         "Signup",
                         style: GoogleFonts.aBeeZee(
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(89, 175, 109, 1),
+                          color: SeedsColor.primary,
                         ),
                       ),
                     ),
@@ -153,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         "Forgot Password",
                         style: GoogleFonts.aBeeZee(
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(89, 175, 109, 1),
+                          color: SeedsColor.primary,
                         ),
                       ),
                     ),
@@ -170,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Color.fromRGBO(89, 175, 109, 1),
+                        color: SeedsColor.primary,
                       ),
                     ),
                     Padding(
@@ -186,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Color.fromRGBO(89, 175, 109, 1),
+                        color: SeedsColor.primary,
                       ),
                     ),
                   ],
@@ -209,17 +208,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      height: 52,
-                      width: 52,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.g_mobiledata_outlined,
-                          color: Colors.white,
+                    InkWell(
+                      onTap: () {
+                        context.read<LoginProvider>().handleGoogleSignIn(context);
+                      },
+                      child: Container(
+                        height: 52,
+                        width: 52,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.g_mobiledata_outlined,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

@@ -42,6 +42,7 @@ class ProductsProvider with ChangeNotifier {
       productModel = ProductModel(
           count: 0, next: "", previous: "", results: []
       );
+      throw error;
     }
   }
 

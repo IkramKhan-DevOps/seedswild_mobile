@@ -8,6 +8,7 @@ import 'package:seedswild/widgets/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/constants/colors.dart';
 import '../home/widgets/product_widgets.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -16,6 +17,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: SeedsColor.background,
       body: Padding(
         padding: EdgeInsets.all(20),
         child: FutureBuilder(
@@ -25,7 +27,7 @@ class ProductsScreen extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return ProgressCircular();
             } else if (snapshot.hasError) {
-              return EmptyData();
+              return EmptyData(title: snapshot.error.toString());
             } else {
               ProductModel? product =
                   context.watch<ProductsProvider>().productModel;
@@ -71,7 +73,7 @@ class ProductsScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(
                             getHorizontalSize(8),
                           ),
-                          color: Colors.green,
+                          color: SeedsColor.primary,
                         ),
                         child: Icon(
                           Icons.search,
@@ -89,7 +91,7 @@ class ProductsScreen extends StatelessWidget {
                   // Use Expanded to allow GridView.builder to take all available space
                   Expanded(
                     child: GridView.builder(
-                      itemCount: product!.results.length ?? 0,
+                      itemCount: product!.results.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         mainAxisExtent: 300,
