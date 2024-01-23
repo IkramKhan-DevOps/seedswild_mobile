@@ -1,6 +1,7 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
 import 'package:flutter/material.dart';
+import 'package:seedswild/core/constants/colors.dart';
 
 class ProductCardList extends StatelessWidget {
   final productList;
@@ -11,7 +12,7 @@ class ProductCardList extends StatelessWidget {
     return SizedBox(
 
       // OVERALL SIZED BOX SIZE
-      height: 250,
+      height: 260,
       // ----------------------
 
       child: ListView.separated(
@@ -58,53 +59,62 @@ class ProductCardItem extends StatelessWidget {
           Navigator.pushNamed(context, AppRoutes.productDetailScreen, arguments: id);
         },
         child: Container(
-          padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Colors.grey[200],
+            color: Color.fromRGBO(229, 229, 229, 1),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // IMAGE
               ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12)),
                 child: Image.network(this.image ?? "https://picsum.photos/200"),
               ),
-              SizedBox(height: 10),
 
-              // TEXT
-              Text(
-                category,
-                maxLines: 2,
-                style: GoogleFonts.aBeeZee(
-                  color: Colors.green,
+              SizedBox(height: 8.h),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  category,
+                  maxLines: 2,
+                  style: GoogleFonts.aBeeZee(
+                    color: SeedsColor.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+              ),
 
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  name,
+                  maxLines: 3,
+                  style: GoogleFonts.aBeeZee(),
+                ),
               ),
-              Text(
-                name,
-                maxLines: 3,
-                style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold),
-              ),
+
               Spacer(),
-              Row(
-                children: [
-                  Text(
-                    "$price\$",
-                    style: GoogleFonts.aBeeZee(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  Spacer(),
-                  Text(
-                    "$discount\$",
-                    style: GoogleFonts.aBeeZee(
-                      color: Colors.red,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.lineThrough,
+              Container(
+                padding: EdgeInsets.only(left: 8, right: 8, bottom: 8),
+                child: Row(
+                  children: [
+                    Text(
+                      "$price\$",
+                      style: GoogleFonts.aBeeZee(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                ],
+                    Spacer(),
+                    Text(
+                      "$discount\$",
+                      style: GoogleFonts.aBeeZee(
+                        color: Colors.red,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

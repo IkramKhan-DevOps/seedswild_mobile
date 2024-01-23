@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/core/constants/colors.dart';
 import 'package:seedswild/data_layer/models/home_products_model.dart';
@@ -23,6 +24,7 @@ class CategoryCardList extends StatelessWidget {
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: categoryList.length ?? 0,
+              itemExtent: 80,
               itemBuilder: (context, index) {
                 dynamic category = categoryList[index];
                 if (category != null) {
@@ -94,7 +96,7 @@ class CategoryCardItem extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           const SizedBox(height: 6),
-          Text(name),
+          Text(name, maxLines: 1, style: GoogleFonts.aBeeZee(fontSize: 12), overflow: TextOverflow.ellipsis),
         ],
       ),
     );

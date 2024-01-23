@@ -70,8 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
             } else if (snapshot.hasError) {
               return Center(child: Text("Error loading user data"));
             } else {
-              var data = Provider.of<HomeProvider>(context).homeModel;
 
+              var data = Provider.of<HomeProvider>(context).homeModel;
               return Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: CustomScrollView(
@@ -85,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         Sales(
                           saleName: "C a t e g o r i e s",
-                          buttonTextName: 'See All',
                           onTap: () {},
                         ),
                         SizedBox(height: 20),
@@ -101,7 +100,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.pushNamed(
                                 context, AppRoutes.productsScreen);
                           },
-                          buttonTextName: 'See All',
                         ),
                         SizedBox(height: 10),
                         ProductCardList(
@@ -113,7 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         // TOP SALES
                         Sales(
                           saleName: 'T o p  R a t e d',
-                          buttonTextName: 'See All',
                           onTap: () {
                             Navigator.pushNamed(
                                 context, AppRoutes.productsScreen);
@@ -128,7 +125,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         // TOP SALES
                         Sales(
                           saleName: 'M o s t  S a l e s',
-                          buttonTextName: 'See All',
                           onTap: () {
                             Navigator.pushNamed(
                                 context, AppRoutes.productsScreen);

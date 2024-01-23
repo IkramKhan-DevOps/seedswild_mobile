@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seedswild/core/constants/colors.dart';
 
 class SeedsTextFormField extends StatelessWidget {
 
@@ -32,7 +33,7 @@ class SeedsTextFormField extends StatelessWidget {
       focusNode: focusNode,
       key: formFieldKey,
       style: TextStyle(
-        color: Color.fromRGBO(89, 175, 109, 1),
+        color: SeedsColor.primary,
         fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
@@ -40,33 +41,22 @@ class SeedsTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
-          color: Color.fromRGBO(89, 175, 109, 1),
+          color: SeedsColor.primary,
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
         suffix: suffix,
         prefixIcon: Icon(
           prefixIcon,
-          color: Color.fromRGBO(89, 175, 109, 1),
+          color: SeedsColor.primary,
         ),
+        // no border at all - no even a line - background color (grey)
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(7),
-          borderSide: BorderSide(
-            color: Color.fromRGBO(89, 175, 109, 1),
-          ),
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(12),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(7),
-          borderSide: BorderSide(
-            color: Color.fromRGBO(89, 175, 109, 1),
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(7),
-          borderSide: BorderSide(
-            color: Color.fromRGBO(89, 175, 109, 1),
-          ),
-        ),
+        fillColor: Color.fromRGBO(229, 229, 229, 1),
+        filled: true,
       ),
     );
   }

@@ -1,6 +1,9 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/utils/color_constant.dart';
 import 'package:seedswild/core/utils/size_utils.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/constants/colors.dart';
 
 class CustomSearchView extends StatelessWidget {
   CustomSearchView(
@@ -51,11 +54,12 @@ class CustomSearchView extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,
-        style: TextStyle(
-          fontSize: 18
+        style: GoogleFonts.aBeeZee(
+          color: SeedsColor.primary,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
         ),
         decoration: _buildDecoration(),
-
       ),
     );
   }
@@ -63,8 +67,10 @@ class CustomSearchView extends StatelessWidget {
   _buildDecoration() {
     return InputDecoration(
       hintText: hintText ?? "",
-      hintStyle: TextStyle(
-        fontSize: 18
+      hintStyle: GoogleFonts.aBeeZee(
+        color: SeedsColor.primary,
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
       ),
       border: _setBorderStyle(),
       enabledBorder: _setBorderStyle(),
@@ -74,28 +80,11 @@ class CustomSearchView extends StatelessWidget {
       prefixIconConstraints: prefixConstraints,
       suffixIcon: suffix,
       suffixIconConstraints: suffixConstraints,
-      fillColor: _setFillColor(),
-      filled: _setFilled(),
+      fillColor: Color.fromRGBO(229, 229, 229, 1),
+      filled: true,
       isDense: true,
       contentPadding: _setPadding(),
     );
-  }
-
-  _setFontStyle() {
-    switch (fontStyle) {
-      default:
-        return TextStyle(
-          color: ColorConstant.gray500,
-          fontSize: getFontSize(
-            12,
-          ),
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w300,
-          height: getVerticalSize(
-            1.50,
-          ),
-        );
-    }
   }
 
   _setOutlineBorderRadius() {

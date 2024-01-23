@@ -1,4 +1,5 @@
 import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/core/constants/colors.dart';
 import 'package:seedswild/utils/components/custom_button.dart';
 import 'package:seedswild/widgets/buttons.dart';
 import 'package:seedswild/widgets/empty.dart';
@@ -16,11 +17,11 @@ class CartScreen extends StatelessWidget {
     Provider.of<CartProvider>(context, listen: false).calculate();
 
     return Scaffold(
-      backgroundColor: ColorConstant.whiteA700,
+      backgroundColor: SeedsColor.background,
 
       // BAR
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: SeedsColor.primary,
         title: Text("Cart", style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),

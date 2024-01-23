@@ -7,11 +7,9 @@ class Sales extends StatelessWidget {
     Key? key,
     required this.saleName,
     required this.onTap,
-    required this.buttonTextName,
   }) : super(key: key);
 
   final String saleName;
-  final String buttonTextName;
   final VoidCallback onTap;
 
   @override

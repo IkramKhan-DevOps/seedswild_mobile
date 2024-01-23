@@ -1,4 +1,4 @@
-import 'package:seedswild/core/constants/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/services/products/provider/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +17,7 @@ class ProductCategoryCardList extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
+              itemExtent: 80,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: categoryList.length ?? 0,
@@ -87,9 +88,8 @@ class ProductCategoryCardItem extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 14),
           const SizedBox(height: 6),
-          Text(name),
+          Text(name, style: GoogleFonts.aBeeZee(), overflow: TextOverflow.ellipsis),
         ],
       ),
     );

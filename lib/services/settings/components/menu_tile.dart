@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:seedswild/core/constants/colors.dart';
 
 import '../../../../core/utils/size_utils.dart';
 import '../../../../utils/theme/app_decoration.dart';
@@ -17,16 +19,17 @@ class MenuTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         child: Container(
-          padding: getPadding(
-            left: 16,
-            top: 14,
-            right: 16,
-            bottom: 14,
-          ),
-          decoration: AppDecoration.fillGray10001.copyWith(
-            borderRadius: BorderRadiusStyle.roundedBorder8,
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          decoration: BoxDecoration(
+            color: Colors.grey[100],
+            border: Border(
+              bottom: BorderSide(
+                width: 1, style: BorderStyle.solid,
+                color: Colors.white70
+              )
+            )
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,20 +37,25 @@ class MenuTile extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
-                  this.IconName
+                  this.IconName,
+                size: 18, color: Colors.grey[700],
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   this.title,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
-                  style: AppStyle.txtPoppinsRegular16,
+                  style: GoogleFonts.aBeeZee(
+                    fontSize: 15,
+                    color: Colors.grey[700]
+                  ),
                 ),
               ),
               Spacer(),
               Icon(
-                Icons.arrow_forward_ios_rounded
+                Icons.arrow_forward,
+                size: 18, color: Colors.grey[700],
               )
             ],
           ),

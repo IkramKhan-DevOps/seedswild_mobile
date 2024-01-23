@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/services/settings/statemanagement/password_change_provider.dart';
 import 'package:seedswild/utils/components/custom_button.dart';
@@ -5,14 +6,14 @@ import 'package:seedswild/utils/components/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PasswordChangeScreen extends StatefulWidget {
+import '../../core/constants/colors.dart';
 
+class PasswordChangeScreen extends StatefulWidget {
   @override
   State<PasswordChangeScreen> createState() => _PasswordChangeScreenState();
 }
 
 class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
-
   TextEditingController previousPasswordController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -43,8 +44,15 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
       //app bar
       appBar: AppBar(
         title: Text("Password Change", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.green,
+        backgroundColor: SeedsColor.primary,
         elevation: 0,
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+        ),
       ),
 
       //body
@@ -55,16 +63,31 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
 
           // FIELDS
           children: [
-
-            Center(
-              child: Icon(
-                Icons.shield_moon_outlined, size: 100, color: Colors.green,
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(70),
+                ),
+                child: Icon(
+                  Icons.security,
+                  size: 60,
+                  color: SeedsColor.primary,
+                ),
               ),
             ),
             SizedBox(height: 20),
 
             //previous password
-            Text("Previous Password", style: AppStyle.txtPoppinsMedium15),
+            Text(
+              "Previous Password",
+              style: GoogleFonts.aBeeZee(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[700],
+              ),
+            ),
             CustomTextFormField(
               controller: previousPasswordController,
               focusNode: previousPasswordNode,
@@ -75,7 +98,13 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
             SizedBox(height: 20),
 
             //previous password
-            Text("New Password", style: AppStyle.txtPoppinsMedium15),
+            Text(
+              "New Password",
+              style: GoogleFonts.aBeeZee(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[700],
+              ),
+            ),
             CustomTextFormField(
               controller: newPasswordController,
               focusNode: newPasswordNode,
@@ -86,7 +115,13 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
             SizedBox(height: 20),
 
             //previous password
-            Text("Confirm Password", style: AppStyle.txtPoppinsMedium15),
+            Text(
+              "Confirm Password",
+              style: GoogleFonts.aBeeZee(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[700],
+              ),
+            ),
             CustomTextFormField(
               controller: confirmPasswordController,
               focusNode: confirmPasswordNode,
@@ -108,19 +143,25 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
                   "Forgot Password!",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Colors.blueAccent,
-                    fontWeight: FontWeight.w600
-                  ),
+                  style: GoogleFonts.aBeeZee(
+                      color: SeedsColor.primary, fontWeight: FontWeight.w600),
                 ),
               ),
             ),
             SizedBox(height: 10),
 
-            CustomButton(
-              height: getVerticalSize(52),
-              text: "Submit",
-              onTap: (){
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: SeedsColor.primary,
+                foregroundColor: Colors.white,
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                shadowColor: Colors.lightGreen,
+                minimumSize: Size(double.infinity, 52),
+              ),
+              onPressed: () {
                 Map data = {
                   "old_password": previousPasswordController.text.toString(),
                   "new_password1": newPasswordController.text.toString(),
@@ -128,6 +169,13 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
                 };
                 provider.postPasswordChangeAPICall(context, data);
               },
+              child: Text(
+                "Submit",
+                style: GoogleFonts.aBeeZee(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
             ),
             SizedBox(height: 20),
 
@@ -137,23 +185,21 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
                   children: [
                     TextSpan(
                       text: "NOTE! ",
-                      style: TextStyle(
+                      style: GoogleFonts.aBeeZee(
                         color: Colors.redAccent,
-                        fontWeight: FontWeight.bold
-                      )
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     TextSpan(
-                      text: "If you have log in using Google/Apple and you didn't set "
+                      text:
+                          "If you have log in using Google/Apple and you didn't set "
                           "password previously, leave the previous password blank",
-                      style: TextStyle(
-                        color: Colors.grey
-                      )
-                    )
-                  ]
+                      style: GoogleFonts.aBeeZee(color: Colors.grey, fontSize: 14),
+                    ),
+                  ],
                 ),
               ),
             ),
-
           ],
         ),
       ),
