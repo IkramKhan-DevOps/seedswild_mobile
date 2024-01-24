@@ -103,20 +103,23 @@ class SettingsScreen extends StatelessWidget {
                               "Orders",
                               Icons.add_shopping_cart,
                               () => Navigator.pushNamed(
-                                  context, AppRoutes.completeScreen),
+                                  context, AppRoutes.ordersScreen
+                              ),
                             ),
         
                             MenuTile(
                               "My Profile",
                               Icons.person,
                               () => Navigator.pushNamed(
-                                  context, AppRoutes.profileScreen),
+                                  context, AppRoutes.profileScreen
+                              ),
                             ),
                             MenuTile(
                               "Password Change",
                               Icons.shield_outlined,
                               () => Navigator.pushNamed(
-                                  context, AppRoutes.passwordChangeScreen),
+                                  context, AppRoutes.passwordChangeScreen
+                              ),
                             ),
         
                             // SIGN OUT

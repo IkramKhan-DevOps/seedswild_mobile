@@ -24,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
     lastNameController.text = data.lastName;
 
     return Scaffold(
-      backgroundColor: ColorConstant.whiteA700,
+      backgroundColor: SeedsColor.background,
       resizeToAvoidBottomInset: false,
 
       //app bar

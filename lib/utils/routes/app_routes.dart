@@ -1,4 +1,5 @@
 import 'package:seedswild/services/cart/cart_screen.dart';
+import 'package:seedswild/services/orders/orders_screen.dart';
 import 'package:seedswild/services/products/products_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ import '../../services/orders/checkout_screen.dart';
 import '../../services/orders/complete_screen.dart';
 import '../../services/auth/password_reset_screen.dart';
 import '../../services/home/home_page.dart';
+import '../../services/orders/order_detail_screen.dart';
 import '../../services/products/product_detail_screen.dart';
 import '../../services/settings/notifications_screen.dart';
 import '../../services/settings/profile_screen.dart';
@@ -28,6 +30,9 @@ class AppRoutes {
   static const String productsScreen = "/products_screen";
   static const String productDetailScreen = '/product_detail_screen';
   static const String cartScreen = '/cart_screen';
+
+  static const String ordersScreen = '/orders_screen';
+  static const String orderDetailScreen = '/order_detail_screen';
 
   // TODO: tests
   static const String checkoutScreen = '/checkout_screen';
@@ -55,6 +60,9 @@ class AppRoutes {
     profileScreen: (context) => ProfileScreen(),
     passwordChangeScreen: (context) => PasswordChangeScreen(),
     notificationScreen: (context) => NotificationScreen(),
+
+    ordersScreen: (context) => OrdersScreen(),
+    orderDetailScreen: (context) => OrderDetailScreen(orderId: '1'),
 
     // CLEANING REQUIRED
     checkoutScreen: (context) => CheckoutScreen(),
