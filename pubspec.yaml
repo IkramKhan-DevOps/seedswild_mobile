@@ -30,6 +30,7 @@ dependencies:
     sdk: flutter
   webview_flutter: ^4.4.2
   google_fonts: ^6.1.0
+  easy_stepper: ^0.8.3
 dev_dependencies:
   change_app_package_name: ^1.1.0
   flutter_test:
