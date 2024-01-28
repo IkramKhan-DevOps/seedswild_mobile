@@ -1,7 +1,5 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
-import 'package:seedswild/core/constants/colors.dart';
-import 'package:seedswild/data_layer/models/home_products_model.dart';
 import 'package:seedswild/services/products/provider/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -1,6 +1,5 @@
 import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/core/constants/colors.dart';
-import 'package:seedswild/utils/components/custom_button.dart';
 import 'package:seedswild/widgets/buttons.dart';
 import 'package:seedswild/widgets/empty.dart';
 import 'package:flutter/material.dart';

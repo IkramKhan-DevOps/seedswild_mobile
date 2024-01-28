@@ -4,7 +4,6 @@ import 'package:seedswild/globals/providers/general_providers.dart';
 import 'package:seedswild/utils/components/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:seedswild/utils/components/custom_text_form_field.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../globals/models/general_models.dart';
 import '../../../widgets/empty.dart';

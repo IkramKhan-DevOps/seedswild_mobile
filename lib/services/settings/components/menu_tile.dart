@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seedswild/core/constants/colors.dart';
 
-import '../../../../core/utils/size_utils.dart';
-import '../../../../utils/theme/app_decoration.dart';
-import '../../../../utils/theme/app_stylea.dart';
 
 class MenuTile extends StatelessWidget {
 

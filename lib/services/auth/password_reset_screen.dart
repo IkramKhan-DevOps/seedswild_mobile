@@ -1,9 +1,7 @@
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/services/auth/provider/password_reset_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:seedswild/widgets/app_bar.dart';
 import 'package:seedswild/widgets/form_fields.dart';
 
 import '../../core/constants/colors.dart';

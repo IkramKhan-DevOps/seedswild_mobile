@@ -1,14 +1,10 @@
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seedswild/core/utils/color_constant.dart';
 import 'package:seedswild/core/utils/size_utils.dart';
 import 'package:seedswild/data_layer/models/profile_model.dart';
 import 'package:seedswild/services/settings/statemanagement/profile_provider.dart';
-import 'package:seedswild/utils/components/custom_button.dart';
 import 'package:seedswild/utils/components/custom_text_form_field.dart';
-import 'package:seedswild/utils/theme/app_stylea.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:seedswild/widgets/buttons.dart';
 
 import '../../core/constants/colors.dart';
 

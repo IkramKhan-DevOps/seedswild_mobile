@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seedswild/core/constants/colors.dart';
 
 class OrderAmountsWidget extends StatelessWidget {
   const OrderAmountsWidget({super.key});
