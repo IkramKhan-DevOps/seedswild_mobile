@@ -6,7 +6,6 @@ import 'package:seedswild/services/products/provider/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../home_page.dart';
 
 class CategoryCardList extends StatelessWidget {
   final categoryList;
