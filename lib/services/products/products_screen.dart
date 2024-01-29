@@ -35,6 +35,7 @@ class ProductsScreen extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     // SEARCH AREA
                     SizedBox(
                       height: 20,

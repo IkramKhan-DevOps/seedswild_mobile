@@ -15,6 +15,7 @@ import '../../services/settings/profile_screen.dart';
 import '../../services/settings/settings_screen.dart';
 import '../../services/settings/password_change_screen.dart';
 import '../../services/auth/sign_up_screen.dart';
+import '../../services/settings/subscription_screen.dart';
 import '../../services/splash/splash_screen.dart';
 
 class AppRoutes {
@@ -23,9 +24,11 @@ class AppRoutes {
   static const String forgotPasswordScreen = '/forgot_password_screen';
   static const String signUpScreen = '/sign_up_screen';
 
+  static const String settingsScreen = '/settings_screen';
   static const String profileScreen = '/profile_screen';
   static const String passwordChangeScreen = '/password_change_screen';
   static const String notificationScreen = '/notification_screen';
+  static const String subscriptionScreen = '/subscription_screen';
 
   static const String productsScreen = "/products_screen";
   static const String productDetailScreen = '/product_detail_screen';
@@ -40,9 +43,6 @@ class AppRoutes {
 
   // TODO: remove these
   static const String homePage = '/home_page';
-  static const String settingsScreen = '/settings_screen';
-
-
   static const String appNavigationScreen = '/app_navigation_screen';
 
   static Map<String, WidgetBuilder> routes = {
@@ -57,6 +57,7 @@ class AppRoutes {
     cartScreen: (context) => CartScreen(),
 
     settingsScreen: (context) => SettingsScreen(),
+    subscriptionScreen: (context) => SubscriptionScreen(),
     profileScreen: (context) => ProfileScreen(),
     passwordChangeScreen: (context) => PasswordChangeScreen(),
     notificationScreen: (context) => NotificationScreen(),
@@ -67,6 +68,5 @@ class AppRoutes {
     // CLEANING REQUIRED
     checkoutScreen: (context) => CheckoutScreen(),
     completeScreen: (context) => CompleteScreen(),
-
   };
 }

@@ -79,7 +79,7 @@ class ProductCategoryCardItem extends StatelessWidget {
                 padding: const EdgeInsets.all(5),
                 child: ClipOval(
                   child: Image.network(
-                    image ?? "https://picsum.photos/50",
+                    image ?? "https://placehold.co/50/png?text=${name[0]}",
                     width: 58,
                     height: 58,
                     fit: BoxFit.cover,

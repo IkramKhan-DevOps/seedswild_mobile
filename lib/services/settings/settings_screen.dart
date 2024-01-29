@@ -26,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
                 return Center(child: Text("Error loading user data"));
               } else {
                 var data = Provider.of<ProfileProvider>(context).userModel;
-        
+
                 return Container(
                   width: double.maxFinite,
                   decoration: AppDecoration.fillWhiteA700,
@@ -43,12 +43,13 @@ class SettingsScreen extends StatelessWidget {
                                 alignment: Alignment.bottomCenter,
                                 children: [
                                   SizedBox(height: 200),
-        
+
                                   // PROFILE - START
                                   Align(
                                     alignment: Alignment.bottomCenter,
                                     child: Padding(
-                                      padding: getPadding(left: 115, right: 115),
+                                      padding:
+                                          getPadding(left: 50, right: 50),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -60,7 +61,8 @@ class SettingsScreen extends StatelessWidget {
                                               padding: EdgeInsets.all(20),
                                               decoration: BoxDecoration(
                                                 color: Colors.grey[200],
-                                                borderRadius: BorderRadius.circular(70),
+                                                borderRadius:
+                                                    BorderRadius.circular(70),
                                               ),
                                               child: Icon(
                                                 Icons.usb,
@@ -75,9 +77,8 @@ class SettingsScreen extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
                                             style: GoogleFonts.aBeeZee(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 24
-                                            ),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 24),
                                           ),
                                           Text(
                                             "${data.email}",
@@ -85,7 +86,7 @@ class SettingsScreen extends StatelessWidget {
                                             textAlign: TextAlign.left,
                                             style: GoogleFonts.aBeeZee(
                                               fontSize: 13,
-                                              color: SeedsColor.primary
+                                              color: SeedsColor.primary,
                                             ),
                                           ),
                                         ],
@@ -97,31 +98,34 @@ class SettingsScreen extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 20),
-        
+
                             // MENU ITEMS
                             MenuTile(
                               "Orders",
                               Icons.add_shopping_cart,
                               () => Navigator.pushNamed(
-                                  context, AppRoutes.ordersScreen
-                              ),
+                                  context, AppRoutes.ordersScreen),
                             ),
-        
+                            MenuTile(
+                              "Subscription",
+                              Icons.subscriptions,
+                              () => Navigator.pushNamed(
+                                  context, AppRoutes.subscriptionScreen),
+                            ),
+
                             MenuTile(
                               "My Profile",
                               Icons.person,
                               () => Navigator.pushNamed(
-                                  context, AppRoutes.profileScreen
-                              ),
+                                  context, AppRoutes.profileScreen),
                             ),
                             MenuTile(
                               "Password Change",
                               Icons.shield_outlined,
                               () => Navigator.pushNamed(
-                                  context, AppRoutes.passwordChangeScreen
-                              ),
+                                  context, AppRoutes.passwordChangeScreen),
                             ),
-        
+
                             // SIGN OUT
                             Spacer(),
                             Container(
@@ -130,7 +134,7 @@ class SettingsScreen extends StatelessWidget {
                                 title: "Logout",
                                 icon: Icons.logout,
                                 padding: EdgeInsets.all(10),
-                                onPressed: (){
+                                onPressed: () {
                                   AuthToken.logoutUser(context);
                                 },
                               ),

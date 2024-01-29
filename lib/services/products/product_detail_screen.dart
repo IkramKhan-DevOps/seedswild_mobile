@@ -57,7 +57,7 @@ class ProductDetailScreen extends StatelessWidget {
                             children: [
                               // Product Image
                               Image.network(product?.thumbnailImage ??
-                                  "https://placehold.co/600x400/png"),
+                                  "https://placehold.co/600/png?text=${product?.title}"),
 
                               // Product details
                               Padding(
@@ -211,7 +211,7 @@ class ProductDetailScreen extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),

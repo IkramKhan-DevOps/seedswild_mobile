@@ -1,54 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/core/constants/colors.dart';
+import 'package:seedswild/services/orders/providers/orders_provider.dart';
 
-class OrdersModel {
-  final String orderId;
-  final String orderDate;
-  final String orderStatus;
-  final String orderTotal;
-
-  OrdersModel({
-    required this.orderId,
-    required this.orderDate,
-    required this.orderStatus,
-    required this.orderTotal,
-  });
-}
+import 'models/orders_model.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<OrdersModel> orders = [
-      OrdersModel(
-          orderId: "1",
-          orderDate: "25-12-23",
-          orderStatus: "pending",
-          orderTotal: "100"),
-      OrdersModel(
-          orderId: "2",
-          orderDate: "26-12-23",
-          orderStatus: "completed",
-          orderTotal: "200"),
-      OrdersModel(
-          orderId: "3",
-          orderDate: "27-12-23",
-          orderStatus: "pending",
-          orderTotal: "300"),
-      OrdersModel(
-          orderId: "4",
-          orderDate: "28-12-23",
-          orderStatus: "completed",
-          orderTotal: "400"),
-      OrdersModel(
-          orderId: "5",
-          orderDate: "29-12-23",
-          orderStatus: "cancelled",
-          orderTotal: "500"),
-    ];
+
+    var orders = context.read<OrdersProvider>().orders;
+    print(orders);
 
     return Scaffold(
       backgroundColor: SeedsColor.background,
@@ -62,6 +28,7 @@ class OrdersScreen extends StatelessWidget {
           child: Icon(
             Icons.arrow_back,
             color: Colors.white,
+
           ),
         ),
       ),
@@ -74,9 +41,9 @@ class OrdersScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             OrdersModel order = orders[index];
             status_icon() {
-              if (order.orderStatus == "pending") {
+              if (order.status == "pending") {
                 return Icon(Icons.pending, color: Colors.orange);
-              } else if (order.orderStatus == "completed") {
+              } else if (order.status == "completed") {
                 return Icon(Icons.check_circle, color: Colors.green);
               } else {
                 return Icon(Icons.cancel, color: Colors.red);
@@ -85,7 +52,7 @@ class OrdersScreen extends StatelessWidget {
 
             return Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey[300]!),
+                border: Border.all(color: Colors.grey[100]!),
                 borderRadius: BorderRadius.circular(10),
               ),
               margin: EdgeInsets.symmetric(vertical: 5),
@@ -101,7 +68,7 @@ class OrdersScreen extends StatelessWidget {
                   ),
                 ),
                 subtitle: Text(
-                  'Date: ${order.orderDate}',
+                  'Date: ${order.createdOn}',
                   style: GoogleFonts.aBeeZee(),
                 ),
                 trailing: status_icon(),

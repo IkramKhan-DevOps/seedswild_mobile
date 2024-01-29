@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:seedswild/widgets/buttons.dart';
 import 'package:seedswild/widgets/form_fields.dart';
 
+import '../../home/widgets/category_widgets.dart';
+
 class ProductSearchDrawer extends StatelessWidget {
   final TextEditingController group848Controller = TextEditingController();
   final TextEditingController group847Controller = TextEditingController();
@@ -49,10 +51,18 @@ class ProductSearchDrawer extends StatelessWidget {
                       color: SeedsColor.primary,
                     ),
                   ),
-                  ProductCategoryCardList(
+                  CategoryCardList(
                     categoryList:
                         context.watch<HomeProvider>().homeModel!.categories,
+                    requestForFilter: true,
                   ),
+
+                  //TODO: remove this
+                  // ProductCategoryCardList(
+                  //   categoryList:
+                  //   context.watch<HomeProvider>().homeModel!.categories,
+                  // ),
+
                 ],
               ),
 

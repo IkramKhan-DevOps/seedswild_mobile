@@ -66,10 +66,11 @@ class ProductCardItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               // IMAGE
               ClipRRect(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12)),
-                child: Image.network(this.image ?? "https://picsum.photos/200"),
+                child: Image.network(this.image ?? "https://placehold.co/200/png?text=${name[0]}"),
               ),
 
               SizedBox(height: 8.h),
