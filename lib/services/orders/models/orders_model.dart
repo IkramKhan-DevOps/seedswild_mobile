@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class OrdersModel {
 
   final int id;

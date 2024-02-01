@@ -12,7 +12,7 @@ class OrderStepperWidget extends StatelessWidget {
 
     getActiveStep() {
       switch (status) {
-        case "ordered":
+        case "initialized":
           return 0;
         case "pending":
           return 1;

@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../models/order_detail_model.dart';
+
 class OrderAmountsWidget extends StatelessWidget {
-  const OrderAmountsWidget({super.key});
+  final double total;
+  final double serviceCharges;
+  final double subTotal;
+
+  const OrderAmountsWidget({
+    super.key,
+    required this.total,
+    required this.subTotal,
+    required this.serviceCharges,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +42,9 @@ class OrderAmountsWidget extends StatelessWidget {
               ),
             ),
           ),
-          OrderRowWidget(leftText: "Subtotal", rightText: "100"),
-          OrderRowWidget(leftText: "Shipping", rightText: "10"),
-          OrderRowWidget(leftText: "Discount", rightText: "0"),
-          OrderRowWidget(leftText: "Total", rightText: "110"),
+          OrderRowWidget(leftText: "Subtotal", rightText: "$subTotal"),
+          OrderRowWidget(leftText: "Service Charges", rightText: "$serviceCharges"),
+          OrderRowWidget(leftText: "Total", rightText: "$total"),
         ],
       ),
     );
@@ -42,7 +52,33 @@ class OrderAmountsWidget extends StatelessWidget {
 }
 
 class OrderShipmentDetailWidget extends StatelessWidget {
-  const OrderShipmentDetailWidget({super.key});
+
+  final String fullName;
+  final String contact;
+  final String postalCode;
+  final String address;
+  final String city;
+  final String state;
+  final String country;
+  final String paymentType;
+  final String orderStatus;
+  final String paymentStatus;
+  final DateTime createdOn;
+
+  const OrderShipmentDetailWidget({
+    super.key,
+    required this.fullName,
+    required this.contact,
+    required this.postalCode,
+    required this.address,
+    required this.city,
+    required this.state,
+    required this.country,
+    required this.paymentType,
+    required this.orderStatus,
+    required this.paymentStatus,
+    required this.createdOn
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +107,11 @@ class OrderShipmentDetailWidget extends StatelessWidget {
               ),
             ),
           ),
-          OrderRowWidget(leftText: "Name", rightText: "Mark I"),
-          OrderRowWidget(leftText: "Payment Method", rightText: "Online"),
+          OrderRowWidget(leftText: "Name", rightText: fullName),
+          OrderRowWidget(leftText: "Payment Method", rightText: paymentType),
 
           Container(
-            child: Text("some address, details, city, country", style: GoogleFonts.aBeeZee()),
+            child: Text("$address $city $country", style: GoogleFonts.aBeeZee()),
           )
         ],
       ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:seedswild/services/orders/providers/order_detail_provider.dart';
 import 'package:seedswild/services/orders/widgets/order_widgets.dart';
 import 'package:seedswild/services/orders/widgets/sub_order_widgets.dart';
 
 import '../../core/constants/colors.dart';
+import '../../widgets/progress.dart';
 
 class OrderDetailScreen extends StatelessWidget {
   final String orderId;
@@ -12,6 +15,8 @@ class OrderDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final orderId = ModalRoute.of(context)!.settings.arguments as String?;
+    Provider.of<OrderDetailProvider>(context, listen: false)
+        .orderDetailAPICall(context, int.parse(orderId!));
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -28,31 +33,64 @@ class OrderDetailScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        // sub_orders in orders
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+      body: FutureBuilder(
+        future: Provider.of<OrderDetailProvider>(context, listen: false)
+            .orderDetailAPICall(context, int.parse(orderId)),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return ProgressCircular();
+          } else if (snapshot.hasError) {
+            return Center(child: Text("Error loading user data"));
+          } else {
+            var order = context.watch<OrderDetailProvider>().orderDetail;
+            var subOrders = order?.subOrders;
 
-              // sub order 1
-              SubOrderContainerWidget(),
-              const SizedBox(height: 15),
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: subOrders?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        var subOrder = subOrders?[index];
+                        return SubOrderContainerWidget(
+                          subOrder: subOrder,
+                        );
+                      },
+                    ),
 
-              // sub order 2
-              SubOrderContainerWidget(),
-              const SizedBox(height: 15),
-
-              // Overall Order Details
-              OrderAmountsWidget(),
-              const SizedBox(height: 15),
-
-              OrderShipmentDetailWidget(),
-            ],
-          ),
-        ),
+                    // amounts and shipments
+                    const SizedBox(height: 15),
+                    OrderAmountsWidget(
+                      serviceCharges: order!.serviceCharges,
+                      subTotal: order.subTotal,
+                      total: order.total,
+                    ),
+                    const SizedBox(height: 15),
+                    OrderShipmentDetailWidget(
+                      fullName: order.fullName,
+                      orderStatus: order.orderStatus,
+                      paymentStatus: order.paymentStatus,
+                      postalCode: order.postalCode,
+                      contact: order.contact,
+                      paymentType: order.paymentType,
+                      address: order.address,
+                      city: order.city,
+                      state: order.state,
+                      country: order.country.name,
+                      createdOn: order.createdOn,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+        },
       ),
     );
   }

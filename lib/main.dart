@@ -3,6 +3,7 @@ import 'package:seedswild/services/auth/provider/login_provider.dart';
 import 'package:seedswild/services/auth/provider/password_reset_provider.dart';
 import 'package:seedswild/services/cart/cart_provider.dart';
 import 'package:seedswild/services/home/statemanagement/home_provider.dart';
+import 'package:seedswild/services/orders/providers/order_detail_provider.dart';
 import 'package:seedswild/services/orders/providers/orders_provider.dart';
 import 'package:seedswild/services/products/provider/notification_provider.dart';
 import 'package:seedswild/services/products/provider/product_detail_provider.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => GeneralProvider()),
         ChangeNotifierProvider(create: (_) => OrdersProvider()),
+        ChangeNotifierProvider(create: (_) => OrderDetailProvider()),
       ],
       child: Builder(
         builder: (BuildContext context) {

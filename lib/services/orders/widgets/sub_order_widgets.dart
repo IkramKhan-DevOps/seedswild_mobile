@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/constants/colors.dart';
 
+import '../models/order_detail_model.dart';
 import 'order_stepper.dart';
 
 class SubOrderContainerWidget extends StatelessWidget {
-  const SubOrderContainerWidget({super.key});
+  final SubOrder? subOrder;
+
+  const SubOrderContainerWidget({super.key, this.subOrder});
 
   @override
   Widget build(BuildContext context) {
+
+    List<OrderItem>? orderItems = subOrder?.orderItems;
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -29,7 +35,7 @@ class SubOrderContainerWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(10),
             child: Text(
-              "Shop Name",
+              subOrder!.shop.shopName,
               style: GoogleFonts.aBeeZee(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
@@ -38,14 +44,32 @@ class SubOrderContainerWidget extends StatelessWidget {
           ),
 
           // item1
-          SubOrderTileWidget(),
-          SubOrderTileWidget(),
+          ListView.builder(
+            itemCount: orderItems?.length ?? 0,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+
+              OrderItem? orderItem = orderItems?[0];
+              return SubOrderTileWidget(
+                categoryName: 'missing',
+                image: orderItem?.product.thumbnailImage ?? "https://placehold.co/90/png?text=${orderItem?.product.title[0]}",
+                price: orderItem!.product.price.toString(),
+                quantity: orderItem.quantity.toString(),
+                productName: orderItem.product.title,
+              );
+            },
+          ),
 
           //shop details
           SubOrderStatusTileWidget(
-            created: "12th Jan, 2022",
-            reached: "12th Jan, 2050",
-            status: "delivery",
+            startDate: subOrder!.shipment.started?.toString() ?? "-",
+            reachedDate: subOrder!.shipment.reached?.toString() ?? "-",
+            status: subOrder!.shipment.shipmentStatus ?? "initialized",
+            serviceName: subOrder!.shipment.provider ?? "-",
+            trackingLink: subOrder!.shipment.trackingUrl ?? "-",
+            trackingID: subOrder!.shipment.trackingId ?? "-",
+            description: subOrder!.shipment.description ?? "-",
           ),
         ],
       ),
@@ -54,7 +78,19 @@ class SubOrderContainerWidget extends StatelessWidget {
 }
 
 class SubOrderTileWidget extends StatelessWidget {
-  const SubOrderTileWidget({super.key});
+  final String productName;
+  final String categoryName;
+  final String image;
+  final String quantity;
+  final String price;
+
+  const SubOrderTileWidget(
+      {super.key,
+      required this.productName,
+      required this.categoryName,
+      required this.image,
+      required this.quantity,
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +103,7 @@ class SubOrderTileWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
-              "https://picsum.photos/80",
+              image,
               width: 80,
               height: 80,
             ),
@@ -79,7 +115,7 @@ class SubOrderTileWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "category",
+                  categoryName,
                   style: GoogleFonts.aBeeZee(
                     fontSize: 12,
                     color: SeedsColor.primary,
@@ -87,7 +123,7 @@ class SubOrderTileWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Product Price",
+                  productName,
                   style: GoogleFonts.aBeeZee(
                     fontSize: 16,
                     color: Colors.grey[900],
@@ -95,7 +131,7 @@ class SubOrderTileWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "1 x 100\$",
+                  "$quantity x $price\$",
                   style: GoogleFonts.aBeeZee(
                     fontSize: 18,
                     color: Colors.grey[700],
@@ -112,15 +148,24 @@ class SubOrderTileWidget extends StatelessWidget {
 }
 
 class SubOrderStatusTileWidget extends StatelessWidget {
-  final String created;
-  final String reached;
+  final String startDate;
+  final String reachedDate;
+  final String serviceName;
+  final String trackingID;
+  final String trackingLink;
+  final String description;
   final String status;
 
-  const SubOrderStatusTileWidget(
-      {super.key,
-      required this.created,
-      required this.reached,
-      required this.status});
+  const SubOrderStatusTileWidget({
+    super.key,
+    required this.startDate,
+    required this.reachedDate,
+    required this.serviceName,
+    required this.trackingID,
+    required this.trackingLink,
+    required this.description,
+    required this.status,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -139,8 +184,8 @@ class SubOrderStatusTileWidget extends StatelessWidget {
           OrderStepperWidget(status: status),
 
           // shop name
-          SubOrderRowWidget(leftText: "Created", rightText: created),
-          SubOrderRowWidget(leftText: "Reached", rightText: reached),
+          SubOrderRowWidget(leftText: "Created", rightText: startDate),
+          SubOrderRowWidget(leftText: "Reached", rightText: reachedDate),
 
           // view more = on click open diaglog box()
           Container(
@@ -156,7 +201,14 @@ class SubOrderStatusTileWidget extends StatelessWidget {
                   isDismissible: true,
                   context: context,
                   builder: (BuildContext context) {
-                    return SubOrderShipmentDrawer();
+                    return SubOrderShipmentDrawer(
+                      description: description,
+                      reachedDate: reachedDate,
+                      startDate: startDate,
+                      trackingID: trackingID,
+                      trackingLink: trackingLink,
+                      serviceName: serviceName,
+                    );
                   },
                 );
               },
@@ -202,6 +254,22 @@ class SubOrderRowWidget extends StatelessWidget {
 }
 
 class SubOrderShipmentDrawer extends StatelessWidget {
+  final String? startDate;
+  final String? reachedDate;
+  final String? serviceName;
+  final String? trackingID;
+  final String? trackingLink;
+  final String? description;
+
+  const SubOrderShipmentDrawer({
+    this.startDate,
+    this.reachedDate,
+    this.serviceName,
+    this.trackingID,
+    this.trackingLink,
+    this.description,
+  });
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -240,11 +308,13 @@ class SubOrderShipmentDrawer extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   SubOrderRowWidget(
-                      leftText: "created", rightText: "12th Jan, 2022"),
+                      leftText: "created", rightText: "$startDate"),
                   SubOrderRowWidget(
-                      leftText: "Service", rightText: "DHL (fast)"),
+                      leftText: "reached", rightText: "$reachedDate"),
                   SubOrderRowWidget(
-                      leftText: "Tracking ID", rightText: "1234567890"),
+                      leftText: "Service", rightText: "$serviceName"),
+                  SubOrderRowWidget(
+                      leftText: "Tracking ID", rightText: "$trackingID"),
 
                   // tracking link
                   SizedBox(height: 20),
@@ -265,7 +335,7 @@ class SubOrderShipmentDrawer extends StatelessWidget {
                       InkWell(
                         onTap: () {},
                         child: Text(
-                          "https://www.dhl.com/en/express/tracking.html?AWB=1234567890&brand=DHL",
+                          "$trackingLink",
                           style: GoogleFonts.aBeeZee(
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.bold,
@@ -281,7 +351,6 @@ class SubOrderShipmentDrawer extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-
                       Text(
                         "Comments",
                         style: GoogleFonts.aBeeZee(
@@ -290,11 +359,8 @@ class SubOrderShipmentDrawer extends StatelessWidget {
                           fontSize: 18,
                         ),
                       ),
-
                       Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing "
-                        "elit. Nulla euismod, nisl eget ultricies"
-                        " ultrices, ni",
+                        "$description",
                         style: GoogleFonts.aBeeZee(),
                       ),
                     ],
