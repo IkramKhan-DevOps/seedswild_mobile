@@ -16,7 +16,6 @@ class PasswordChangeProvider with ChangeNotifier{
 
     this._isLoading = true;
     try{
-      print(AppUrls.passwordChange);
       var response = await apiServices.postAPI(AppUrls.passwordChange, data, true);
       this._isLoading = false;
 

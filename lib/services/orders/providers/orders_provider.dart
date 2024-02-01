@@ -1,17 +1,28 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:seedswild/data_layer/data/network/base_api_services.dart';
+import 'package:seedswild/data_layer/data/network/network_api_services.dart';
+import 'package:seedswild/data_layer/error_handling/app_errors.dart';
+import 'package:seedswild/data_layer/urls/app_urls.dart';
+import 'package:seedswild/services/orders/models/orders_model.dart';
 
-import '../models/orders_model.dart';
 
-class OrdersProvider extends ChangeNotifier{
+class OrdersProvider extends ChangeNotifier {
+  BaseApiService apiService = new NetworkApiService();
+  List<OrdersModel>? orders;
 
-  List<OrdersModel> orders = [
-    OrdersModel(orderId: '1', createdOn: '1st Jan, 2024', status: 'completed'),
-    OrdersModel(orderId: '2', createdOn: '11th Jan, 2024', status: 'pending'),
-    OrdersModel(orderId: '3', createdOn: '21st Jan, 2024', status: 'delivery'),
-    OrdersModel(orderId: '4', createdOn: '22th Jan, 2024', status: 'completed'),
-    OrdersModel(orderId: '5', createdOn: '30th Jan, 2024', status: 'completed'),
-  ];
+  Future<void> ordersAPICall(BuildContext context) async {
+    try {
+      var response = await apiService.getAPI(AppUrls.order, true);
+      List<dynamic> jsonList = response as List<dynamic>;
 
+      orders = jsonList.map((json) => OrdersModel.fromJson(json)).toList();
+      notifyListeners();
+    } catch (e) {
+      print(e);
+      ErrorMessage.flushBar(context, e.toString());
+      notifyListeners();
+    }
+  }
 }
