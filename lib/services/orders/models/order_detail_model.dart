@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 
 class OrderDetailModel {
   final int id;
@@ -147,6 +146,7 @@ class OrderItem {
 class SubOrderProductList {
   final int id;
   final String title;
+  final Category category;
   final String? thumbnailImage;
   final double price;
   final int discount;
@@ -157,6 +157,7 @@ class SubOrderProductList {
   SubOrderProductList({
     required this.id,
     required this.title,
+    required this.category,
     required this.thumbnailImage,
     required this.price,
     required this.discount,
@@ -169,6 +170,7 @@ class SubOrderProductList {
     return SubOrderProductList(
       id: json['id'] as int,
       title: json['title'] as String,
+      category: Category.fromJson(json['category']),
       thumbnailImage: json['thumbnail_image'] as String?,
       price: json['price'] as double,
       discount: json['discount'] as int,
@@ -177,6 +179,34 @@ class SubOrderProductList {
       averageReview: json['average_review'] as int,
     );
   }
+}
+
+class Category {
+  int id;
+  String name;
+  int? parent;
+  String? thumbnailImage;
+
+  Category({
+    required this.id,
+    required this.name,
+    required this.parent,
+    required this.thumbnailImage
+  });
+
+  factory Category.fromJson(Map<String, dynamic> json) => Category(
+    id: json["id"],
+    name: json["name"],
+    parent: json["parent"],
+    thumbnailImage: json["thumbnail_image"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "parent": parent,
+    'thumbnail_image': thumbnailImage
+  };
 }
 
 class Vendor {

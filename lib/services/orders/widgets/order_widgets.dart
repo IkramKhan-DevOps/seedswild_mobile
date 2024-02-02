@@ -82,6 +82,9 @@ class OrderShipmentDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    String date_modified = "${createdOn.day}-${createdOn.month}-${createdOn.year}";
+
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -109,9 +112,12 @@ class OrderShipmentDetailWidget extends StatelessWidget {
           ),
           OrderRowWidget(leftText: "Name", rightText: fullName),
           OrderRowWidget(leftText: "Payment Method", rightText: paymentType),
+          OrderRowWidget(leftText: "Payment Status", rightText: paymentStatus),
+          OrderRowWidget(leftText: "Created On", rightText: date_modified),
 
+          SizedBox(height: 10),
           Container(
-            child: Text("$address $city $country", style: GoogleFonts.aBeeZee()),
+            child: Text("$address $city, $state, $country", style: GoogleFonts.aBeeZee(), maxLines: 3),
           )
         ],
       ),
@@ -129,6 +135,9 @@ class OrderRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Container(
       padding: EdgeInsets.all(2),
       child: Row(

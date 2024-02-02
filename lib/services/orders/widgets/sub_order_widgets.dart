@@ -52,9 +52,9 @@ class SubOrderContainerWidget extends StatelessWidget {
 
               OrderItem? orderItem = orderItems?[0];
               return SubOrderTileWidget(
-                categoryName: 'missing',
-                image: orderItem?.product.thumbnailImage ?? "https://placehold.co/90/png?text=${orderItem?.product.title[0]}",
-                price: orderItem!.product.price.toString(),
+                categoryName: orderItem!.product.category.name,
+                image: orderItem.product.thumbnailImage ?? "https://placehold.co/90/png?text=${orderItem.product.title[0]}",
+                price: orderItem.product.price.toString(),
                 quantity: orderItem.quantity.toString(),
                 productName: orderItem.product.title,
               );
