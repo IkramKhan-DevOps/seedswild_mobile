@@ -1,5 +1,7 @@
+
 import 'package:seedswild/services/cart/cart_screen.dart';
 import 'package:seedswild/services/orders/orders_screen.dart';
+import 'package:seedswild/services/plants/plants_list_screen.dart';
 import 'package:seedswild/services/products/products_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,7 @@ import '../../services/orders/complete_screen.dart';
 import '../../services/auth/password_reset_screen.dart';
 import '../../services/home/home_page.dart';
 import '../../services/orders/order_detail_screen.dart';
+import '../../services/plants/plants_detail_screen.dart';
 import '../../services/products/product_detail_screen.dart';
 import '../../services/settings/notifications_screen.dart';
 import '../../services/settings/profile_screen.dart';
@@ -37,6 +40,9 @@ class AppRoutes {
   static const String ordersScreen = '/orders_screen';
   static const String orderDetailScreen = '/order_detail_screen';
 
+  static const String plantsListScreen = '/plants_list_screen';
+  static const String plantsDetailScreen = '/plants_detail_screen';
+
   // TODO: tests
   static const String checkoutScreen = '/checkout_screen';
   static const String completeScreen = '/complete_screen';
@@ -64,6 +70,9 @@ class AppRoutes {
 
     ordersScreen: (context) => OrdersScreen(),
     orderDetailScreen: (context) => OrderDetailScreen(orderId: '1'),
+
+    plantsListScreen: (context) => PlantsListScreen(),
+    plantsDetailScreen: (context) => PlantsDetailScreen(),
 
     // CLEANING REQUIRED
     checkoutScreen: (context) => CheckoutScreen(),

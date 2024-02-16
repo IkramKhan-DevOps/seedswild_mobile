@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class DummyScreen extends StatelessWidget {
-  const DummyScreen({super.key});
+class PlantsDetailScreen extends StatelessWidget {
+  const PlantsDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -125,6 +125,13 @@ class SettingsScreen extends StatelessWidget {
                               () => Navigator.pushNamed(
                                   context, AppRoutes.passwordChangeScreen),
                             ),
+                            MenuTile(
+                              "Plants App",
+                              Icons.energy_savings_leaf,
+                                  () => Navigator.pushNamed(
+                                  context, AppRoutes.plantsListScreen),
+                            ),
+                            
 
                             // SIGN OUT
                             Spacer(),
