@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seedswild/services/plants/widgets/weather_widgets.dart';
 
 import '../../../core/constants/colors.dart';
 
@@ -38,9 +39,11 @@ class PlantDetailWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("assets/plants/plant1.png"),
+              SizedBox(height: 10),
+              Image.asset("assets/plants/plant2.png", height: 100),
+              SizedBox(height: 10),
               Text(
-                "Plant Application",
+                "Bamboos",
                 style: GoogleFonts.aBeeZee(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -58,59 +61,21 @@ class PlantDetailWidget extends StatelessWidget {
               ),
 
               // ROW
-              SizedBox(
-                height: 15,
-              ),
-
-              // WEATHER
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                decoration: BoxDecoration(
-                  color: Colors.green[700],
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.sunny,
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "14 c",
-                      style: GoogleFonts.aBeeZee(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Colors.white),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Multan",
-                          style: GoogleFonts.aBeeZee(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          "Pakistan",
-                          style: GoogleFonts.aBeeZee(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              // SizedBox(
+              //   height: 15,
+              // ),
+              //
+              // // WEATHER
+              // WeatherContainer(
+              //   icon: Icons.sunny_snowing,
+              //   temperature: "14 c",
+              //   city: "Mansehra",
+              //   country: "Pakistan",
+              // ),
 
               // ROW
               SizedBox(
-                height: 15,
+                height: 20,
               ),
 
               // PROPERTIES

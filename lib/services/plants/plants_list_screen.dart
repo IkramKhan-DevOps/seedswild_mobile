@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seedswild/core/app_export.dart';
+import 'package:seedswild/core/constants/colors.dart';
+import 'package:seedswild/services/plants/widgets/weather_widgets.dart';
 
 import '../home/home_page.dart';
 
@@ -46,7 +48,7 @@ class PlantsListScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[800],
+        backgroundColor: SeedsColor.primary,
         leading: GestureDetector(
           onTap: () {
             Navigator.pushAndRemoveUntil(
@@ -61,26 +63,22 @@ class PlantsListScreen extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: Colors.green[800],
+      backgroundColor: SeedsColor.primary,
       body: SafeArea(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 20, bottom: 0),
+                  left: 20, right: 20, top: 0, bottom: 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.energy_savings_leaf,
-                        color: Colors.white,
-                        size: 80,
-                      ),
+                      Image.asset("assets/plants/g1.png", height: 80),
                       Text(
-                        "Virtual Garden",
+                        "Garden",
                         style: GoogleFonts.aBeeZee(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -98,52 +96,15 @@ class PlantsListScreen extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 20),
 
             // WEATHER
-            Container(
-              margin: EdgeInsets.all(20),
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-              decoration: BoxDecoration(
-                color: Colors.green[700],
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    Icons.sunny,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    "14 c",
-                    style: GoogleFonts.aBeeZee(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        color: Colors.white),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Multan",
-                        style: GoogleFonts.aBeeZee(
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        "Pakistan",
-                        style: GoogleFonts.aBeeZee(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
+            // WeatherContainer(
+            //   icon: Icons.sunny,
+            //   temperature: "14 c",
+            //   city: "Mansehra",
+            //   country: "Pakistan",
+            // ),
 
             // LIST
             Expanded(
@@ -237,10 +198,15 @@ class PlantsListScreen extends StatelessWidget {
                                 ),
                               ),
                               trailing: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context, AppRoutes.plantsDetailScreen,
+                                    arguments: '1',
+                                  );
+                                },
                                 icon: Icon(
-                                  icon,
-                                  color: color,
+                                  Icons.remove_red_eye_outlined,
+                                  color: SeedsColor.primary,
                                 ),
                               ),
                             ),

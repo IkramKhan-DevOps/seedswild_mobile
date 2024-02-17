@@ -22,12 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
 
-  _launchURL() async {
-    final Uri url = Uri.parse('https://flutter.dev');
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
-    }
-  }
+  // _launchURL() async {
+  //   final Uri url = Uri.parse('https://flutter.dev');
+  //   if (!await launchUrl(url)) {
+  //     throw Exception('Could not launch $url');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,15 +47,22 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           GestureDetector(
             onTap: () {
-              // Navigator.pushNamed(context, AppRoutes.notificationScreen);
-
-              _launchURL();
-
+              Navigator.pushNamed(context, AppRoutes.notificationScreen);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0),
+              child:
+                  Icon(Icons.notifications_none_outlined, color: Colors.white),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.plantsListScreen);
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child:
-                  Icon(Icons.notifications_none_outlined, color: Colors.white),
+              Icon(Icons.energy_savings_leaf_outlined, color: Colors.white),
             ),
           ),
         ],
