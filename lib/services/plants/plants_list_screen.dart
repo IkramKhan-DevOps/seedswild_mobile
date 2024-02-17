@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seedswild/core/app_export.dart';
+
+import '../home/home_page.dart';
 
 class ListItem {
   String title;
   String subtitle;
+  String image;
   bool isCheck;
 
   ListItem({
     required this.title,
     required this.subtitle,
+    required this.image,
     required this.isCheck,
   });
 }
@@ -20,21 +25,42 @@ class PlantsListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<ListItem> items = [
       ListItem(
-          title: "Corn",
-          subtitle: "{h:10 w:40} - 20:46 pm",
-          isCheck: true),
+        title: "Corn",
+        image: "plant1.png",
+        subtitle: "category_name  |  AI: Yes",
+        isCheck: true,
+      ),
       ListItem(
-          title: "Rice",
-          subtitle: "{h:10 w:40} - 20:46 pm",
-          isCheck: false),
+        title: "Rice",
+        image: "plant2.png",
+        subtitle: "category_name  |  AI: Yes",
+        isCheck: false,
+      ),
       ListItem(
-          title: "Bambos",
-          subtitle: "{h:10 w:40} - 20:46 pm",
-          isCheck: true),
-      ListItem(title: "--", subtitle: "{h:10 w:40} - 20:46 pm", isCheck: false),
+        title: "Bambos",
+        image: "plant3.png",
+        subtitle: "category_name  |  AI: Yes",
+        isCheck: true,
+      ),
     ];
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green[800],
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+                  (route) => false,
+            );
+          },
+          child: Icon(
+            Icons.dashboard_customize_outlined,
+            color: Colors.white,
+          ),
+        ),
+      ),
       backgroundColor: Colors.green[800],
       body: SafeArea(
         child: Column(
@@ -158,7 +184,10 @@ class PlantsListScreen extends StatelessWidget {
                               ],
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, AppRoutes.plantsDetailScreen);
+                              },
                               icon: const Icon(
                                 Icons.more_horiz,
                                 color: Colors.grey,
@@ -187,17 +216,11 @@ class PlantsListScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               style: ListTileStyle.list,
-                              leading: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.handshake_outlined,
-                                    color: Colors.green,
-                                  ),
+                              leading: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.asset(
+                                  "assets/plants/${item.image}",
+                                  height: 50,
                                 ),
                               ),
                               title: Text(

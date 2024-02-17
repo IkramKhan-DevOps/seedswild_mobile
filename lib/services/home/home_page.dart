@@ -1,6 +1,7 @@
 import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/services/cart/cart_screen.dart';
 import 'package:seedswild/services/home/home_screen.dart';
+import 'package:seedswild/services/plants/plants_list_screen.dart';
 import 'package:seedswild/services/products/products_screen.dart';
 import 'package:seedswild/services/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
