@@ -1,17 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../models/plant_detail_model.dart';
+
 class PlantAlertWidget extends StatelessWidget {
-  const PlantAlertWidget({super.key});
+  final List<Alert> alerts;
+
+  PlantAlertWidget({required this.alerts, super.key});
 
   @override
   Widget build(BuildContext context) {
 
-    List<PlantsAlertsModel> items = [
-      PlantsAlertsModel(name: "Heat", description: "Water every 10 days", image: "assets/plants/water.png"),
-      PlantsAlertsModel(name: "Rain", description: "5 Inches of dept required", image: "assets/plants/deep.png"),
-      PlantsAlertsModel(name: "Danger", description: "5 inches of area required", image: "assets/plants/distance.png"),
-    ];
+    Image getImage(String title){
+      String image_name = "";
+
+      switch (title){
+        case "heat":
+          image_name = "assets/plants/heat.png";
+          break;
+
+        case "water":
+          image_name = "assets/plants/watering.png";
+          break;
+
+        case "cultivation":
+          image_name = "assets/plants/cultivation.png";
+          break;
+
+        default:
+          image_name = "assets/plants/core.png";
+      }
+      return Image.asset(image_name, height: 60);
+    }
 
     return Column(
       children: [
@@ -33,7 +53,7 @@ class PlantAlertWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Suggestions are generated from Seedswild AI",
+                      "Alerts are generated from Seedswild AI",
                       style: GoogleFonts.aBeeZee(
                         fontSize: 12,
                         color: Colors.grey,
@@ -46,10 +66,10 @@ class PlantAlertWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-            itemCount: items.length,
+          child: alerts.length > 0 ? ListView.builder(
+            itemCount: alerts.length,
             itemBuilder: (context, index) {
-              var item = items[index];
+              var item = alerts[index];
 
               return Padding(
                 padding: const EdgeInsets.symmetric(
@@ -62,13 +82,10 @@ class PlantAlertWidget extends StatelessWidget {
                   style: ListTileStyle.list,
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      item.image,
-                      height: 50,
-                    ),
+                    child: getImage(item.alertType),
                   ),
                   title: Text(
-                    item.name,
+                    item.alertType,
                     style: GoogleFonts.aBeeZee(
                       fontWeight: FontWeight.bold,
                     ),
@@ -76,7 +93,7 @@ class PlantAlertWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   subtitle: Text(
-                    item.description,
+                    item.alertMessage,
                     style: GoogleFonts.aBeeZee(
                       fontSize: 12,
                       color: Colors.grey[500],
@@ -85,6 +102,16 @@ class PlantAlertWidget extends StatelessWidget {
                 ),
               );
             },
+          ): Container(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              "Alerts feature will be available soon",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.aBeeZee(
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       ],

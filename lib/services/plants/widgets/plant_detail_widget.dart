@@ -1,33 +1,38 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seedswild/services/plants/widgets/weather_widgets.dart';
 
 import '../../../core/constants/colors.dart';
 
 class PlantDetailWidget extends StatelessWidget {
-  const PlantDetailWidget({super.key});
+
+  final String image;
+  final String name;
+  final String description;
+  final String category;
+  final String ai;
+
+  PlantDetailWidget({
+    required this.image,
+    required this.name,
+    required this.description,
+    required this.category,
+    required this.ai,
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
     List<PlantPropertyModel> plantProperties = [
       PlantPropertyModel(
         name: "Category",
-        value: "Crops",
+        value: category,
         image: "assets/plants/category.png",
       ),
       PlantPropertyModel(
-        name: "Seasons",
-        value: "Summer, Spring",
-        image: "assets/plants/seasons.png",
-      ),
-      PlantPropertyModel(
-        name: "Soil",
-        value: "Dark",
-        image: "assets/plants/soil.png",
-      ),
-      PlantPropertyModel(
         name: "AI",
-        value: "Yes",
+        value: ai != "" ? "Yes" : "No",
         image: "assets/plants/ai.png",
       ),
     ];
@@ -40,18 +45,17 @@ class PlantDetailWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 10),
-              Image.asset("assets/plants/plant2.png", height: 100),
+              Image.network(image, height: 100),
               SizedBox(height: 10),
               Text(
-                "Bamboos",
+                name,
                 style: GoogleFonts.aBeeZee(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[700]),
               ),
               Text(
-                "Some fake text for this application, now the application is "
-                "a1 this is one of the following now there is no",
+                description,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.aBeeZee(

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:seedswild/core/app_export.dart';
 import 'package:seedswild/core/constants/colors.dart';
-import 'package:seedswild/services/plants/widgets/weather_widgets.dart';
+import 'package:seedswild/data_layer/error_handling/app_errors.dart';
+import 'package:seedswild/services/plants/providers/plants_provider.dart';
+import 'package:seedswild/services/plants/models/plants_model.dart';
+import 'package:seedswild/widgets/progress.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../widgets/empty.dart';
 import '../home/home_page.dart';
 
 class ListItem {
@@ -23,8 +29,16 @@ class ListItem {
 class PlantsListScreen extends StatelessWidget {
   const PlantsListScreen({Key? key}) : super(key: key);
 
+  _launchURL(link) async {
+    final Uri url = Uri.parse(link);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+
     List<ListItem> items = [
       ListItem(
         title: "Corn",
@@ -54,7 +68,7 @@ class PlantsListScreen extends StatelessWidget {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => HomePage()),
-                  (route) => false,
+              (route) => false,
             );
           },
           child: Icon(
@@ -68,8 +82,8 @@ class PlantsListScreen extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 0, bottom: 0),
+              padding:
+                  const EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -136,7 +150,7 @@ class PlantsListScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "You have plants these plants upto now",
+                                  "To register new plant login with web.",
                                   style: GoogleFonts.aBeeZee(
                                     fontSize: 12,
                                     color: Colors.grey,
@@ -146,11 +160,10 @@ class PlantsListScreen extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () {
-                                Navigator.pushNamed(
-                                    context, AppRoutes.plantsDetailScreen);
+                                _launchURL('https://alpha.seedswild.com/plantation/plant/create/');
                               },
                               icon: const Icon(
-                                Icons.more_horiz,
+                                Icons.add,
                                 color: Colors.grey,
                               ),
                             ),
@@ -159,58 +172,85 @@ class PlantsListScreen extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: ListView.builder(
-                        itemCount: items.length,
-                        itemBuilder: (context, index) {
-                          ListItem item = items[index];
-                          IconData icon =
-                              item.isCheck ? Icons.check : Icons.close;
-                          Color color =
-                              item.isCheck ? Colors.green : Colors.redAccent;
+                      child: FutureBuilder(
+                        future:
+                            Provider.of<PlantsProvider>(context, listen: false)
+                                .getPlantsAPI(context),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return ProgressCircular();
+                          } else if (snapshot.hasError) {
+                            return EmptyData(title: snapshot.error.toString());
+                          } else {
+                            var plants = context.watch<PlantsProvider>().plants;
 
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
-                            child: ListTile(
-                              dense: true,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              style: ListTileStyle.list,
-                              leading: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Image.asset(
-                                  "assets/plants/${item.image}",
-                                  height: 50,
+                            if (plants.length < 1) {
+                              return Container(
+                                padding: EdgeInsets.all(20),
+                                child: Text(
+                                  "You didn't added any plants yet, kindly use web to register plants.",
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.aBeeZee(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              title: Text(
-                                item.title,
-                                style: GoogleFonts.aBeeZee(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              subtitle: Text(
-                                item.subtitle,
-                                style: GoogleFonts.aBeeZee(
-                                  fontSize: 12,
-                                  color: Colors.grey[500],
-                                ),
-                              ),
-                              trailing: IconButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                    context, AppRoutes.plantsDetailScreen,
-                                    arguments: '1',
-                                  );
-                                },
-                                icon: Icon(
-                                  Icons.remove_red_eye_outlined,
-                                  color: SeedsColor.primary,
-                                ),
-                              ),
-                            ),
-                          );
+                              );
+                            }
+
+                            return ListView.builder(
+                              itemCount: plants.length,
+                              itemBuilder: (context, index) {
+                                PlantModel plant = plants[index];
+
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  child: ListTile(
+                                    dense: true,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    style: ListTileStyle.list,
+                                    leading: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.network(
+                                        plant.image,
+                                        height: 50,
+                                      ),
+                                    ),
+                                    title: Text(
+                                      plant.name,
+                                      style: GoogleFonts.aBeeZee(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      plant.category.name,
+                                      style: GoogleFonts.aBeeZee(
+                                        fontSize: 12,
+                                        color: Colors.grey[500],
+                                      ),
+                                    ),
+                                    trailing: IconButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          AppRoutes.plantsDetailScreen,
+                                          arguments: "${plant.id}",
+                                        );
+                                      },
+                                      icon: Icon(
+                                        Icons.remove_red_eye_outlined,
+                                        color: SeedsColor.primary,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          }
                         },
                       ),
                     ),

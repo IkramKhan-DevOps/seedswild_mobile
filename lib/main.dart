@@ -5,6 +5,8 @@ import 'package:seedswild/services/cart/cart_provider.dart';
 import 'package:seedswild/services/home/statemanagement/home_provider.dart';
 import 'package:seedswild/services/orders/providers/order_detail_provider.dart';
 import 'package:seedswild/services/orders/providers/orders_provider.dart';
+import 'package:seedswild/services/plants/providers/plant_detail_provider.dart';
+import 'package:seedswild/services/plants/providers/plants_provider.dart';
 import 'package:seedswild/services/products/provider/notification_provider.dart';
 import 'package:seedswild/services/products/provider/product_detail_provider.dart';
 import 'package:seedswild/services/products/provider/products_provider.dart';
@@ -56,6 +58,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => GeneralProvider()),
         ChangeNotifierProvider(create: (_) => OrdersProvider()),
         ChangeNotifierProvider(create: (_) => OrderDetailProvider()),
+        ChangeNotifierProvider(create: (_) => PlantsProvider()),
+        ChangeNotifierProvider(create: (_) => PlantDetailProvider()),
       ],
       child: Builder(
         builder: (BuildContext context) {
@@ -90,3 +94,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
