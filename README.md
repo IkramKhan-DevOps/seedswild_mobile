@@ -5,6 +5,7 @@
 2. You must have keytool in java/jdk/bin/
 3. go inside bin folder run this command - and add all required details ".."
 ````bash
+keytool -genkey -v -keystore C:\debug.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias debug
 keytool -importkeystore -srckeystore C:\debug.keystore -destkeystore C:\debug.keystore -deststoretype pkcs12
 ````
 1. 

@@ -18,10 +18,10 @@ dependencies:
   shared_preferences: ^2.2.2
   intl: any
   url_launcher: ^6.2.2
-  google_sign_in: ^6.2.1
+  google_sign_in: ^6.1.0
   another_flushbar: ^1.12.30
   webview_flutter: ^4.4.2
-  google_fonts: ^6.1.0
+  google_fonts: 6.1.0
   easy_stepper: ^0.8.3
 
   flutter_localizations:

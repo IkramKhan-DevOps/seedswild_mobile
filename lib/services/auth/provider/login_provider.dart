@@ -12,7 +12,7 @@ import '../../../../data_layer/urls/app_urls.dart';
 // GOOGLE SETTINGS
 List<String> scopes = <String>['email'];
 GoogleSignIn _googleSignIn = GoogleSignIn(
-  clientId: "370944119419-lcf8s0uj0uhe74cckc2kt9sbekg17lm7.apps.googleusercontent.com",
+  clientId: "831708978986-itjhccbknk32p7dq8krgps3eic641o7u.apps.googleusercontent.com",
   scopes: scopes,
 );
 
@@ -42,8 +42,6 @@ class LoginProvider with ChangeNotifier {
   // API CALL
   Future<void> loginAPI(dynamic data, BuildContext context) async {
 
-    print("loginAPI");
-    print(AppUrls.signIn);
     handleSignOut();
 
     setLoading(true);
@@ -80,6 +78,7 @@ class LoginProvider with ChangeNotifier {
         handleGoogleLoginServer(context, accessToken, idToken);
       }
     } catch (error) {
+      print(error.toString());
       ErrorMessage.flushBar(context, error.toString(), "danger");
     }
   }
